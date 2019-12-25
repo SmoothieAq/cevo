@@ -9,8 +9,8 @@ include <../CEVOdefinitions.scad>
 /////////////////////////////////////////////////////////////////////
 // main properties, these have sensible defaults but can be tweaked
 
-carriageScrew 		= screw(m4,80); 					// screw length must be slightly less than carriageWidth
-carriageMountScrew 	= screw(partMountingScrew,-9); 		// screw length not used, this size is used for all mounting on carriage
+carriageScrew 		= screw(m4,90); 					// screw length must be slightly less optimal carriageWidth
+carriageMountScrew 	= screw(partMountingScrew,-9); 		// screw length not used, this type is used for all mounting on carriage
 
 yidler				= defaultIdler;
 
@@ -29,11 +29,12 @@ idlerHolderBotThick	= 4;
 // helpers, don't change
 
 yTubeRadius 		= yshaft[bushingRadius] + bushingWall;
-xTubeRadius 		= xshaft[radius] + carriageMountScrew[radius]+carriageMountScrew[nutHoleWidth]+4*slack;
+xTubeRadius 		= xshaft[radius] + screwTapMinThick+carriageMountScrew[holeRadius]*2+screwTapThick;//carriageMountScrew[radius]+carriageMountScrew[nutHoleWidth]+4*slack;
 carriageWidth 		= carriageScrew[length]+carriageScrew[headHeight];// xshaftDistance+2*xTubeRadius; 
 xshaftZ				= -yTubeRadius-xshaft[radius];
 
 carriageWidthHole	= 4*yidler[radius]+2*yidler[flangeRadius]+4*beltBaseThick(belt);
+carriageWidthBox	= carriageWidthHole+idlerHolderBotThick*2;
 carriageSideWidth	= (carriageWidth-carriageWidthHole)/2;
 
 echo(yTubeRadius=yTubeRadius,xTubeRadius=xTubeRadius,carriageWidth=carriageWidth,xshaftZ=xshaftZ,carriageWidthHole=carriageWidthHole,carriageSideWidth=carriageSideWidth);

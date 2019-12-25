@@ -4,31 +4,45 @@
 //*******************************************************************
 
 include <util/standardDefinitions.scad>
-
+include <otherParts/stepperMotor.scad>
+ 
 
 /////////////////////////////////////////////////////////////////////
 // overall size and properties, review and override as you see fit
+
+frameHeight				= 600;
+frameWidth				= 480; // including 2 x extrusion with
+frameDepth				= 470; // including 2 x extrusion with
+
+plateThick				= 12;
 
 hotbedWidth 			= 300;
 hotbedDepth 			= 300;
 printingHeight 			= 300;
 
 carbonXshaft = true;
-carbonYshaft = false;
+carbonYshaft = true;
 
 
 /////////////////////////////////////////////////////////////////////
 // additional properties, these have sensible defaults but can be overridden
 
-xshaft 					= shaft(hotbedWidth > 300 || carbonXshaft ? shaft10 : shaft8,hotbedWidth+80);
+allExtrusion			= extrusion3030;
+
+xshaftLength			= frameWidth-2*allExtrusion[exmainsq]-10;
+xshaft 					= shaft(hotbedWidth > 300 || carbonXshaft ? shaft10 : shaft8,xshaftLength);
 xshaftDistance 			= 60;
 
+yshaftLength			= frameDepth-40;
 hotendOffset 			= [0,-6,0]; 		// carefull, should go with the carriage dimentions and your hotend mount
 
-yshaft 					= shaft(hotbedDepth > 300 || carbonYshaft ? shaft12 : shaft10,hotbedDepth+80);
+yshaft 					= shaft(hotbedDepth > 300 || carbonYshaft ? shaft12 : shaft10,yshaftLength);
 
 belt 					= gt2;
 defaultIdler			= F623x2;
+
+beltStepperMotor		= stepperMotor(nema17,40);
+beltStepperPulley		= Gt2Timing20;
 
 
 /////////////////////////////////////////////////////////////////////
@@ -37,6 +51,9 @@ defaultIdler			= F623x2;
 idlerSpacer = 0.8;
 printIdlerSpacer = false;
 
+partMountingThick = 5;
+partMountingExWidth = allExtrusion[exmainsq]/5*4.2;
+partMountingExExWidth = allExtrusion[exmainsq]/5*3.4;
 partMountingScrew = m3;
 frameMountingScrew = m4;
 
@@ -59,15 +76,18 @@ slack = 0.2;
 /////////////////////////////////////////////////////////////////////
 // calculated helpers, don't change
 
-yIdlerDist			= yshaft[bushingRadius] + bushingWall; // X-dist relative to yshaft center
+extrusionWidth 	= allExtrusion[exmainsq];
+
+yIdlerDist		= yshaft[bushingRadius] + bushingWall; // X-dist relative to yshaft center
+
 
 /////////////////////////////////////////////////////////////////////
 // colors, only used to render nice looking visuals of the parts and assemblies
 
-mainColor 		= [67/256,79/256,79/256,1]; // dark greyish
+mainColor 		= [66/256,78/256,78/256,1]; // dark greyish
 accentColor 	= [200/256,1/256,1/256,1]; // Red
 screwColor 		= [80/256,80/256,80/256,1]; // little less dark grey
-frameColor 		= [69/256,81/256,81/256,1]; // less dark greyish
+frameColor 		= [75/256,78/256,78/256,1]; // less dark greyish
 aluColor 		= [220/256,220/256,220/256,1]; // light grey
 carbonColor		= [55/256,55/256,55/256,1]; // dark grey
 otherPartColor	= [50/256,50/256,50/256,1]; // more dark greyish
@@ -77,7 +97,7 @@ otherPartColor	= [50/256,50/256,50/256,1]; // more dark greyish
 // rendering diamants are real slow, override these when testing
 
 doDiamants 			= true;
-doRealDiamants 		= true;
+doRealDiamants 		= false;
 
 
 /////////////////////////////////////////////////////////////////////

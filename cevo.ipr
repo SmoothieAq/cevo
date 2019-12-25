@@ -8,7 +8,7 @@
   </component>
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/cevo.iml" filepath="$PROJECT_DIR$/cevo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CEVO.iml" filepath="$PROJECT_DIR$/CEVO.iml" />
     </modules>
   </component>
   <component name="ProjectRootManager">
@@ -16,5 +16,6 @@
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
   </component>
 </project>

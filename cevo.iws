@@ -2,10 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0ac7a39-903d-48ef-8209-d1d15fda06d0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cevo.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cevo.ipr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cevo.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/CEVOdefinitions.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/CEVOdefinitions.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/desktop.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/genericParts/desktop.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/imports/desktop.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/otherParts/desktop.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/otherParts/stepperMotor.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/otherParts/stepperMotor.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/util/desktop.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/util/helperEDIT.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/util/helperEDIT.scad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CEVOparts/util/standardDefinitions.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/util/standardDefinitions.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/util/util.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/util/util.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/xCarriage - Copy.scad" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/xCarriage.scad" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/xCarriage/desktop.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/xCarriage/xCarriageEDIT.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/xCarriage/xCarriageEDIT.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/xCarriage/xCarriagePlate.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/xCarriage/xCarriagePlate.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/desktop.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightEDIT.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightEDIT.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightFront.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightFront.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriagesDefinitions.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriagesDefinitions.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cevo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cevo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cevo.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/cevo.ipr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cevo.iws" beforeDir="false" afterPath="$PROJECT_DIR$/cevo.iws" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,15 +34,17 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1VNeAJBxXA1u1beGLMevVCZrGAu" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -50,5 +70,39 @@
       <updated>1577097834133</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="874" y="510" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1577138008868">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="874" y="510" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1577138008868" />
+    <state x="898" y="448" key="FileChooserDialogImpl" timestamp="1577135877313">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="898" y="448" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1577135877313" />
+    <state x="964" y="414" key="RollbackChangesDialog" timestamp="1577138112511">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="964" y="414" key="RollbackChangesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1577138112511" />
+    <state x="621" y="349" key="SettingsEditor" timestamp="1577287025444">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="621" y="349" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1577287025444" />
+    <state x="988" y="528" key="com.intellij.ide.util.TipDialog" timestamp="1577135906710">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="988" y="528" key="com.intellij.ide.util.TipDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1577135906710" />
+    <state x="763" y="290" width="710" height="819" key="find.popup" timestamp="1577138452375">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="763" y="290" width="710" height="819" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1577138452375" />
+    <state x="110" y="327" key="new project wizard" timestamp="1577278303842">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="110" y="327" key="new project wizard/0.0.2560.1400@0.0.2560.1400" timestamp="1577278303842" />
+    <state x="781" y="319" width="672" height="678" key="search.everywhere.popup" timestamp="1577137908728">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="781" y="319" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1577137908728" />
   </component>
 </project>

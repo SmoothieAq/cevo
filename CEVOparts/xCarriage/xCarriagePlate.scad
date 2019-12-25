@@ -23,7 +23,7 @@ module xCarriagePlate(color=undef,showScrews=false) {
 			cube([carriageWidth/2-chamfer,carriagePlateDepth/2,thick]);
 			b = bevelWidth+chamfer-bevelHeight; h = carriageWidth/2-b;
 			endbev = bevelWidth+chamfer+(chamfer-bevelHeight);
-			translate([carriageWidth/2-endbev,0,0]) 
+			#translate([carriageWidth/2-endbev,0,0]) 
 				chamferCube(endbev,carriagePlateDepth/2,carriageThick,chamfer,[0,0,0,0],[0,1,1,0],[0,0,0,0]);
 			translate([0,carriagePlateDepth/2-bevelWidth,thick]) 
 				chamferCube(carriageWidth/2-bevelWidth,bevelWidth,bevelHeight,bevelHeight,[0,0,0,1],[0,0,0,0],[0,0,0,0]);
