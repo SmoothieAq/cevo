@@ -48,10 +48,10 @@ module yshaftMount(color=undef,showScrews=false,lg) {
 		translate([-2*slack,-yshaft[radius],yshaftDistx+yshaft[radius]]) 
 			rotate([0,90,0]) 
 				cylinder(r=yshaft[radius]-slack/4,h=yshaftFrontMountDepth-yshaftMountDepthIn);
-		for (p=frameFrontMounts) xscrewAllHole(p,frameScrew);
+		for (p=frameFrontMounts) xscrewHole(p,frameScrew);
 		for (p=yshaftFrontMounts) {
-			xscrewAllHole(p,yshaftTubeScrew,depth=0);
-			xNutHole(p,yshaftTubeScrew,z=0,twist=30);
+			xscrewHole(p,yshaftTubeScrew,depth=0);
+			xnutHole(p,yshaftTubeScrew,twist=30);
 		}
 	}
 }
@@ -66,10 +66,10 @@ module frontRightInnerShaftMount(color=undef,showScrews=false) {
 		}
 	}
 	for (p=frameFrontMounts) xFrameScrew(p,frameScrew,showScrews=showScrews,lg=xxl(lg,d="frame mount"));
-	for (p=yshaftFrontMounts) xNut(p,yshaftTubeScrew,showScrews=showScrews,twist=30,lg=xxl(lg,d="tube assembly"));
+	for (p=yshaftFrontMounts) xnut(p,yshaftTubeScrew,showScrews=showScrews,twist=30,lg=xxl(lg,d="tube assembly"));
 }
 
-frontRightInnerShaftMount(showScrews=false);
+frontRightInnerShaftMount(showScrews=true);
 
 /*
 This design and software is copyrighted, but is free for private, non-commercial use.

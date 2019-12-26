@@ -54,6 +54,7 @@ printIdlerSpacer = false;
 partMountingThick = 5;
 partMountingExWidth = allExtrusion[exmainsq]/5*4.2;
 partMountingExExWidth = allExtrusion[exmainsq]/5*3.4;
+screwDepth = 0.2; // fraction of headHeight
 partMountingScrew = m3;
 frameMountingScrew = m4;
 

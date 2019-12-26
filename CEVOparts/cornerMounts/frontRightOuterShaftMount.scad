@@ -21,7 +21,7 @@ module frontRightOuterShaftMount(color=undef,showScrews=false) {
 	}
 }
 
-frontRightOuterShaftMount(showScrews=false);
+frontRightOuterShaftMount(showScrews=true);
 
 /*
 This design and software is copyrighted, but is free for private, non-commercial use.

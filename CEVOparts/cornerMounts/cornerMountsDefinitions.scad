@@ -42,7 +42,7 @@ frameFrontMounts 	= setzs(
 
 yshaftTubeScrew		= xaPartScrew(leng=yshaftDistx+yshaft[radius]+screwTapSolidThick);
 yshaftFrontMounts	= let (xd = (yshaftFrontMountDepth-yshaftDisty)/2, yd = screwTapMinThick+yshaftTubeScrew[radius]/*(yshaftHolderRadius-yshaft[radius])/2*/ ) 
-						setzs([[xd,yd],[xd,-yshaft[radius]*2-yd]],yshaftTubeScrew[length]); //echo(want=yshaftDistx+yshaft[radius]+screwTapSolidThick,act=yshaftTubeScrew[length]);
+						[ for (xy=[[xd,yd],[xd,-yshaft[radius]*2-yd]]) xp([xy.x,xy.y,yshaftTubeScrew[length]],nutdepth=1) ]; //echo(want=yshaftDistx+yshaft[radius]+screwTapSolidThick,act=yshaftTubeScrew[length]);
 
 pulleyOuterEdgeX	= yIdlerDist+yidler[radius]+beltBaseThick(belt); // relative to yshaft center
 pulleyTopOuterEdgeZ	= xshaftZ+idlerSpacer/2+idlerHeight(yidler)-yidler[flangeTopHeight]; // relative to yshaft center, top of tooths

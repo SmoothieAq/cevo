@@ -48,7 +48,7 @@ module beltMotorMount(color=undef,showScrews=false,lg) {
 				}
 			}
 			xMotorMountScrewHoles(beltStepperMotor,lg=lg);
-			for (p=mountPoints) xscrewAllHole(p,frameScrew);
+			for (p=mountPoints) xscrewHole(p,frameScrew);
 		}
 	}
 	xMotorMountScrews(beltStepperMotor,lg=lg,showScrews=showScrews);
