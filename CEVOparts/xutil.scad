@@ -30,12 +30,13 @@ module xLog(logtype, lg) {echo(logtype, nnv(lg[0], ""), nnv(lg[1], ""), nnv(lg[2
 
 /////////////////////////////////////////////////////////////////////
 
-function xp(xyz,rrr,thick,depth,nutdepth) = [xyz.x, xyz.y, xyz.z, rrr == undef ? 0 : rrr.x, rrr == undef ? 0 : rrr.y, rrr == undef ? 0 : rrr.z, thick, depth, nutdepth];
+function xp(xyz,rrr,thick,depth,nutdepth,screw) = [xyz.x, xyz.y, xyz.z, rrr == undef ? 0 : rrr.x, rrr == undef ? 0 : rrr.y, rrr == undef ? 0 : rrr.z, thick, depth, nutdepth, screw];
 function xxyz(xyzrrrdn) = [xyzrrrdn.x, xyzrrrdn.y, xyzrrrdn.z];
 function xrrr(xyzrrrdn) = len(xyzrrrdn) > 3 ? [nnv(xyzrrrdn[3],0), nnv(xyzrrrdn[4],0), nnv(xyzrrrdn[5],0)] : [0, 0, 0];
 function xt(xyzrrrdn) = nnv(xyzrrrdn[6],xyzrrrdn.z);
 function xd(xyzrrrdn,depth) = nnv(depth, nnv(xyzrrrdn[7], screwDepth));
 function xnd(xyzrrrdn,nutdepth) = nnv(nutdepth, nnv(xyzrrrdn[8], 0));
+function xs(xyzrrrdn,screw) = nnv(screw, xyzrrrdn[9]);
 //function xnz(xyzrrrdn,z) = [xyzrrrdn.x, xyzrrrdn.y, nnv(z, nnv(xyzrrrdn[9], xyzrrrdn.z-nnv(xyzrrrdn[6],xyzrrrdn.z)))];
 
 function xaScrew(xyzrrrdn, screw, depth, leng, nutdepth) = screw[length] > 0 ? screw : screwMinLength(screw, nnv(leng, xt(xyzrrrdn)-screw[nutHeight]*0.25), xd(xyzrrrdn,depth), xnd(xyzrrrdn,nutdepth));
@@ -44,12 +45,12 @@ function xaFrameScrew(xyzrrrdn, depth, leng) = screwMinLength(frameMountingScrew
 function xxaFrameScrew(depth, thick = partMountingThick) = xaFrameScrew(depth = depth, leng = thick);
 
 module xscrewHole(xyzrrrdn, screw, leng, depth, spacing = 20, nutdepth) {
-    thisScrew = xaScrew(xyzrrrdn, screw, depth, leng, nutdepth);
+    thisScrew = xaScrew(xyzrrrdn, xs(xyzrrrdn,screw), depth, leng, nutdepth);
     translate(xxyz(xyzrrrdn)) rotate(xrrr(xyzrrrdn)) screwAllHole(thisScrew, depth = xd(xyzrrrdn,depth), spacing = spacing);
 }
 
 module xscrew(xyzrrrdn, screw, showScrews = true, depth, plate = 3, plateColor = mainColor, lg, leng, nutdepth) {
-    thisScrew = xaScrew(xyzrrrdn, screw, depth, leng, nutdepth);
+    thisScrew = xaScrew(xyzrrrdn, xs(xyzrrrdn,screw), depth, leng, nutdepth);
     xxPartLog(lg, c = "screw", t = thisScrew[screwName], s = thisScrew[length]);
     translate(xxyz(xyzrrrdn)) rotate(xrrr(xyzrrrdn)) {
         if (plate > 0)
@@ -63,28 +64,34 @@ module xscrew(xyzrrrdn, screw, showScrews = true, depth, plate = 3, plateColor =
 }
 
 module xFrameScrew(xyzrrrdn, screw, showScrews = true, depth, plate = 3, plateColor = mainColor, lg, leng) {
-    xscrew(xyzrrrdn, screw, showScrews = showScrews, depth = depth, plate = plate, plateColor = plateColor, lg = lg, leng = leng);
-    xxPartLog(lg, c = "T-mount", t = str(allExtrusion[exname], " ", screw[screwName]));
+    thisScrew = xs(xyzrrrdn,screw);
+    xscrew(xyzrrrdn, thisScrew, showScrews = showScrews, depth = depth, plate = plate, plateColor = plateColor, lg = lg, leng = leng);
+    xxPartLog(lg, c = "T-mount", t = str(allExtrusion[exname], " ", thisScrew[screwName]));
 }
 module xnutHole(xyzrrrdn, screw, depth, twist = 0, spacing) {
-    translate(xxyz(xyzrrrdn)) rotate(xrrr(xyzrrrdn)) translate([0, 0, -xt(xyzrrrdn)]) rotate([180, 0, 0]) nutHole(screw, xnd(xyzrrrdn,depth), twist = twist, spacing = spacing);
+    thisScrew = xs(xyzrrrdn,screw);
+    translate(xxyz(xyzrrrdn)) rotate(xrrr(xyzrrrdn))
+        translate([0, 0, -xt(xyzrrrdn)]) rotate([180, 0, 0])
+            nutHole(thisScrew, xnd(xyzrrrdn,depth), twist = twist, spacing = spacing);
 }
 
 module xnut(xyzrrrdn, screw, showScrews = true, depth, twist = 0, plate = 3, plateColor = mainColor, lg) {
-    xxPartLog(lg, c = "nut", t = screw[screwName]);
-    translate(xxyz(xyzrrrdn)) rotate(xrrr(xyzrrrdn)) translate([0, 0, -xt(xyzrrrdn)]) rotate([180, 0, 0]) {
-        if (plate > 0)
-            color(plateColor) difference() {
-                translate([0, 0, -plate-xnd(xyzrrrdn,depth)*screw[nutHoleHeight]]) rotate([0, 0, twist]) {
-                    difference() {
-                        hexaprism(screw[nutHoleWidth], plate);
-                        translate([0, 0, -0.1]) cylinder(r = screw[holeRadius], h = plate+0.2);
+    thisScrew = xs(xyzrrrdn,screw);
+    xxPartLog(lg, c = "nut", t = thisScrew[screwName]);
+    translate(xxyz(xyzrrrdn)) rotate(xrrr(xyzrrrdn))
+        translate([0, 0, -xt(xyzrrrdn)]) rotate([180, 0, 0]) {
+            if (plate > 0)
+                color(plateColor) difference() {
+                    translate([0, 0, -plate-xnd(xyzrrrdn,depth)*thisScrew[nutHoleHeight]]) rotate([0, 0, twist]) {
+                        difference() {
+                            hexaprism(thisScrew[nutHoleWidth], plate);
+                            translate([0, 0, -0.1]) cylinder(r = thisScrew[holeRadius], h = plate+0.2);
+                        }
                     }
                 }
-            }
-        if (showScrews)
-            color(screwColor) nut(screw, xnd(xyzrrrdn,depth), twist = twist);
-    }
+            if (showScrews)
+                color(screwColor) nut(thisScrew, xnd(xyzrrrdn,depth), twist = twist);
+        }
 }
 
 

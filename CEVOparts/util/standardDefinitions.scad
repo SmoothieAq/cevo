@@ -45,13 +45,16 @@ module theShaft(shaft, leng) {len = leng > 0 ? leng : shaft[length]; translate([
 /*radius=0; length=1;*/ holeRadius = 2; headRadius = 3; headHoleRadius = 4; headHeight = 5;
 nutWidth = 6; nutHoleWidth = 7; nutHoleRadius = 8;  nutHeight = 9; nutHoleHeight = 10; screwLengths = 11; screwName = 12;
 m2 = [1.00, -99, 1.05, 1.50, 1.60, 2.00, 2.00, 2.05, 2.21, 1.60, 1.80, [3, 4, 5, 6, 8, 10, 12, 16, 20, 25, 30], "m2"];
-m3 = [1.50, -99, 1.55, 2.50, 2.60, 3.00, 2.75, 2.80, 3.10, 2.40, 2.60, [3, 4, 5, 6, 8, 10, 12, 16, 20, 25, 30, 35, 40, 45, 50, 55, 60], "m3"];
+m3 = [1.50, -99, 1.55, 2.50, 2.60, 3.00, 2.75, 2.80, 3.10, 2.40, 2.60, [3, 4, 5, 6, 8, 10, 12, 16, 20, 25, 30, 35, 40, 45, 50, 55, 60, 70, 80], "m3"];
 m4 = [2.00, -99, 2.05, 3.00, 3.10, 4.00, 3.50, 3.55, 3.89, 3.20, 3.40, [3, 4, 5, 6, 8, 10, 12, 16, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90], "m4"];
 m5 = [2.50, -99, 2.55, 4.00, 4.10, 5.00, 4.00, 4.05, 4.49, 4.70, 4.90, [5, 10, 12, 16, 20, 25, 30, 35, 40, 50, 60, 70, 80, 90], "m5"];
 
 function screwMinLength(screw, minLength, depth, nutdepth) = //echo(minLength=minLength,depth=depth,nutdepth=nutdepth)
-	let (ml = minLength-nnv(depth, 0)*screw[headHeight]+(1-nnv(nutdepth,1))*screw[nutHeight]) //echo(ml=ml)
-		screw(screw, [for (l = screw[screwLengths]) if ( l >= ml ) l][0]);
+    let (ml = minLength-nnv(depth, 0)*screw[headHeight]+(1-nnv(nutdepth, 1))*screw[nutHeight]) //echo(ml=ml)
+        screw(screw, [for (l = screw[screwLengths]) if ( l >= ml ) l][0]);
+function screwMaxLength(screw, maxLength, depth, nutdepth) = echo(maxLength=maxLength,depth=depth,nutdepth=nutdepth)
+    let (ml = maxLength-nnv(depth, 0)*screw[headHeight]+(1-nnv(nutdepth, 1))*screw[nutHeight], mls = [for (l = screw[screwLengths]) if ( l < ml ) l]) echo(ml=ml,mx=mls[len(mls)-1])
+        screw(screw, mls[len(mls)-1]);
 function screw(std, screwLength) = [std[0], screwLength, std[2], std[3], std[4], std[5], std[6], std[7], std[8], std[9], std[10], std[11], std[12]];
 module hexaprism(r, h) {rotate([0, 0, 30]) cylinder(r = r*2/sqrt(3), h = h, $fn = 6);}
 module nut(screw, depth = 0, twist = 0) {
@@ -101,11 +104,11 @@ function beltBaseThick(belt) = belt[thick]-belt[toothHeight];
 
 
 // belt idler/timing pullys:
-/*radius=0;*/ forBelt = 1; /*holeRadius=2;*/ toothed = 3; baseRadius = 4; flangeTopHeight = 5; flangeBotHeight = 6; flangeRadius = 7; pullyName = 8;
-F623x2 = [5.00, gt2, 1.5, false, 5.00, 1.0, 1.0, 6.0, "F623 x 2"]; // two F633 against each other, use f633zz
-Gt2Timing20 = [5.95, gt2, 2.5, true, 5.00, 1.1, 7.5, 8.0, "Gt2 timing 20"];
-Gt2Idler20 = [5.95, gt2, 2.5, true, 5.00, 1.1, 1.1, 8.0, "Gt2 idler w/teeth 20"];
-Gt2Idler20nt = [6.00, gt2, 2.5, false, 6.00, 1.1, 1.1, 8.0, "Gt2 idler wo/teeth 20"];
+/*radius=0;*/ forBelt = 1; /*holeRadius=2;*/ toothed = 3; baseRadius = 4; flangeTopHeight = 5; flangeBotHeight = 6; flangeRadius = 7; pullyName = 8; forScrew = 9;
+F623x2 = [5.00, gt2, 1.5, false, 5.00, 1.0, 1.0, 6.0, "F623 x 2", m3]; // two F633 against each other, use f633zz
+Gt2Timing20 = [5.95, gt2, 2.5, true, 5.00, 1.1, 7.5, 8.0, "Gt2 timing 20", m5];
+Gt2Idler20 = [5.95, gt2, 2.5, true, 5.00, 1.1, 1.1, 8.0, "Gt2 idler w/teeth 20", m5];
+Gt2Idler20nt = [6.00, gt2, 2.5, false, 6.00, 1.1, 1.1, 8.0, "Gt2 idler wo/teeth 20", m5];
 
 function idlerWidth(pulley) = pulley[forBelt][width];
 function idlerHeight(pulley) = idlerWidth(pulley)+pulley[flangeBotHeight]+pulley[flangeTopHeight];

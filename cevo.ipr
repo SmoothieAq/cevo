@@ -6,6 +6,16 @@
     </profile>
     <version value="1.0" />
   </component>
+  <component name="ProjectCodeStyleConfiguration">
+    <option name="USE_PER_PROJECT_SETTINGS" value="true" />
+    <code_scheme name="Project" version="173">
+      <codeStyleSettings language="OpenSCAD">
+        <option name="RIGHT_MARGIN" value="160" />
+        <option name="SPACE_AROUND_ADDITIVE_OPERATORS" value="false" />
+        <option name="SPACE_AROUND_MULTIPLICATIVE_OPERATORS" value="false" />
+      </codeStyleSettings>
+    </code_scheme>
+  </component>
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CEVO.iml" filepath="$PROJECT_DIR$/CEVO.iml" />
