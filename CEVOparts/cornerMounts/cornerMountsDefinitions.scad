@@ -5,7 +5,7 @@
 
 include <../CEVOdefinitions.scad>
 include <../yCarriages/yCarriagesDefinitions.scad>
-use <../xutil.scad>
+use <../xutil/xutil.scad>
 
 
 /////////////////////////////////////////////////////////////////////
@@ -16,7 +16,7 @@ use <../xutil.scad>
 // minor properties, probably don't change
 
 yshaftDistx		= partMountingThick;
-yshaftDistz		= sqrt(pow(yTubeRadius+2,2)-pow(yshaftDistx+yshaft[radius],2))-yshaft[radius];
+yshaftDistz		= sqrt(pow(ycTubeRadius+2,2)-pow(yshaftDistx+yshaft[radius],2))-yshaft[radius];
 
 yshaftHolderRadius	= yshaft[radius]+screwTapMinThick+partMountingScrew[holeRadius]*2+screwTapThick;
 

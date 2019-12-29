@@ -1,37 +1,23 @@
 
 //*******************************************************************
-// frame assembly
+// right yCarriage assembly EDIT
 //*******************************************************************
 
-
-include <../CEVOdefinitions.scad>
-include <frameDefinitions.scad>
-include <../util/helperEDIT.scad>
-use <frame.scad>
-use <bottomPlate.scad>
+use <frameAssembly.scad>
 
 
-
-show 		= 0; 
-
-onlyShow 	= false;
-alpha		= 0.2;
-showColor 	= undef;
-showScrews 	= false;
-showExtra	= true;
-
-module frameAssembly() {
-	place = [[],
-		[0,0,0,0,0,0], 													// frame
-		[0,0,plateSpacing,0,0,0], 													// bottom
-	[]];
-	show(place) { 
-		place(place,1) frame(color=alpha(1,frameColor),showScrews=showScrews);
-		place(place,2) bottomPlate(color=alpha(2,carbonColor),showScrews=showScrews);
-	}
-}
+$show 			= 0;
+$onlyShow 		= false;
+$alpha			= 0.2;
+$showColor 		= undef;
+$showScrews 	= true;
+$showExtra		= true;
+$showExtraExtra = true;
+$doDiamants		= true;
+$doRealDiamants	= false;
 
 frameAssembly();
+
 
 
 /*

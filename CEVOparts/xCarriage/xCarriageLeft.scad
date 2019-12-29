@@ -8,10 +8,10 @@ use <xCarriageRight.scad>
 
 
 
-module xCarriageLeft(color=undef,showScrews=false) {
+module xCarriageLeft(color=undef) {
 	rotate([180,0,0]) mirror([0,0,1]) {
 		difference() {
-			carriageSide(color,showScrews);
+			carriageSide(color);
 			color(color) {
 				translate([carriageScrewX,carriageScrewY,0])
 					rotate([180,0,0]) 
@@ -21,7 +21,7 @@ module xCarriageLeft(color=undef,showScrews=false) {
 						nutHole(carriageScrew);
 			}
 		}
-		if (showScrews) color(screwColor) {
+		if ($showScrews) color(screwColor) {
 			translate([carriageScrewX,carriageScrewY,0])
 				rotate([180,0,0]) 
 					nut(carriageScrew,1);

@@ -5,49 +5,51 @@
 use <../imports/Chamfer.scad>;
 
 include <yCarriagesDefinitions.scad>
-//use <../util/diamants.scad>
+use <../util/diamants.scad>
 use <../util/util.scad>
 use <../xutil/xutil.scad>
-use <yCarriageXHolderRightSide.scad>
-use <yCarriageBoxBottom.scad>
 
-module yCarriageSide(lg) {
-    difference() {
-        union() {
-            xHalfDiamantTube(ycTubeRadius, ycWidth/2); // the main tube
-            intersection() { // plate for meeting the yCarriageXHolderOuter
-                translate([0, 0, chamfer]) cylinder(r = ycTubeRadius+bevelHeight-assembleSlack, h = ycSideWidth-ycXHolderWidth);
-                tr(ycXHolderPos) yCarriageXHolder();
-            }
-            tr(ycXHolderPos) yCarriageXHolderInner(); // the inner part of the x holder
-            for (p = ycScrewPs) // tubes for the large screws
-                translate([p.x, p.y, chamfer])
-                    cylinder(r = ycScrewTubeRadius, h = ycSideWidth-chamfer);
-            tr([0,0,ycWidth/2,0,0,-90]) yCarriageBoxTopHalf();
-        }
-        tr(ycXHolderPos) translate([0,0,ycXHolderLenght]) shaftHole(xshaft,ycXHolderLenght); // hole for xshaft
-        translate([0, 0, ycBushingTapWidth]) // hole for bushing
-            cylinder(h = ycWidth/2, r = yshaft[bushingRadius]);
-        translate([0, 0, -1]) // tap for holding bushing
-            cylinder(h = ycWidth/2, r = yshaft[bushingRadius]-bushingTap);
-    }
+module yCarriageBoxHalf() {
+	difference() {
+		translate([0, 0, ycBoxHeight]) mirror([0, 0, 1]) xcube([ycBoxWidth/2, ycBoxDepth, ycBoxHeight], sides = [1, 0, 1, 1]);
+		translate([ycIdlerHolderBotThick,-1,ycIdlerHolderBotThick+chamfer]) cube([ycWidthHole,ycBoxDepth*3,ycBoxHoleHeight]);
+		//xhole(ycIdlerP);
+	}
+	//xscrewNut(ycIdlerP);
 }
 
-module yCarriageRightFront(color) {
-    lg = xl(a="Y carriage",sa="Carriage right front");
-    xxPartLog(lg,c="printed part",n="yCarriageRightFront",t="PETG");
-
-    color(color) difference() {
-        yCarriageSide(lg=lg);
-        xholes(ycScrewPs);
-    }
-    tr(ycXHolderPos) xnuts(ycXHolderPs,lg);
-    xnuts(ycScrewPs,lg=lg,plate=0);
+module yCarriageBoxBottomHalf(color,lg) {
+	color(color) difference() {
+		yCarriageBoxHalf();
+		translate([-1,-1,ycIdlerHolderBotThick+chamfer]) cube([ycBoxWidth/2+2,ycBoxDepth+2,ycBoxHeight]);
+		translate([-1,ycBoxDepth-partMountingThick*2-assembleSlack,-1]) cube([ycIdlerHolderBotThick+assembleSlack,partMountingThick*2+1,ycIdlerHolderBotThick+chamfer+2]);
+		xscrewHole(ycIdlerP);
+	}
+	xscrew(ycIdlerP,lg=lg);
 }
 
-*yCarriageSide();
-*tr(ycXHolderPos) yCarriageXHolderOuter();
-yCarriageRightFront();
+module yCarriageBoxTopHalf() {
+	difference() {
+		yCarriageBoxHalf();
+		translate([-1,-1,-1]) cube([ycBoxWidth/2+2,ycBoxDepth+1-partMountingThick*2,ycIdlerHolderBotThick+chamfer+1+assembleSlack]);
+		translate([ycIdlerHolderBotThick,-1,-1]) cube([ycBoxWidth/2+2,ycBoxDepth+2,ycIdlerHolderBotThick+chamfer+1+assembleSlack]);
+	}
+}
+
+module yCarriageBoxBottom(color) {
+	lg = xl(a="Y carriage",sa="Box bottom");
+	xxPartLog(lg,c="printed part",n="yCarriageBoxBottom",t="PETG");
+
+	yCarriageBoxBottomHalf(color,lg);
+	translate([ycBoxWidth,0,0]) mirror([1,0,0]) yCarriageBoxBottomHalf(color,lg);
+}
+
+//$doRealDiamants=true;
+*yCarriageBoxHalf();
+*translate([ycBoxWidth,0,0]) mirror([1,0,0]) yCarriageBoxHalf();
+
+*yCarriageBoxBottom();
+yCarriageBoxTopHalf();
 
 /*
 module yCarriageSide(color = undef) {

@@ -11,7 +11,7 @@ use <../util/util.scad>
 
 
 
-module carriageSide(color=undef,showScrews=false) {
+module carriageSide(color=undef) {
 
 	module tube(cutAt=0) {
 		color(color) difference() {
@@ -50,7 +50,7 @@ module carriageSide(color=undef,showScrews=false) {
 				rotate([90,0,0]) 
 					screwHole(carriageMountScrew,carriageThick);//cylinder(h=carriageThick,r=carriageMountScrew[holeRadius]);
 		}
-		if (showScrews) color(screwColor) {
+		if ($showScrews) color(screwColor) {
 			translate([carriageTubeRadius+carriagePlateScrewX,carriageThick-bevelHeight+screwTapSolidThick,carriageThick+carriagePlateScrewY]) 
 				rotate([-90,0,0]) 
 					nut(carriageScrew);
@@ -117,9 +117,9 @@ module carriageSide(color=undef,showScrews=false) {
 	}
 }
 
-module xCarriageRight(color=undef,showScrews=false) {
+module xCarriageRight(color=undef) {
 	difference() {
-		carriageSide(color,showScrews);
+		carriageSide(color);
 		color(color) {
 			translate([carriageScrewX,carriageScrewY,0])
 				rotate([180,0,0])
@@ -129,7 +129,7 @@ module xCarriageRight(color=undef,showScrews=false) {
 					screwHeadHole(carriageScrew);
 		}
 	}
-	if (showScrews) color(screwColor) {
+	if ($showScrews) color(screwColor) {
 		translate([carriageScrewX,carriageScrewY,0])
 			rotate([180,0,0])
 				screwHead(carriageScrew,1);

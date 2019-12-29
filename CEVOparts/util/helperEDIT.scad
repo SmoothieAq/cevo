@@ -8,30 +8,29 @@
 include <../CEVOdefinitions.scad>
 
 
+/*
+$show 		= 0;
+$onlyShow 	= true;
+$alpha		= 0.2;
+$showColor 	= undef;
+$showScrews 	= false;
+$showExtra	= true;
+$showExtraExtra = true;
+*/
 
-show 		= 0;
-
-onlyShow 	= true;
-alpha		= 0.2;
-showColor 	= undef;
-showScrews 	= false;
-showExtra	= true;
-showExtraExtra = true;
-
-
-function alpha(no,color) = no == show ? showColor : [color[0],color[1],color[2],show == 0 ? 1 : alpha];
+function alpha(no,color) = no == $show ? $showColor : [color[0],color[1],color[2],$show == 0 ? 1 : $alpha];
 
 module place(place,no,extra=false,extraExtra=false) {
-	if ((!onlyShow || show == 0 || show == no) && (showExtra || !extra) && (showExtraExtra || !extraExtra)) {
+	if ((!$onlyShow || $show == 0 || $show == no) && ($showExtra || !extra) && ($showExtraExtra || !extraExtra)) {
 		pVec = place[no];
 		translate([pVec[0],pVec[1],pVec[2]]) rotate([pVec[3],pVec[4],pVec[5]]) children();
 	}
 }
 module show(place) {
-	if (show == 0) {
+	if ($show == 0) {
 		children();
 	} else {
-		pVecShow = place[show];
+		pVecShow = place[$show];
 		rotate([-pVecShow[3],0,0]) rotate([0,-pVecShow[4],0]) rotate([0,0,-pVecShow[5]])  
 			translate([-pVecShow[0],-pVecShow[1],-pVecShow[2]]) 
 				children();

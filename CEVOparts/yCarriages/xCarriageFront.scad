@@ -17,7 +17,7 @@ module xCarriageFront(color=undef,showScrews=false) {
 		difference() {
 			cylinder(h=carriageWidthHole,r=carriageFrontRadius);
 			translate([xshaft[bushingRadius]-carriageTubeRadius,xshaft[bushingRadius]/2-carriageFrontRadius+bevelHeight,-1]) 
-				cylinder(carriageWidth,carriageScrew[holeRadius],carriageScrew[holeRadius]);
+				cylinder(carriageWidth,ycScrew[holeRadius],ycScrew[holeRadius]);
 			translate([0,-xshaft[bushingRadius]-1,-1]) 
 				cube([xshaft[bushingRadius]*2,xshaft[bushingRadius]*2,carriageWidthHole+2]);
 			translate([-xshaft[bushingRadius],carriageThick*carriageFrontScale,-1]) 

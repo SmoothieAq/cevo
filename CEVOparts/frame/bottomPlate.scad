@@ -6,7 +6,7 @@
 include <frameDefinitions.scad>
 
 
-module bottomPlate(color=undef,showScrews=false) {
+module bottomPlate(color=undef) {
 
 	indent = 3;
 	nudge = slack*2.5;

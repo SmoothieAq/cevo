@@ -6,10 +6,10 @@
 include <cornerMountsDefinitions.scad>
 use <../util/diamants.scad>
 use <../util/util.scad>
-use <../xutil.scad>
+use <../xutil/xutil.scad>
 
 // the whole mount - inner and outer cut their own parts
-module yshaftMount(color=undef,showScrews=false,lg) {
+module yshaftMount(color=undef,lg) {
 
 	difference() {
 		union() {
@@ -61,15 +61,15 @@ module frontRightInnerShaftMount(color=undef,showScrews=false) {
 	xxPartLog(lg,c="printed part",n="frontRightInnerShaftMount",t="PETG");
 	color(color) {
 		difference() {
-			yshaftMount(color,showScrews,lg=lg);
+			yshaftMount(color,lg=lg);
 			translate([-1,-50,yshaftDistx+yshaft[radius]]) cube([100,100,50]);	
 		}
 	}
-	for (p=frameFrontMounts) xFrameScrew(p,frameScrew,showScrews=showScrews,lg=xxl(lg,d="frame mount"));
-	for (p=yshaftFrontMounts) xnut(p,yshaftTubeScrew,showScrews=showScrews,twist=30,lg=xxl(lg,d="tube assembly"));
+	for (p=frameFrontMounts) xFrameScrew(p,frameScrew,lg=xxl(lg,d="frame mount"));
+	for (p=yshaftFrontMounts) xnut(p,yshaftTubeScrew,twist=30,lg=xxl(lg,d="tube assembly"));
 }
 
-frontRightInnerShaftMount(showScrews=true);
+frontRightInnerShaftMount();
 
 /*
 This design and software is copyrighted, but is free for private, non-commercial use.

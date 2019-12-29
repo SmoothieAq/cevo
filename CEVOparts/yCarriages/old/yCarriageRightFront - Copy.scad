@@ -13,17 +13,17 @@ use <../util/util.scad>
 
 module yCarriageSide(color=undef,showScrews=false) {
 	idlerSpaceThick = 2*idlerHeight(yidler)+3*idlerSpacer;
-	idlerSpaceY = xshaftZ+yTubeRadius+idlerSpaceThick/2;
+	idlerSpaceY = xshaftOffset+ycTubeRadius+idlerSpaceThick/2;
 	yTubeRadiusX = yIdlerDist+yidler[radius];
-	yTubeRadiusXY = 2*yTubeRadius-yTubeRadiusX;
-echo(carriageWidth=carriageWidth,yTubeRadius=yTubeRadius);
+	yTubeRadiusXY = 2*ycTubeRadius-yTubeRadiusX;
+echo(carriageWidth=carriageWidth,ycTubeRadius=ycTubeRadius);
 	module tube() {
 		color(color) difference() {
 			union() {
-				translate([0,yTubeRadius,0]) 
-					ccylinder(bevelWidth+chamfer,yTubeRadius+bevelHeight,chamfer,bevelHeight); 
-				translate([0,yTubeRadius,bevelWidth+chamfer]) 
-					cylinder(h=carriageWidth/2-bevelWidth-chamfer,r=yTubeRadius); 
+				translate([0,ycTubeRadius,0])
+					ccylinder(bevelWidth+chamfer,ycTubeRadius+bevelHeight,chamfer,bevelHeight);
+				translate([0,ycTubeRadius,bevelWidth+chamfer])
+					cylinder(h=carriageWidth/2-bevelWidth-chamfer,r=ycTubeRadius);
 				difference() {
 					union() {
 						translate([0,yTubeRadiusXY,0]) 
@@ -31,32 +31,32 @@ echo(carriageWidth=carriageWidth,yTubeRadius=yTubeRadius);
 						translate([0,yTubeRadiusXY,bevelWidth+chamfer]) 
 							cylinder(h=carriageWidth/2-bevelWidth-chamfer,r=yTubeRadiusX); 
 					}
-					translate([-yTubeRadius*2,-yTubeRadius,-0.1])
-						cube([yTubeRadius*2,yTubeRadius*3,carriageWidth]);
-					translate([-0.1,idlerSpaceY-yTubeRadius*2,-0.1])
-						cube([yTubeRadiusX-beltBaseThick(belt)+0.1,yTubeRadius*2,carriageWidth]);
+					translate([-ycTubeRadius*2,-ycTubeRadius,-0.1])
+						cube([ycTubeRadius*2,ycTubeRadius*3,carriageWidth]);
+					translate([-0.1,idlerSpaceY-ycTubeRadius*2,-0.1])
+						cube([yTubeRadiusX-beltBaseThick(belt)+0.1,ycTubeRadius*2,carriageWidth]);
 				}
 				translate([0,yTubeRadiusXY,0]) mirror([0,1,0])
-					cube([yTubeRadiusX-beltBaseThick(belt),yTubeRadiusXY-idlerSpaceY+idlerSpaceThick+idlerHolderBotThick,carriageWidth/2]);
-				translate([yTubeRadius-5,xshaftZ+yTubeRadius,xTubeRadius])
+					cube([yTubeRadiusX-beltBaseThick(belt),yTubeRadiusXY-idlerSpaceY+idlerSpaceThick+ycIdlerHolderBotThick,carriageWidth/2]);
+				translate([ycTubeRadius-5,xshaftOffset+ycTubeRadius,ycXTubeRadius])
 					rotate([0,-90,0])
-						cylinder(r=xTubeRadius,h=yTubeRadius*2+5);
-				translate([-yTubeRadius,xshaftZ+yTubeRadius,0])
-					cube([yTubeRadius*2,-xshaftZ,2*xTubeRadius]);
+						cylinder(r=ycXTubeRadius,h=ycTubeRadius*2+5);
+				translate([-ycTubeRadius,xshaftOffset+ycTubeRadius,0])
+					cube([ycTubeRadius*2,-xshaftOffset,2*ycXTubeRadius]);
 				b = bevelWidth+chamfer-bevelHeight; h = carriageWidth/2-b;
-				translate([0,yTubeRadius,carriageWidth/2])
+				translate([0,ycTubeRadius,carriageWidth/2])
 					rotate([180,0,-180])
-						diamantTube(yTubeRadius,235,h,zoffset=-diamantLength/2-diamantSpacing);
+						diamantTube(ycTubeRadius,235,h,zoffset=-diamantLength/2-diamantSpacing);
 			}
-			translate([0,yTubeRadius,bushingTap]) 
+			translate([0,ycTubeRadius,bushingTap])
 				cylinder(h=carriageWidth/2, r=yshaft[bushingRadius]);
-			translate([0,yTubeRadius,-1]) 
+			translate([0,ycTubeRadius,-1])
 				cylinder(h=bushingTap+2, r=yshaft[bushingRadius]-bushingTap);
-			translate([yTubeRadius-screwTapMinThick-0.1,xshaftZ+yTubeRadius,xTubeRadius])
+			translate([ycTubeRadius-screwTapMinThick-0.1,xshaftOffset+ycTubeRadius,ycXTubeRadius])
 				rotate([0,-90,0])
-					cylinder(r=xshaft[radius],h=yTubeRadius*2-screwTapMinThick+0.1);
-			translate([-yTubeRadius*2,-bevelWidth-0.1,carriageSideWidth])
-				cube([yTubeRadius*2,yTubeRadius*3,carriageWidth/2]);
+					cylinder(r=xshaft[radius],h=ycTubeRadius*2-screwTapMinThick+0.1);
+			translate([-ycTubeRadius*2,-bevelWidth-0.1,carriageSideWidth])
+				cube([ycTubeRadius*2,ycTubeRadius*3,carriageWidth/2]);
 			translate([-0.1,idlerSpaceY-idlerSpaceThick,carriageSideWidth])
 				cube([yTubeRadiusX*2,idlerSpaceThick,carriageWidth/2]);
 		}
@@ -64,15 +64,15 @@ echo(carriageWidth=carriageWidth,yTubeRadius=yTubeRadius);
 		/*
 		color(color) difference() {
 			translate([carriageTubeRadius,carriageThick-bevelHeight,carriageThick]) 
-				cube([carriageMountScrew[nutHoleRadius]*2+carriagePlateNudge,screwTapSolidThick,carriageMountScrew[nutHoleRadius]*2]);
+				cube([ycMountScrew[nutHoleRadius]*2+carriagePlateNudge,screwTapSolidThick,ycMountScrew[nutHoleRadius]*2]);
 			translate([carriageTubeRadius+carriagePlateScrewX,carriageThick-bevelHeight,carriageThick+carriagePlateScrewY]) 
 				rotate([90,0,0]) 
-					screwHole(carriageMountScrew,carriageThick);//cylinder(h=carriageThick,r=carriageMountScrew[holeRadius]);
+					screwHole(ycMountScrew,carriageThick);//cylinder(h=carriageThick,r=ycMountScrew[holeRadius]);
 		}
 		if (showScrews) color(screwColor) {
 			translate([carriageTubeRadius+carriagePlateScrewX,carriageThick-bevelHeight+screwTapSolidThick,carriageThick+carriagePlateScrewY]) 
 				rotate([-90,0,0]) 
-					nut(carriageScrew);
+					nut(ycScrew);
 		}
 		*/
 	}
@@ -81,16 +81,16 @@ echo(carriageWidth=carriageWidth,yTubeRadius=yTubeRadius);
 		cutAt=(carriageWidth-carriageWidthHole)/2;
 		difference() {
 			tube();
-			color(color) translate([-xTubeRadius*2.5,-xTubeRadius*0.5,cutAt]) 
-				cube([xTubeRadius*5,xTubeRadius*3,carriageWidth]);
+			color(color) translate([-ycXTubeRadius*2.5,-ycXTubeRadius*0.5,cutAt])
+				cube([ycXTubeRadius*5,ycXTubeRadius*3,carriageWidth]);
 		}
 		color(color) difference() {
-			translate([0,xTubeRadius,cutAt-bevelWidth])
-				ccylinder(bevelWidth,xTubeRadius+bevelHeight,bevelHeight);
-			translate([xTubeRadius-bushingWall*2,-bevelHeight-0.2,cutAt-bevelWidth-0.2])
+			translate([0,ycXTubeRadius,cutAt-bevelWidth])
+				ccylinder(bevelWidth,ycXTubeRadius+bevelHeight,bevelHeight);
+			translate([ycXTubeRadius-bushingWall*2,-bevelHeight-0.2,cutAt-bevelWidth-0.2])
 				rotate([0,0,-10])
-					cube([bushingWall*3,xTubeRadius*2,bevelWidth+bevelHeight+0.4]);
-			translate([0,xTubeRadius,cutAt-bevelWidth-1]) 
+					cube([bushingWall*3,ycXTubeRadius*2,bevelWidth+bevelHeight+0.4]);
+			translate([0,ycXTubeRadius,cutAt-bevelWidth-1])
 				cylinder(h=bevelWidth+2,r=xshaft[bushingRadius]);
 		}
 		color(color) translate([0,-bevelHeight,cutAt-bevelWidth]) 
@@ -98,7 +98,7 @@ echo(carriageWidth=carriageWidth,yTubeRadius=yTubeRadius);
 	}
 
 	module tubeBack() {
-		tapx = carriageMountScrew[nutHoleWidth]*4; tapy = xTubeRadius; tapz = carriageMountScrew[nutHoleWidth]*2+tapy;
+		tapx = ycMountScrew[nutHoleWidth]*4; tapy = ycXTubeRadius; tapz = ycMountScrew[nutHoleWidth]*2+tapy;
 		module tap() {
 			color(color) {
 				translate([xshaftDistance,-bevelHeight*1,carriageWidth/2-tapz])
@@ -107,14 +107,14 @@ echo(carriageWidth=carriageWidth,yTubeRadius=yTubeRadius);
 		}
 		module tapHole() {
 			color(color) {
-				translate([xshaftDistance,xTubeRadius,carriageWidth/2-tapz-1]) 
+				translate([xshaftDistance,ycXTubeRadius,carriageWidth/2-tapz-1])
 					cylinder(h=tapz+2,r=xshaft[bushingRadius]);
-				translate([xshaftDistance+tapx-carriageMountScrew[nutHoleWidth]*1.5,screwTapMinThick-bevelHeight,carriageWidth/2-carriageMountScrew[nutHoleWidth]/2]) 
+				translate([xshaftDistance+tapx-ycMountScrew[nutHoleWidth]*1.5,screwTapMinThick-bevelHeight,carriageWidth/2-ycMountScrew[nutHoleWidth]/2])
 					rotate([-90,0,0]) 
-						nutHole(carriageMountScrew,0);
-				translate([xshaftDistance+tapx-carriageMountScrew[nutHoleWidth]*1.5,-1,carriageWidth/2]) 
+						nutHole(ycMountScrew,0);
+				translate([xshaftDistance+tapx-ycMountScrew[nutHoleWidth]*1.5,-1,carriageWidth/2])
 					rotate([-90,0,0]) 
-						cylinder(h=screwTapMinThick+2,r=carriageMountScrew[holeRadius]);
+						cylinder(h=screwTapMinThick+2,r=ycMountScrew[holeRadius]);
 			}
 		}
 		
@@ -122,10 +122,10 @@ echo(carriageWidth=carriageWidth,yTubeRadius=yTubeRadius);
 			union() {
 				translate([xshaftDistance,0,0]) mirror([1,0,0]) tube();
 				tap();
-				translate([0,xTubeRadius*2,0]) mirror([0,1,0]) tap();
+				translate([0,ycXTubeRadius*2,0]) mirror([0,1,0]) tap();
 			}
 			tapHole();
-			translate([0,xTubeRadius*2,0]) mirror([0,1,0]) tapHole();
+			translate([0,ycXTubeRadius*2,0]) mirror([0,1,0]) tapHole();
 		}
 	}
 	
@@ -133,7 +133,7 @@ echo(carriageWidth=carriageWidth,yTubeRadius=yTubeRadius);
 	tubeBack();
 	color(color) {
 		translate([carriageTubeRadius,carriageThick-bevelHeight,0]) 
-			chamferCube(carriagePlateDepth,xTubeRadius*2-carriageThick+bevelHeight,carriageThick,chamfer,[0,1,0,0],[0,0,0,0],[0,0,0,0]);
+			chamferCube(carriagePlateDepth,ycXTubeRadius*2-carriageThick+bevelHeight,carriageThick,chamfer,[0,1,0,0],[0,0,0,0],[0,0,0,0]);
 	}*/
 	tube();
 }
@@ -141,16 +141,16 @@ echo(carriageWidth=carriageWidth,yTubeRadius=yTubeRadius);
 module yCarriageRightFront(color=undef,showScrews=false) {
 	yCarriageSide();
 	translate([0,0,carriageWidth]) mirror([0,0,1]) yCarriageSide();
-/*		cylinder(r=yTubeRadius,h=carriageWidth);
-		translate([yTubeRadius,xshaftZ,xTubeRadius])
+/*		cylinder(r=ycTubeRadius,h=carriageWidth);
+		translate([ycTubeRadius,xshaftOffset,ycXTubeRadius])
 			rotate([0,-90,0])
-				cylinder(r=xTubeRadius,h=yTubeRadius*2);
-		translate([-yTubeRadius,xshaftZ,0])
-			cube([yTubeRadius*2,-xshaftZ,2*xTubeRadius]);*/
-		translate([yIdlerDist,xshaftZ+idlerSpacer/2+yTubeRadius,carriageWidth/2-yidler[radius]*2-beltBaseThick(belt)])
+				cylinder(r=ycXTubeRadius,h=ycTubeRadius*2);
+		translate([-ycTubeRadius,xshaftOffset,0])
+			cube([ycTubeRadius*2,-xshaftOffset,2*ycXTubeRadius]);*/
+		translate([yIdlerDist,xshaftOffset+idlerSpacer/2+ycTubeRadius,carriageWidth/2-yidler[radius]*2-beltBaseThick(belt)])
 			rotate([-90,0,0])
 				theIdler(yidler);
-		translate([yIdlerDist,xshaftZ-idlerSpacer/2-idlerHeight(yidler)+yTubeRadius,carriageWidth/2+yidler[radius]*2+beltBaseThick(belt)])
+		translate([yIdlerDist,xshaftOffset-idlerSpacer/2-idlerHeight(yidler)+ycTubeRadius,carriageWidth/2+yidler[radius]*2+beltBaseThick(belt)])
 			rotate([-90,0,0])
 				theIdler(yidler);
 /*
@@ -159,19 +159,19 @@ module yCarriageRightFront(color=undef,showScrews=false) {
 		color(color) {
 			translate([carriageScrewX,carriageScrewY,0])
 				rotate([180,0,0])
-					screwHeadHole(carriageScrew);
+					screwHeadHole(ycScrew);
 			translate([xshaftDistance-carriageScrewX,carriageScrewY,0])
 				rotate([180,0,0])
-					screwHeadHole(carriageScrew);
+					screwHeadHole(ycScrew);
 		}
 	}
 	if (showScrews) color(screwColor) {
 		translate([carriageScrewX,carriageScrewY,0])
 			rotate([180,0,0])
-				screwHead(carriageScrew,1);
+				screwHead(ycScrew,1);
 		translate([xshaftDistance-carriageScrewX,carriageScrewY,0])
 			rotate([180,0,0])
-				screwHead(carriageScrew,1);
+				screwHead(ycScrew,1);
 	}
 */
 }

@@ -2,10 +2,10 @@
 // Utility modules and functions dependent on CEVOdefinitions
 //*******************************************************************
 
-include <CEVOdefinitions.scad>
-use <util/util.scad>
-use <util/diamants.scad>
-include <otherParts/stepperMotor.scad>
+include <../CEVOdefinitions.scad>
+use <../util/util.scad>
+use <../util/diamants.scad>
+include <../otherParts/stepperMotor.scad>
 
 /////////////////////////////////////////////////////////////////////
 // some helper modules
@@ -44,12 +44,17 @@ function xaPartScrew(xyzrrrdn, depth, leng, nutdepth) = screwMinLength(partMount
 function xaFrameScrew(xyzrrrdn, depth, leng) = screwMinLength(frameMountingScrew, nnv(leng, xt(xyzrrrdn)-frameMountingScrew[nutHeight]*0.25)+exMountScrewDepth(allExtrusion), xd(xyzrrrdn,depth));
 function xxaFrameScrew(depth, thick = partMountingThick) = xaFrameScrew(depth = depth, leng = thick);
 
+function xmaxThick(screw, thick, depth=1, nutdepth=1) = screwMaxLength(screw,thick,depth,nutdepth)[length]+depth*screw[headHeight]-(1-nutdepth)*screw[nutHeight];
+function xminThick(screw, thick, depth=1, nutdepth=1) = screwMinLength(screw,thick,depth,nutdepth)[length]+depth*screw[headHeight]-(1-nutdepth)*screw[nutHeight];
+
 module xscrewHole(xyzrrrdn, screw, leng, depth, spacing = 20, nutdepth) {
     thisScrew = xaScrew(xyzrrrdn, xs(xyzrrrdn,screw), depth, leng, nutdepth);
     translate(xxyz(xyzrrrdn)) rotate(xrrr(xyzrrrdn)) screwAllHole(thisScrew, depth = xd(xyzrrrdn,depth), spacing = spacing);
 }
 
-module xscrew(xyzrrrdn, screw, showScrews = true, depth, plate = 3, plateColor = mainColor, lg, leng, nutdepth) {
+module xscrewHoles(xps, spacing = 20) { for (p = xps) xscrewHole(p, spacing = spacing); }
+
+module xscrew(xyzrrrdn, screw, depth, plate = 3, plateColor = mainColor, lg, leng, nutdepth) {
     thisScrew = xaScrew(xyzrrrdn, xs(xyzrrrdn,screw), depth, leng, nutdepth);
     xxPartLog(lg, c = "screw", t = thisScrew[screwName], s = thisScrew[length]);
     translate(xxyz(xyzrrrdn)) rotate(xrrr(xyzrrrdn)) {
@@ -58,14 +63,16 @@ module xscrew(xyzrrrdn, screw, showScrews = true, depth, plate = 3, plateColor =
                 translate([0, 0, -plate-xd(xyzrrrdn,depth)*thisScrew[headHeight]]) cylinder(r = thisScrew[headRadius], h = plate);
                 translate([0, 0, -plate-0.01-xd(xyzrrrdn,depth)*thisScrew[headHeight]]) cylinder(r = thisScrew[holeRadius], h = plate+0.02);
             }
-        if (showScrews)
+        if (nnv($showScrews,true))
             color(screwColor) theScrew(thisScrew, xd(xyzrrrdn,depth));
     }
 }
 
-module xFrameScrew(xyzrrrdn, screw, showScrews = true, depth, plate = 3, plateColor = mainColor, lg, leng) {
+module xscrews(xps,lg, plate = 3) { for (p = xps) xscrew(p, lg = lg, plate = plate); }
+
+module xFrameScrew(xyzrrrdn, screw, depth, plate = 3, plateColor = mainColor, lg, leng) {
     thisScrew = xs(xyzrrrdn,screw);
-    xscrew(xyzrrrdn, thisScrew, showScrews = showScrews, depth = depth, plate = plate, plateColor = plateColor, lg = lg, leng = leng);
+    xscrew(xyzrrrdn, thisScrew, depth = depth, plate = plate, plateColor = plateColor, lg = lg, leng = leng);
     xxPartLog(lg, c = "T-mount", t = str(allExtrusion[exname], " ", thisScrew[screwName]));
 }
 module xnutHole(xyzrrrdn, screw, depth, twist = 0, spacing) {
@@ -75,7 +82,9 @@ module xnutHole(xyzrrrdn, screw, depth, twist = 0, spacing) {
             nutHole(thisScrew, xnd(xyzrrrdn,depth), twist = twist, spacing = spacing);
 }
 
-module xnut(xyzrrrdn, screw, showScrews = true, depth, twist = 0, plate = 3, plateColor = mainColor, lg) {
+module xnutHoles(xps, spacing) { for (p = xps) xnutHole(p, spacing = spacing); }
+
+module xnut(xyzrrrdn, screw, depth, twist = 0, plate = 3, plateColor = mainColor, lg) {
     thisScrew = xs(xyzrrrdn,screw);
     xxPartLog(lg, c = "nut", t = thisScrew[screwName]);
     translate(xxyz(xyzrrrdn)) rotate(xrrr(xyzrrrdn))
@@ -89,11 +98,17 @@ module xnut(xyzrrrdn, screw, showScrews = true, depth, twist = 0, plate = 3, pla
                         }
                     }
                 }
-            if (showScrews)
+            if (nnv($showScrews,true))
                 color(screwColor) nut(thisScrew, xnd(xyzrrrdn,depth), twist = twist);
         }
 }
 
+module xnuts(xps,lg, plate = 3) { for (p = xps) xnut(p, lg = lg, plate = plate); }
+
+module xhole(xp, spacing = 20, nutspacing) { xscrewHole(xp, spacing = spacing); xnutHole(xp, spacing = nutspacing); }
+module xholes(xps, spacing = 20, nutspacing) { xscrewHoles(xps, spacing = spacing); xnutHoles(xps, spacing = nutspacing); }
+module xscrewNut(xp, lg, plate = 3, nutplate = 3) { xscrew(xp, lg = lg, plate = plate); xnut(xp, lg = lg, plate = nutplate); }
+module xscrewNuts(xps, lg, plate = 3, nutplate = 3) { xscrews(xps, lg = lg, plate = plate); xnuts(xps, lg = lg, plate = nutplate); }
 
 /////////////////////////////////////////////////////////////////////
 
@@ -147,21 +162,22 @@ diamantHoriz = false, xoffset = 0, yoffset = 0) {
 //xDiamantCubex([30,10,20,5],sides=[1,2,2,1],bevel=[1,1,1,1],diamantHoriz=true);
 
 module xDiamantCube(xyz, sides = [1, 0, 0, 0], ch = chamfer, bevel = [0, 0, 0, 0], bevelHeight = bevelHeight, bevelWidth = bevelWidth, diamants = true,
-diamantHoriz = false, xoffset = 0, yoffset = 0) {
+diamantHoriz = false, xoffset = 0, yoffset) {
+    ytubeAllign=(xyz.y/2-(bevelWidth+chamfer-bevelHeight))%(diamantLength+diamantSpacing)-diamantLength-diamantSpacing/2;
     xDiamantCubex([xyz.x, xyz.y, xyz.y, xyz.z], sides = sides, ch = ch, bevel = bevel, bevelHeight = bevelHeight, bevelWidth = bevelWidth, diamants = diamants,
-    diamantHoriz = diamantHoriz, xoffset = xoffset, yoffset = yoffset);
+    diamantHoriz = diamantHoriz, xoffset = xoffset, yoffset = nnv(yoffset, bevel[2] > 0 ? ytubeAllign : 0));
 }
 
-module xHalfDiamantTube(r, h, deg = 360) {
+module xHalfDiamantTube(r, h, deg = 360, zoffset) {
     ccylinder(bevelWidth+chamfer, r+bevelHeight, chamfer, bevelHeight);
     translate([0, 0, bevelWidth+chamfer]) cylinder(h = h-bevelWidth-chamfer, r = r);
     translate([0, 0, h]) rotate([180, 0, -180])
-        diamantTube(r, deg, h-bevelWidth-chamfer, zoffset = -diamantLength/2-diamantSpacing);
+        diamantTube(r, deg, h-bevelWidth-chamfer, zoffset = nnv(zoffset,-diamantLength/2-diamantSpacing));
 }
 
-module xDiamantTube(r, h, deg = 360) {
+module xDiamantTube(r, h, deg = 360, zoffset) {
     xHalfDiamantTube(r, h/2, deg);
-    translate([0, 0, h]) mirror([0, 0, 1]) xHalfDiamantTube(r, h/2, deg);
+    translate([0, 0, h]) mirror([0, 0, 1]) xHalfDiamantTube(r, h/2, deg, zoffset = zoffset);
 }
 
 
@@ -194,7 +210,7 @@ module xMotorMountScrews(stepperMotor, thick = partMountingThick, slack = slack,
     with = beltStepperMotor[width];
     translate([0, slack, 0])
         for (xy = _xMotorMountScrewPos(stepperMotor))
-        xscrew([xy.x, xy.y, thick], screw, showScrews = showScrews, depth = depth, lg = xxl(lg, d = "motor mount"));
+        xscrew([xy.x, xy.y, thick], screw, depth = depth, lg = xxl(lg, d = "motor mount"));
 }
 xMotorMount(beltStepperMotor, screwHoles = true, showAllScrews = true);
 

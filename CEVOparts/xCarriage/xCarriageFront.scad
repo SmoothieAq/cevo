@@ -12,7 +12,7 @@ use <../util/util.scad>
 
 
 
-module xCarriageFront(color=undef,showScrews=false) {
+module xCarriageFront(color=undef) {
 	color(color) {
 		difference() {
 			cylinder(h=carriageWidthHole,r=carriageFrontRadius);

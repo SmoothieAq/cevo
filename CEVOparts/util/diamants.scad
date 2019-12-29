@@ -20,7 +20,7 @@ diamantA2 = atan(bevelHeight/diamantH);
 // main modules
 
 module diamant() {
-	if (doRealDiamants) {
+	if ($doRealDiamants) {
 		difference() {
 			translate([-diamantWidth/2,-diamantLength/2,-bevelHeight])
 				cube([diamantWidth*2,diamantLength*2,bevelHeight*2]);
@@ -47,7 +47,7 @@ module diamant() {
 }
 
 module diamantPlate(width,length,xoffset=0,yoffset=0,xfull=0,yfull=0) {
-	if (doDiamants) difference() {
+	if (nnv($doDiamants,true)) difference() {
 		union() {
 			for(x=[xoffset : diamantWidth+diamantSpacing : width-xfull*diamantWidth]) 
 				for(y=[yoffset : diamantLength+diamantSpacing : length-yfull*diamantLength]) 
@@ -66,7 +66,7 @@ module diamantPlate(width,length,xoffset=0,yoffset=0,xfull=0,yfull=0) {
 module diamantTube(radius,deg,height,xoffset=0,zoffset=0,xfull=0,yfull=0) {
 	circ = 3.14*2*radius;
 	width = circ*deg/360;
-	if (doDiamants) difference() {
+	if (nnv($doDiamants,true)) difference() {
 		union() {
 			for(x=[xoffset : diamantWidth+diamantSpacing : width-xfull*diamantWidth]) {
 				v = x/circ*360; tx=sin(v)*radius; ty=-cos(v)*radius; 

@@ -48,6 +48,8 @@ beltStepperPulley		= Gt2Timing20;
 /////////////////////////////////////////////////////////////////////
 // smaller generic elements, most can be tweaked a bit, but be aware they influence most parts
 
+beltCarriageDistance	= belt[thick]+5;
+
 idlerSpacer = 0.8;
 printIdlerSpacer = false;
 
@@ -72,6 +74,7 @@ diamantSpacing = 0.2;
 chamfer = 1.5;
 
 slack = 0.2;
+assembleSlack = 0.025;
 
 
 /////////////////////////////////////////////////////////////////////

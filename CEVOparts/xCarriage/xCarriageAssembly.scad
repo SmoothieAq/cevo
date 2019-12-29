@@ -19,14 +19,6 @@ use <../otherParts/blowerFan.scad>
 
 
 
-show 		= 0; 
-
-onlyShow 	= false;
-alpha		= 0.2;
-showColor 	= undef;
-showScrews 	= false;
-showExtra	= true;
-
 module xCarriageAssembly() {
 	place = [[],
 		[carriageWidth/2,0,xTubeRadius,-90,0,90], 													// xCarriageRight
@@ -46,20 +38,20 @@ module xCarriageAssembly() {
 		[-34/2,xshaftDistance+xTubeRadius+bevelHeight,-54+xTubeRadius+bevelHeight,0,0,0], 																				// connector
 	[]];
 	show(place) {
-		place(place,1) xCarriageRight(color=alpha(1,mainColor),showScrews=showScrews);
-		place(place,2) xCarriageLeft(color=alpha(2,mainColor),showScrews=showScrews);
-		place(place,3) xCarriagePlate(color=alpha(3,mainColor),showScrews=showScrews);
-		place(place,4) xCarriageFront(color=alpha(4,accentColor),showScrews=showScrews);
-		place(place,5) xCarriageBushingBack(color=alpha(5,accentColor),showScrews=showScrews);
-		place(place,6) xCarriageBushingFront(color=alpha(6,accentColor),showScrews=showScrews);
-		place(place,7) xCarriageBushingFront(color=alpha(7,accentColor),showScrews=showScrews);
+		place(place,1) xCarriageRight(color=alpha(1,mainColor));
+		place(place,2) xCarriageLeft(color=alpha(2,mainColor));
+		place(place,3) xCarriagePlate(color=alpha(3,mainColor));
+		place(place,4) xCarriageFront(color=alpha(4,accentColor));
+		place(place,5) xCarriageBushingBack(color=alpha(5,accentColor));
+		place(place,6) xCarriageBushingFront(color=alpha(6,accentColor));
+		place(place,7) xCarriageBushingFront(color=alpha(7,accentColor));
 		place(place,8,true,true) color(alpha(8,carbonXshaft ? carbonColor : aluColor)) theShaft(xshaft);
 		place(place,9,true,true) color(alpha(9,carbonXshaft ? carbonColor : aluColor)) theShaft(xshaft);
 		place(place,10,true) e3dV6(color=alpha(10,aluColor),fanColor=alpha(10,otherPartColor));
-	//	place(place,11,true) rotate([0,45,0]) blowerFan5015(color=alpha(11,otherPartColor),showScrews=showScrews);
+	//	place(place,11,true) rotate([0,45,0]) blowerFan5015(color=alpha(11,otherPartColor));
 	//	place(place,11,true) rotate([0,0,0]) color(alpha(11,otherPartColor)) cube([40,40,10]);
 		place(place,11,true) rotate([0,35,0]) color(alpha(11,otherPartColor)) cube([45,45,10]);
-	//	place(place,11,true) rotate([0,0,0]) blowerFan5015(color=alpha(11,otherPartColor),showScrews=showScrews);
+	//	place(place,11,true) rotate([0,0,0]) blowerFan5015(color=alpha(11,otherPartColor));
 		place(place,12) color(alpha(12,mainColor)) cube([34,15,54]);
 	}
 }

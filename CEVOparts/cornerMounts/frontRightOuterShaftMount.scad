@@ -5,23 +5,23 @@
 
 include <cornerMountsDefinitions.scad>
 use <frontRightInnerShaftMount.scad>
-use <../xutil.scad>
+use <../xutil/xutil.scad>
 
 
-module frontRightOuterShaftMount(color=undef,showScrews=false) {
+module frontRightOuterShaftMount(color=undef) {
 	lg = xl(a="Y gantry",sa="Front right shaft mount");
 	xxPartLog(lg,c="printed part",n="frontRightOuterShaftMount",t="PETG");
 	
 	translate([0,0,yshaftFrontMountDepth-yshaftMountDepthIn]) rotate([0,90,0]) {
 		color(color) difference() {
-			yshaftMount(color,showScrews);
+			yshaftMount(color);
 			translate([-1,-50,yshaftDistx+yshaft[radius]-50]) cube([100,100,50]);	
 		}
-		for (p=yshaftFrontMounts) xscrew(p,yshaftTubeScrew,depth=0,showScrews=showScrews,lg=xxl(lg,d="tube assembly"));
+		for (p=yshaftFrontMounts) xscrew(p,yshaftTubeScrew,depth=0,lg=xxl(lg,d="tube assembly"));
 	}
 }
 
-frontRightOuterShaftMount(showScrews=true);
+frontRightOuterShaftMount();
 
 /*
 This design and software is copyrighted, but is free for private, non-commercial use.

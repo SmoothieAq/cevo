@@ -6,7 +6,7 @@
 include <frameDefinitions.scad>
 
 
-module frame(color=undef,showScrews=false) {
+module frame(color=undef) {
 
 	color(color) {
 		

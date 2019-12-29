@@ -4,52 +4,12 @@
 
 use <../imports/Chamfer.scad>;
 
-include <yCarriagesDefinitions.scad>
-//use <../util/diamants.scad>
+include <yCarriagesDefinitionsCopy.scad>
+use <../util/diamants.scad>
 use <../util/util.scad>
 use <../xutil/xutil.scad>
-use <yCarriageXHolderRightSide.scad>
-use <yCarriageBoxBottom.scad>
 
-module yCarriageSide(lg) {
-    difference() {
-        union() {
-            xHalfDiamantTube(ycTubeRadius, ycWidth/2); // the main tube
-            intersection() { // plate for meeting the yCarriageXHolderOuter
-                translate([0, 0, chamfer]) cylinder(r = ycTubeRadius+bevelHeight-assembleSlack, h = ycSideWidth-ycXHolderWidth);
-                tr(ycXHolderPos) yCarriageXHolder();
-            }
-            tr(ycXHolderPos) yCarriageXHolderInner(); // the inner part of the x holder
-            for (p = ycScrewPs) // tubes for the large screws
-                translate([p.x, p.y, chamfer])
-                    cylinder(r = ycScrewTubeRadius, h = ycSideWidth-chamfer);
-            tr([0,0,ycWidth/2,0,0,-90]) yCarriageBoxTopHalf();
-        }
-        tr(ycXHolderPos) translate([0,0,ycXHolderLenght]) shaftHole(xshaft,ycXHolderLenght); // hole for xshaft
-        translate([0, 0, ycBushingTapWidth]) // hole for bushing
-            cylinder(h = ycWidth/2, r = yshaft[bushingRadius]);
-        translate([0, 0, -1]) // tap for holding bushing
-            cylinder(h = ycWidth/2, r = yshaft[bushingRadius]-bushingTap);
-    }
-}
 
-module yCarriageRightFront(color) {
-    lg = xl(a="Y carriage",sa="Carriage right front");
-    xxPartLog(lg,c="printed part",n="yCarriageRightFront",t="PETG");
-
-    color(color) difference() {
-        yCarriageSide(lg=lg);
-        xholes(ycScrewPs);
-    }
-    tr(ycXHolderPos) xnuts(ycXHolderPs,lg);
-    xnuts(ycScrewPs,lg=lg,plate=0);
-}
-
-*yCarriageSide();
-*tr(ycXHolderPos) yCarriageXHolderOuter();
-yCarriageRightFront();
-
-/*
 module yCarriageSide(color = undef) {
 
     module tube() {
@@ -69,7 +29,7 @@ module yCarriageSide(color = undef) {
                 translate([xHolderx, -xshaft[radius], carriageWidth/2-xshaftDistance/2+carriageSideWidth-xxshaftz])
                     rotate([0, 90, -90])
                         xDiamantCube([carriageSideWidth-xxshaftz, ycXHolderLenght, ycXTubeRadius], sides = [1, 0, 1, 0], bevel = [1, 0, 1, 0], diamants = false);
-                translate([idlerBoxX, idlerTopY+idlerHeight(yidler)+idlerSpacer+ycIdlerHolderTopThick, carriageWidth/2])
+                #translate([idlerBoxX, idlerTopY+idlerHeight(yidler)+idlerSpacer+ycIdlerHolderTopThick, carriageWidth/2])
                     rotate([90, 90, 0])
 						ccube(carriageWidthBox/2, idlerSpaceDepth, idlerSpaceThick+ycIdlerHolderBotThick+ycIdlerHolderTopThick);
                 translate([0, ycTubeRadius, 0])
@@ -150,10 +110,9 @@ module yCarriageRightFront(color = undef) {
                 thePulley(yidler);
     }
 }
-
-
+//$doRealDiamants=true;
 yCarriageRightFront();
-*/
+
 
 
 /*

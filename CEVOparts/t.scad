@@ -1,7 +1,7 @@
 
 include <util/standardDefinitions.scad>
 include <CEVOdefinitions.scad>
-use <xutil.scad>
+use <xutil/xutil.scad>
 
 ps = [
     xp([10,10,10]),

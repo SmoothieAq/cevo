@@ -5,10 +5,10 @@
 
 use <../util/util.scad>
 include <cornerMountsDefinitions.scad>
-use <../xutil.scad>
+use <../xutil/xutil.scad>
 
 
-module beltMotorMount(color=undef,showScrews=false,lg) {
+module beltMotorMount(color=undef,lg) {
 	
 	mw 			= beltStepperMotor[width];
 	mwx 		= mw+slack;
@@ -51,15 +51,15 @@ module beltMotorMount(color=undef,showScrews=false,lg) {
 			for (p=mountPoints) xscrewHole(p,frameScrew);
 		}
 	}
-	xMotorMountScrews(beltStepperMotor,lg=lg,showScrews=showScrews);
-	for (p=mountPoints) xFrameScrew(p,frameScrew,lg=xxl(lg,d="frame mount"),showScrews=showScrews);
+	xMotorMountScrews(beltStepperMotor,lg=lg);
+	for (p=mountPoints) xFrameScrew(p,frameScrew,lg=xxl(lg,d="frame mount"));
 }
 
-module rightMotorMount(color=undef,showScrews=false) {
+module rightMotorMount(color=undef) {
 	lg = xl(a="Belt path",sa="Front right motor mount",t="PETG");
 	xxPartLog(lg,c="printed part",n="rightMotorMount");
 	
-	beltMotorMount(color,showScrews,lg);
+	beltMotorMount(color,lg);
 }
 
 rightMotorMount(showScrews=true);

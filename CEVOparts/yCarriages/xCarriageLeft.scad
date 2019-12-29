@@ -15,19 +15,19 @@ module xCarriageLeft(color=undef,showScrews=false) {
 			color(color) {
 				translate([carriageScrewX,carriageScrewY,0])
 					rotate([180,0,0]) 
-						nutHole(carriageScrew);
+						nutHole(ycScrew);
 				translate([xshaftDistance-carriageScrewX,carriageScrewY,0])
 					rotate([180,0,0]) 
-						nutHole(carriageScrew);
+						nutHole(ycScrew);
 			}
 		}
 		if (showScrews) color(screwColor) {
 			translate([carriageScrewX,carriageScrewY,0])
 				rotate([180,0,0]) 
-					nut(carriageScrew,1);
+					nut(ycScrew,1);
 			translate([xshaftDistance-carriageScrewX,carriageScrewY,0])
 				rotate([180,0,0]) 
-					nut(carriageScrew,1);
+					nut(ycScrew,1);
 		}
 	}
 }

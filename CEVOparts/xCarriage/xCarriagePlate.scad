@@ -10,11 +10,11 @@ use <../util/diamants.scad>
 use <../util/util.scad>
 
 
-module xCarriagePlate(color=undef,showScrews=false) {
+module xCarriagePlate(color=undef) {
 	module mountHole(x,y) { color(color) translate([x,y,carriageThick]) screwHole(carriageMountScrew,carriageThick); }
 	module mountHeadHole(x,y) { color(color) translate([x,y,carriageThick]) screwHeadHole(carriageMountScrew); }
 	module mountAllHole(x,y) { mountHole(x,y); mountHeadHole(x,y); }
-	module mountScrewHead(x,y) { if (showScrews) color(screwColor) translate([x,y,carriageThick]) screwHead(carriageMountScrew,1); }
+	module mountScrewHead(x,y) { if ($showScrews) color(screwColor) translate([x,y,carriageThick]) screwHead(carriageMountScrew,1); }
 	
 	thick = carriageThick-bevelHeight;
 	
@@ -114,7 +114,7 @@ module xCarriagePlate(color=undef,showScrews=false) {
 		e3dScrews();
 	}
 }
-xCarriagePlate(color=mainColor,showScrews=true);
+xCarriagePlate(color=mainColor);
 
 
 

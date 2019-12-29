@@ -10,9 +10,12 @@
     <option name="USE_PER_PROJECT_SETTINGS" value="true" />
     <code_scheme name="Project" version="173">
       <codeStyleSettings language="OpenSCAD">
-        <option name="RIGHT_MARGIN" value="160" />
+        <option name="RIGHT_MARGIN" value="200" />
         <option name="SPACE_AROUND_ADDITIVE_OPERATORS" value="false" />
         <option name="SPACE_AROUND_MULTIPLICATIVE_OPERATORS" value="false" />
+        <indentOptions>
+          <option name="USE_TAB_CHARACTER" value="true" />
+        </indentOptions>
       </codeStyleSettings>
     </code_scheme>
   </component>
