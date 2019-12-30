@@ -5,48 +5,15 @@
 use <../imports/Chamfer.scad>;
 
 include <yCarriagesDefinitions.scad>
-use <../util/diamants.scad>
-use <../util/util.scad>
-use <../xutil/xutil.scad>
+use <yCarriageXHolderLeftSide.scad>
 
-module yCarriageXHolder(lg) {
-	module xdc(diamants = true) rotate([90, 0, 0]) xDiamantCube([ycXHolderWidth, ycXHolderLenght, ycXTubeRadius], sides = [1, 0, 1, 0], bevel = [1, 0, 1, 0], diamants = diamants);
-	difference() {
-		union() {
-			xDiamantTube(ycXTubeRadius, ycXHolderLenght, 235);
-			xdc();
-			mirror([0, 1, 0]) xdc(diamants = false);
-		}
-		translate([0,0,ycXHolderLenght]) shaftHole(xshaft,ycXHolderLenght);
-		xholes(ycXHolderPs);
-	}
-}
-
-module yCarriageXHolderInner(color,lg) {
-	color(color) difference() {
-		yCarriageXHolder(color);
-		translate([-ycXHolderWidth+assembleSlack,-ycXTubeRadius-1,-1]) cube([ycXHolderWidth,ycXTubeRadius*2+2,ycXHolderLenght+2]);
-	}
-}
-
-module yCarriageXHolderOuter(color,lg) {
-	color(color) difference() {
-		yCarriageXHolder(color);
-		translate([-assembleSlack,-ycXTubeRadius-1,-1]) cube([ycXHolderWidth+2,ycXTubeRadius*2+2,ycXHolderLenght+2]); // cut inner part off
-		rt(ycXHolderPos) cylinder(r=ycTubeRadius+bevelHeight+assembleSlack,h=ycWidth); // cut y tube offset
-		rt(ycXHolderPos) for (p = ycScrewPs) // cut off tubes for the large screws
-			translate([p.x, p.y, chamfer])
-				cylinder(r = ycScrewTubeRadius+assembleSlack, h = ycSideWidth-chamfer);
-
-	}
-	xscrews(ycXHolderPs,lg);
-}
 
 module yCarriageXHolderRightSide(color) {
 	lg = xl(a="Y carriage",sa="X holder right side");
 	xxPartLog(lg,c="printed part",n="yCarriageXHolderRightSide",t="PETG");
 
-	yCarriageXHolderOuter(color,lg);
+	rt(ycXHolderPos) mirror([0,0,1]) tr(ycXHolderPos) yCarriageXHolderOuter(color,lg);
+	*mirror([0,0,1]) yCarriageXHolderOuter(color,lg);
 }
 
 //$doRealDiamants=true;

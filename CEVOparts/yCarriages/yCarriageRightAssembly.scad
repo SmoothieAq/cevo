@@ -8,33 +8,35 @@ use <../imports/e3d_v6_all_metall_hotend.scad>;
 include <../CEVOdefinitions.scad>
 include <yCarriagesDefinitions.scad> 
 use <../util/helperEDIT.scad>
+use <yCarriageRightBack.scad>
+use <yCarriageXHolderLeftSide.scad>
 use <yCarriageRightFront.scad>
+use <yCarriageBoxBottom.scad>
+use <yCarriageXHolderRightSide.scad>
 
-
-show 		= 4;
-/*
-show 		= 0; 
-
-onlyShow 	= false;
-alpha		= 0.2;
-showColor 	= undef;
-showScrews 	= true;
-showExtra	= true;
-//showExtraExtra = true;
-*/
 
 module yCarriageRightAssembly() {
+	xshaftX = -xshaft[length]/2-ycXHolderOffset-slack;
+	xshaftBackY = -ycWidth/2+xshaftDistance/2;
 	place = [[],
-		[0,xshaftDistance/2,0,0,0,90], 																				// y shaft 
-		[-xshaft[length]/2+ycTubeRadius-screwTapMinThick-slack,0,xshaftOffset,0,0,0], 																				// shaft front
-		[-xshaft[length]/2+ycTubeRadius-screwTapMinThick-slack,xshaftDistance,xshaftOffset,0,0,0], 																// shaft back
-		[0,(carriageWidth-xshaftDistance)/2+xshaftDistance,-ycTubeRadius,90,0,0], 													// yCarriageRightFront
+		[0,xshaftDistance/2,0,0,0,90], 												// y shaft
+		[xshaftX,xshaftBackY-xshaftDistance,xshaftOffset,0,0,0], 	// x shaft front
+		[xshaftX,xshaftBackY,xshaftOffset,0,0,0], // x shaft back
+		[0,0,0,90,0,0], // yCarriageRightBack
+		[0,0,0,90,0,0], // yCarriageXHolderLeftSide
+		[0,-ycWidth,0,90,0,0], // yCarriageRightFront
+		[0,0,0,90,0,0], // yCarriageBoxBottom
+		[0,-ycWidth,0,90,0,0], // yCarriageXHolderRightSide
 	[]];
 	show(place) {
 		place(place,1,true,true) color(alpha(1,carbonYshaft ? carbonColor : aluColor)) theShaft(yshaft);
 		place(place,2,true) color(alpha(2,carbonXshaft ? carbonColor : aluColor)) theShaft(xshaft);
 		place(place,3,true) color(alpha(3,carbonXshaft ? carbonColor : aluColor)) theShaft(xshaft);
-		place(place,4) yCarriageRightFront(color=alpha(4,mainColor));
+		place(place,4) yCarriageRightBack(color=alpha(4,mainColor));
+		place(place,5) tr(ycXHolderPos) yCarriageXHolderLeftSide(color=alpha(5,mainColor));
+		place(place,6) yCarriageRightFront(color=alpha(6,mainColor));
+		place(place,7) tr(ycBoxPos) yCarriageBoxBottom(color=alpha(7,mainColor));
+		place(place,8) tr(ycXHolderPos) yCarriageXHolderRightSide(color=alpha(8,mainColor));
 	}
 }
 

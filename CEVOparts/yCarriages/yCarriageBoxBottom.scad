@@ -9,10 +9,15 @@ use <../util/diamants.scad>
 use <../util/util.scad>
 use <../xutil/xutil.scad>
 
+module yCarriageBoxHalfHole() {
+	translate([-1,-1,ycIdlerHolderBotThick+chamfer]) cube([ycWidthHole/2+1,ycBoxDepth*3,ycBoxHoleHeight]);
+}
+
 module yCarriageBoxHalf() {
 	difference() {
-		translate([0, 0, ycBoxHeight]) mirror([0, 0, 1]) xcube([ycBoxWidth/2, ycBoxDepth, ycBoxHeight], sides = [1, 0, 1, 1]);
-		translate([ycIdlerHolderBotThick,-1,ycIdlerHolderBotThick+chamfer]) cube([ycWidthHole,ycBoxDepth*3,ycBoxHoleHeight]);
+		translate([0, 0, ycBoxHeight]) mirror([0, 0, 1]) xcube([ycBoxWidth/2, ycBoxDepth, ycBoxHeight], sides = [1, 1, 1, 0]);
+		yCarriageBoxHalfHole();
+		xscrewHole(ycIdlerP);
 		//xhole(ycIdlerP);
 	}
 	//xscrewNut(ycIdlerP);
@@ -22,8 +27,8 @@ module yCarriageBoxBottomHalf(color,lg) {
 	color(color) difference() {
 		yCarriageBoxHalf();
 		translate([-1,-1,ycIdlerHolderBotThick+chamfer]) cube([ycBoxWidth/2+2,ycBoxDepth+2,ycBoxHeight]);
-		translate([-1,ycBoxDepth-partMountingThick*2-assembleSlack,-1]) cube([ycIdlerHolderBotThick+assembleSlack,partMountingThick*2+1,ycIdlerHolderBotThick+chamfer+2]);
-		xscrewHole(ycIdlerP);
+		translate([ycBoxWidth/2-ycIdlerHolderBotThick-assembleSlack,ycBoxDepth-partMountingThick*2-assembleSlack,-1]) cube([ycIdlerHolderBotThick+assembleSlack+1,partMountingThick*2+1,ycIdlerHolderBotThick+chamfer+2]);
+		//xscrewHole(ycIdlerP);
 	}
 	xscrew(ycIdlerP,lg=lg);
 }
@@ -32,7 +37,7 @@ module yCarriageBoxTopHalf() {
 	difference() {
 		yCarriageBoxHalf();
 		translate([-1,-1,-1]) cube([ycBoxWidth/2+2,ycBoxDepth+1-partMountingThick*2,ycIdlerHolderBotThick+chamfer+1+assembleSlack]);
-		translate([ycIdlerHolderBotThick,-1,-1]) cube([ycBoxWidth/2+2,ycBoxDepth+2,ycIdlerHolderBotThick+chamfer+1+assembleSlack]);
+		translate([-1,-1,-1]) cube([ycBoxWidth/2-ycIdlerHolderBotThick+1,ycBoxDepth+2,ycIdlerHolderBotThick+chamfer+1+assembleSlack]);
 	}
 }
 
@@ -41,15 +46,16 @@ module yCarriageBoxBottom(color) {
 	xxPartLog(lg,c="printed part",n="yCarriageBoxBottom",t="PETG");
 
 	yCarriageBoxBottomHalf(color,lg);
-	translate([ycBoxWidth,0,0]) mirror([1,0,0]) yCarriageBoxBottomHalf(color,lg);
+	mirror([1,0,0]) yCarriageBoxBottomHalf(color,lg);
 }
 
 //$doRealDiamants=true;
 *yCarriageBoxHalf();
-*translate([ycBoxWidth,0,0]) mirror([1,0,0]) yCarriageBoxHalf();
+*mirror([1,0,0]) yCarriageBoxHalf();
+*yCarriageBoxBottomHalf();
 
-*yCarriageBoxBottom();
-yCarriageBoxTopHalf();
+yCarriageBoxBottom();
+*yCarriageBoxTopHalf();
 
 /*
 module yCarriageSide(color = undef) {

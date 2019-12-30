@@ -19,7 +19,7 @@ ycWidth = xminThick(ycScrew, xshaftDistance+2*ycXTubeRadius); //screwMinLength(y
 
 yidler = defaultIdler;
 
-ycXHolderLenght = yshaft[radius]*5;
+ycXHolderLenght = yshaft[radius]*4;
 
 
 /////////////////////////////////////////////////////////////////////
@@ -40,17 +40,21 @@ ycBoxWidth = ycWidthHole+ycIdlerHolderBotThick*2;
 ycBoxDepth = yshaft[radius]+ycTubeRadius+yidler[radius]-beltBaseThick(belt);
 ycBoxHoleHeight = 2*idlerHeight(yidler)+3*idlerSpacer;
 ycBoxHeight = ycIdlerHolderBotThick+chamfer+ycBoxHoleHeight+ycIdlerHolderTopThick;
+ycBoxEndOffset = yIdlerDist+yidler[radius]-beltBaseThick(belt); // end of box offset from yshaft center
+ycBoxTopOffset = -xshaftOffset-idlerSpacer*1.5-idlerHeight(yidler)-ycIdlerHolderTopThick; // top of box offset from yshaft center
+echo(ycBoxTopOffset=ycBoxTopOffset,xshaftOffset=xshaftOffset);
 ycSideWidth = (ycWidth-ycWidthHole)/2;
 ycXHolderWidth = ycSideWidth-ycWidth/2+xshaftDistance/2;
 ycXHolderOffset = beltStepperMotor[width]/2-yIdlerDist-yidler[radius]-beltBaseThick(belt)-beltStepperPulley[radius]+1.5; // end of holder offset from yshaft center
 
 ycIdlerP = let (
 					l = xminThick(ycMountScrew,ycBoxHeight-chamfer-1,nutdepth=0,depth=0),
-					x = ycBoxWidth/2-beltCarriageDistance/2-belt[thick]/2-yidler[radius],
+					x = beltCarriageDistance/2+belt[thick]/2+yidler[radius],
 					y = yidler[radius]-beltBaseThick(belt),
 					z = ycBoxHeight-l
-				) echo(l,x,y,z) xp([x, y, z],[180, 0, 0],thick=l,depth=0,nutdepth=0,screw=yidler[forScrew]);
+				) xp([x, y, z],[180, 0, 0],thick=l,depth=0,nutdepth=0,screw=yidler[forScrew]);
 
+ycBoxPos = [ycBoxEndOffset,-ycBoxHeight-ycBoxTopOffset,ycWidthHole/2+ycSideWidth,-90,90,0];
 
 ycXHolderPs = let (
 					l = xmaxThick(ycMountScrew,ycXTubeRadius+ycXHolderWidth),
@@ -64,9 +68,9 @@ ycXHolderPos = [-ycXHolderOffset-ycXHolderLenght,xshaftOffset,ycSideWidth-ycXHol
 ycScrewPs = let (
 					x1 = yIdlerDist-yidler[holeRadius]-ycScrew[radius]-0.5,
 					y1 = xshaftOffset+idlerSpacer*1.5+idlerHeight(yidler)+ycScrew[radius]+0.5,
-					y2 = xshaftOffset+ycXTubeRadius+ycScrew[radius]+screwTapMinThick,
-					x2   = sqrt(pow(ycTubeRadius,2)-pow(y2,2))
-				) [ for(xy = [[x1,y1],[-x2,y2]]) xp([xy.x,xy.y,ycWidth],depth=1,nutdepth=1,screw=ycScrew,thick=ycWidth) ];
+					y2 = y1, //xshaftOffset+ycXTubeRadius+ycScrew[radius]+screwTapMinThick,
+					x2 = -ycXHolderOffset-ycXHolderLenght/2-1.5//sqrt(pow(ycTubeRadius,2)-pow(y2,2))
+				) [ for(xy = [[x1,y1],[x2,y2]]) xp([xy.x,xy.y,ycWidth],depth=1,nutdepth=1,screw=ycScrew,thick=ycWidth) ];
 ycScrewTubeRadius = ycScrew[headRadius]+screwTapMinThick;
 
 pulleyOuterEdgeX = yIdlerDist+yidler[radius]+beltBaseThick(belt); // relative to yshaft center

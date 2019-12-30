@@ -2,45 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0ac7a39-903d-48ef-8209-d1d15fda06d0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/CEVOparts/cornerMounts/frontRightCornerAssembly.scad" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CEVOparts/frame/frameAssembly.scad" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CEVOparts/fullAssembly.scad" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CEVOparts/xCarriage/xCarriagEDIT.scad" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageBoxBottom.scad" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightAssembly.scad" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightFrontCopy3.scad" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageXHolderRightSide.scad" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriagesDefinitionsCopy.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/CEVOdefinitions.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/CEVOdefinitions.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/cornerMounts/cornerMountsDefinitions.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/cornerMounts/cornerMountsDefinitions.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/cornerMounts/frontRightCornerEDIT.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/cornerMounts/frontRightCornerEDIT.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/cornerMounts/frontRightInnerShaftMount.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/cornerMounts/frontRightInnerShaftMount.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/cornerMounts/frontRightOuterShaftMount.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/cornerMounts/frontRightOuterShaftMount.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/cornerMounts/rightMotorMount.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/cornerMounts/rightMotorMount.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/frame/bottomPlate.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/frame/bottomPlate.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/frame/frame.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/frame/frame.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/frame/frameEDIT.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/frame/frameEDIT.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/fullEDIT.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/fullEDIT.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/t.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/t.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/util/diamants.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/util/diamants.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/util/helperEDIT.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/util/helperEDIT.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/util/standardDefinitions.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/util/standardDefinitions.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/util/util.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/util/util.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/xCarriage/xCarriageEDIT.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/xCarriage/xCarriageAssembly.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/xCarriage/xCarriageFront.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/xCarriage/xCarriageFront.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/xCarriage/xCarriageLeft.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/xCarriage/xCarriageLeft.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/xCarriage/xCarriagePlate.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/xCarriage/xCarriagePlate.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/xCarriage/xCarriageRight.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/xCarriage/xCarriageRight.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/xutil.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/xutil/xutil.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/xCarriageFront.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/xCarriageFront.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/xCarriageLeft.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/xCarriageLeft.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/xCarriagePlate.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/xCarriagePlate.scad" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightBack.scad" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageXHolderLeftSide.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/xCarriageBushingBack.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/old/xCarriageBushingBack.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/xCarriageBushingFront.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/old/xCarriageBushingFront.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/xCarriageFront.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/old/xCarriageFront.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/xCarriageLeft.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/old/xCarriageLeft.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/xCarriagePlate.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/old/xCarriagePlate.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageBoxBottom.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageBoxBottom.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightAssembly.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightAssembly.scad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightEDIT.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightEDIT.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightFront - Copy (2).scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/old/yCarriageRightFront - Copy (2).scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightFront - Copy.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/old/yCarriageRightFront - Copy.scad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightFront.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightFront.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightFrontCopy3.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightFrontCopy3.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageXHolderRightSide.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageXHolderRightSide.scad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriagesDefinitions.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriagesDefinitions.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cevo.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/cevo.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cevo.iws" beforeDir="false" afterPath="$PROJECT_DIR$/cevo.iws" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +44,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/CEVOparts/yCarriages" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.OpenSCAD" />
+    <property name="settings.editor.selected.configurable" value="preferences.customizations" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -128,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577432863257</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="x">
+      <created>1577644559229</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1577644559229</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -155,34 +137,34 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="874" y="510" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1577138008868" />
-    <state x="948" y="428" key="#com.intellij.ide.ui.customization.CustomizableActionsPanel.FindAvailableActionsDialog" timestamp="1577350954606">
+    <state x="948" y="428" key="#com.intellij.ide.ui.customization.CustomizableActionsPanel.FindAvailableActionsDialog" timestamp="1577726318302">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="948" y="428" key="#com.intellij.ide.ui.customization.CustomizableActionsPanel.FindAvailableActionsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1577350954606" />
-    <state x="395" y="299" width="951" height="793" key="CommitChangelistDialog2" timestamp="1577432862518">
+    <state x="948" y="428" key="#com.intellij.ide.ui.customization.CustomizableActionsPanel.FindAvailableActionsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1577726318302" />
+    <state x="395" y="299" width="951" height="793" key="CommitChangelistDialog2" timestamp="1577644558283">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="395" y="299" width="951" height="793" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1577432862518" />
-    <state x="898" y="448" key="FileChooserDialogImpl" timestamp="1577135877313">
+    <state x="395" y="299" width="951" height="793" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1577644558283" />
+    <state x="1329" y="372" key="FileChooserDialogImpl" timestamp="1577726249389">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="898" y="448" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1577135877313" />
+    <state x="1329" y="372" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1577726249389" />
     <state x="964" y="414" key="RollbackChangesDialog" timestamp="1577138112511">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="964" y="414" key="RollbackChangesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1577138112511" />
-    <state x="621" y="349" key="SettingsEditor" timestamp="1577610026147">
+    <state x="621" y="349" key="SettingsEditor" timestamp="1577726339024">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="621" y="349" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1577610026147" />
-    <state x="320" y="436" key="Vcs.Push.Dialog.v2" timestamp="1577432877665">
+    <state x="621" y="349" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1577726339024" />
+    <state x="320" y="436" key="Vcs.Push.Dialog.v2" timestamp="1577644572417">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="320" y="436" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1577432877665" />
-    <state x="998" y="649" key="com.intellij.ide.ui.customization.CustomizableActionsPanel$EditIconDialog" timestamp="1577350846678">
+    <state x="320" y="436" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1577644572417" />
+    <state x="998" y="649" key="com.intellij.ide.ui.customization.CustomizableActionsPanel$EditIconDialog" timestamp="1577726271141">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="998" y="649" key="com.intellij.ide.ui.customization.CustomizableActionsPanel$EditIconDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1577350846678" />
+    <state x="998" y="649" key="com.intellij.ide.ui.customization.CustomizableActionsPanel$EditIconDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1577726271141" />
     <state x="988" y="528" key="com.intellij.ide.util.TipDialog" timestamp="1577135906710">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -191,10 +173,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1436" y="3" width="1126" height="729" key="dock-window-1/0.0.2560.1400@0.0.2560.1400" timestamp="1577610975274" />
-    <state x="637" y="155" width="710" height="819" key="find.popup" timestamp="1577618796676">
+    <state x="637" y="155" width="710" height="819" key="find.popup" timestamp="1577724026715">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="637" y="155" width="710" height="819" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1577618796676" />
+    <state x="637" y="155" width="710" height="819" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1577724026715" />
     <state x="110" y="327" key="new project wizard" timestamp="1577278303842">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

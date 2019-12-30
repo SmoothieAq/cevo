@@ -10,11 +10,11 @@ $show 			= 0;
 $onlyShow 		= false;
 $alpha			= 0.2;
 $showColor 		= undef;
-$showScrews 	= false;
+$showScrews 	= true;
 $showExtra		= true;
 $showExtraExtra = true;
 $doDiamants		= true;
-$doRealDiamants	= FALSE;
+$doRealDiamants	= true;
 
 yCarriageRightAssembly();
 

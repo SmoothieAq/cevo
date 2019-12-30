@@ -29,7 +29,7 @@ module yCarriageSide(color = undef) {
                 translate([xHolderx, -xshaft[radius], carriageWidth/2-xshaftDistance/2+carriageSideWidth-xxshaftz])
                     rotate([0, 90, -90])
                         xDiamantCube([carriageSideWidth-xxshaftz, ycXHolderLenght, ycXTubeRadius], sides = [1, 0, 1, 0], bevel = [1, 0, 1, 0], diamants = false);
-                #translate([idlerBoxX, idlerTopY+idlerHeight(yidler)+idlerSpacer+ycIdlerHolderTopThick, carriageWidth/2])
+                translate([idlerBoxX, idlerTopY+idlerHeight(yidler)+idlerSpacer+ycIdlerHolderTopThick, carriageWidth/2])
                     rotate([90, 90, 0])
 						ccube(carriageWidthBox/2, idlerSpaceDepth, idlerSpaceThick+ycIdlerHolderBotThick+ycIdlerHolderTopThick);
                 translate([0, ycTubeRadius, 0])
