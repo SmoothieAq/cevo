@@ -13,9 +13,12 @@ use <yCarriageXHolderRightFront.scad>
 use <yCarriageRightFront.scad>
 use <yCarriageBoxBottom.scad>
 use <yCarriageXHolderRightBack.scad>
+use <yCarriageSpacer.scad>
+use <yCarriageBushingRight.scad>
+use <yCarriageBushingLeft.scad>
 
 
-module yCarriageRightAssembly() {
+module yCarriageRightAssembly(yBeltFrontLeng=30,yBeltBackLeng=230,xBeltLeng=150) {
 	xshaftX = -xshaft[length]/2-ycXHolderOffset-slack;
 	xshaftBackY = -ycWidth/2+xshaftDistance/2;
 	place = [[],
@@ -27,8 +30,9 @@ module yCarriageRightAssembly() {
 		[0,-ycWidth,0,90,0,0], // yCarriageRightFront
 		[0,0,0,90,0,0], // yCarriageBoxBottom
 		[0,-ycWidth,0,90,0,0], // yCarriageXHolderRightSide
-		[-xshaft[length]/2+yIdlerDist,-ycWidth/2-beltCarriageDistance/2-belt[thick]/2,ycUpperIdlerTop-belt[width],0,0,0], // upper belt
-		[-xshaft[length]/2+yIdlerDist,-ycWidth/2+beltCarriageDistance/2+belt[thick]/2,ycLowerIdlerTop,180,0,0], // lower belt
+		[0,-ycWidth+ycBushingTapWidth,0,-90,0,0], // [-xshaft[length]/2+yIdlerDist,-ycWidth/2-beltCarriageDistance/2-belt[thick]/2,ycUpperIdlerTop-belt[width],0,0,0], // upper belt
+		[0,-ycBushingTapWidth,0,90,0,0], // [-xshaft[length]/2+yIdlerDist,-ycWidth/2+beltCarriageDistance/2+belt[thick]/2,ycLowerIdlerTop,180,0,0], // lower belt
+		[0,-ycSideWidth,0,90,0,0], // yCarriageSpacer
 	[]];
 	show(place) {
 		place(place,1,true,true) color(alpha(1,carbonYshaft ? carbonColor : aluColor)) theShaft(yshaft);
@@ -37,10 +41,11 @@ module yCarriageRightAssembly() {
 		place(place,4) yCarriageRightBack(color=alpha(4,mainColor));
 		place(place,5) tr(ycXHolderPos) yCarriageXHolderRightBack(color=alpha(5,mainColor));
 		place(place,6) yCarriageRightFront(color=alpha(6,mainColor));
-		place(place,7) tr(ycBoxPos) yCarriageBoxBottom(color=alpha(7,mainColor));
+		place(place,7) tr(ycBoxPos) yCarriageBoxBottom(color=alpha(7,mainColor),yBeltFrontLeng=yBeltFrontLeng,yBeltBackLeng=yBeltBackLeng,xBeltLeng=xBeltLeng);
 		place(place,8) tr(ycXHolderPos) yCarriageXHolderRightFront(color=alpha(8,mainColor));
-		place(place,9,true,true) xbelt(leng=xshaft[length]/2);
-		place(place,10,true,true) xbelt(leng=xshaft[length]/2);
+		place(place,9) yCarriageBushingRight(color=alpha(9,accentColor));//place(place,9,true,true) xbelt(leng=xshaft[length]/2);
+		place(place,10) yCarriageBushingLeft(color=alpha(10,accentColor));//place(place,10,true,true) xbelt(leng=xshaft[length]/2);
+		place(place,11) yCarriageSpacer(color=alpha(11,accentColor));
 	}
 }
 

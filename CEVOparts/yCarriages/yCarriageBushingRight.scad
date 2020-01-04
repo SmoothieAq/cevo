@@ -6,13 +6,23 @@
 //*******************************************************************
 
 use <../genericParts/bushing.scad>
-include <xCarriageDefinitions.scad>
+include <yCarriagesDefinitions.scad>
 
-module xCarriageBushingBack(color=undef,showScrews=false,drill=false) {
-	color(color) bushing(xshaft,carriageWidth-2*bushingTap,drill=drill);
+module yCarriageBushingRight(color=undef,drill=false) {
+	lg = xl(a="Y carriage",sa="Bushing rigth");
+	xxPartLog(lg,c="printed part",n="yCarriageBushingRight",t="PLA");
+
+	color(color) bushing(yshaft,ycSideWidth-bushingTap-ycBushingTapWidth,drill=drill);
 }
 
-xCarriageBushingBack(color=accentColor);
+if (false) {
+	$doDiamants=true;
+	$doRealDiamants=true;
+	$showScrews=false;
+	yCarriageBushingRight();
+} else if (true) {
+	yCarriageBushingRight(color = accentColor);
+}
 
 /*
 This design and software is copyrighted, but is free for private, non-commercial use.

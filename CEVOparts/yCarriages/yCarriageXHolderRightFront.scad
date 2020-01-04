@@ -18,12 +18,18 @@ module yCarriageXHolderRightFront(color) {
 	translate([-ycWidth, 0, 0]) rt(ycXHolderPos) xscrews([ycScrewPs[1], ycScrewPs[2]], lg = lg, plate = 0); // screws for the assembly
 }
 
-//$doRealDiamants=true;
-//yCarriageXHolderInner(); xnuts(ycXHolderPs,lg);
-//yCarriageXHolderOuter();
+if (true) {
+	$doDiamants=true;
+	$doRealDiamants=true;
+	$showScrews=false;
+	yCarriageXHolderRightFront();
+} else if (true) {
+	//$doRealDiamants=true;
+	//yCarriageXHolderInner(); xnuts(ycXHolderPs,lg);
+	//yCarriageXHolderOuter();
 
-yCarriageXHolderRightFront();
-
+	yCarriageXHolderRightFront();
+}
 
 /*
 This design and software is copyrighted, but is free for private, non-commercial use.

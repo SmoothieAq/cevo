@@ -96,13 +96,7 @@ aluColor 		= [220/256,220/256,220/256,1]; // light grey
 carbonColor		= [55/256,55/256,55/256,1]; // dark grey
 otherPartColor	= [50/256,50/256,50/256,1]; // more dark greyish
 beltColor		= [100/256,78/256,78/256]; // redish dark grey
-
-
-/////////////////////////////////////////////////////////////////////
-// rendering diamants are real slow, override these when testing
-
-//doDiamants 			= true;
-//doRealDiamants 		= false;
+beltToothColor	= [170/256,78/256,78/256]; // redder dark grey
 
 
 /////////////////////////////////////////////////////////////////////

@@ -37,12 +37,11 @@ xshaftOffset = -ycTubeRadius-xshaft[radius]; // xshaft center offset from yshaft
 
 ycWidthHole = beltCarriageDistance+3*belt[thick]+2*yidler[flangeRadius]+2*yidler[radius];
 ycBoxWidth = ycWidthHole+ycIdlerHolderBotThick*2;
-ycBoxDepth = /*yshaft[radius]+*/ycTubeRadius+yidler[radius]-beltBaseThick(belt);
+ycBoxDepth = ycTubeRadius+yidler[radius]-beltBaseThick(belt);
 ycBoxHoleHeight = 2*idlerHeight(yidler)+3*idlerSpacer;
 ycBoxHeight = ycIdlerHolderBotThick+chamfer+ycBoxHoleHeight+ycIdlerHolderTopThick;
 ycBoxEndOffset = yIdlerDist+yidler[radius]-beltBaseThick(belt); // end of box offset from yshaft center
 ycBoxTopOffset = -xshaftOffset-idlerSpacer*1.5-idlerHeight(yidler)-ycIdlerHolderTopThick; // top of box offset from yshaft center
-echo(ycBoxTopOffset=ycBoxTopOffset,xshaftOffset=xshaftOffset);
 ycSideWidth = (ycWidth-ycWidthHole)/2;
 ycXHolderWidth = ycSideWidth-ycWidth/2+xshaftDistance/2;
 ycXHolderOffset = beltStepperMotor[width]/2-yIdlerDist-yidler[radius]-beltBaseThick(belt)-beltStepperPulley[radius]+1.5; // end of holder offset from yshaft center
@@ -56,20 +55,13 @@ ycIdlerP = let (
 
 ycBoxPos = [ycBoxEndOffset,-ycBoxHeight-ycBoxTopOffset,ycWidthHole/2+ycSideWidth,-90,90,0];
 
-//ycXHolderPs = let (
-//					l = xmaxThick(ycMountScrew,ycXTubeRadius+ycXHolderWidth),
-//					x = ycXHolderWidth-l,
-//					y = xshaft[radius]+screwTapMinThick+ycMountScrew[holeRadius],
-//					z = ycXHolderLenght/2-1.5
-//				) [ for(ys = [1,-1]) xp([x,ys*y,z],[0,-90,0], thick = l, depth = 1, nutdepth = 1, screw = ycMountScrew) ];
-
 ycXHolderPos = [-ycXHolderOffset-ycXHolderLenght,xshaftOffset,ycSideWidth-ycXHolderWidth,180,-90,0];
 
 ycScrewPs = let (
 					x1 = yIdlerDist-yidler[holeRadius]-ycScrew[radius]-0.5,
 					y1 = xshaftOffset+idlerSpacer*1.5+idlerHeight(yidler)+ycScrew[radius]+0.5,
-					x2 = -ycXHolderOffset-ycXHolderLenght/2-2.5,//sqrt(pow(ycTubeRadius,2)-pow(y2,2)),
-					y2 = y1-idlerSpacer-yidler[flangeTopHeight]+0.7, //xshaftOffset+ycXTubeRadius+ycScrew[radius]+screwTapMinThick,
+					x2 = -ycXHolderOffset-ycXHolderLenght/2-2.5,
+					y2 = y1-idlerSpacer-yidler[flangeTopHeight]+0.7,
 					x3 = x2,
 					y3 = xshaftOffset-(-xshaftOffset+y2)
 				) [ for(xy = [[x1,y1],[x2,y2],[x3,y3]]) xp([xy.x,xy.y,ycWidth],depth=1,nutdepth=1,screw=ycScrew,thick=ycWidth) ];

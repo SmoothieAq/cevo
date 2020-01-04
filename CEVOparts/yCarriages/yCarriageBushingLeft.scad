@@ -2,17 +2,27 @@
 //*******************************************************************
 // back bushings for x carriage
 //*******************************************************************
-// print TWO in PLA in vase mode
+// print PLA in vase mode
 //*******************************************************************
 
 use <../genericParts/bushing.scad>
-include <xCarriageDefinitions.scad>
+include <yCarriagesDefinitions.scad>
 
-module xCarriageBushingFront(color=undef,showScrews=false,drill=false) {
-	color(color) bushing(xshaft,(carriageWidth-carriageWidthHole)/2-bushingTap,drill=drill);
+module yCarriageBushingLeft(color=undef,drill=false) {
+	lg = xl(a="Y carriage",sa="Bushing rigth");
+	xxPartLog(lg,c="printed part",n="yCarriageBushingLeft",t="PLA");
+
+	color(color) bushing(yshaft,ycSideWidth-ycBushingTapWidth,drill=drill);
 }
 
-xCarriageBushingBack(color=accentColor);
+if (false) {
+	$doDiamants=true;
+	$doRealDiamants=true;
+	$showScrews=false;
+	yCarriageBushingLeft();
+} else if (true) {
+	yCarriageBushingLeft(color = accentColor);
+}
 
 /*
 This design and software is copyrighted, but is free for private, non-commercial use.

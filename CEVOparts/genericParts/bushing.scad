@@ -8,9 +8,9 @@ include <../CEVOdefinitions.scad>;
 
 
 module bushing(shaft,length,drill=false) {
-	if (doRealDiamants) {
+	if ($doRealDiamants) {
 		translate([0,0,length/2]) spiralVaseLinearBearing(shaft[bushingRadius]*2,shaft[radius]*2,length,drill=drill);
-	}else if (doDiamants) {
+	} else if (nnv($doDiamants,true)) {
 		difference() {
 			cylinder(r=shaft[bushingRadius],h=length);
 			translate([0,0,-0.1]) cylinder(r=shaft[radius],h=length+0.2);

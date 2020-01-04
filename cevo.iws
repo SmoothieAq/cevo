@@ -2,22 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0ac7a39-903d-48ef-8209-d1d15fda06d0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageBushingLeft.scad" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageBushingRight.scad" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageSpacer.scad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CEVOparts/CEVOdefinitions.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/CEVOdefinitions.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/cornerMounts/cornerMountsDefinitions.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/cornerMounts/cornerMountsDefinitions.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/fullAssembly.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/fullAssembly.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/util/diamants.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/util/diamants.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/util/helperEDIT.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/util/helperEDIT.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/util/standardDefinitions.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/util/standardDefinitions.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/util/util.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/util/util.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/genericParts/bushing.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/genericParts/bushing.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/xCarriage/xCarriagEDIT.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/xCarriage/xCarriagEDIT.scad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CEVOparts/xutil/xutil.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/xutil/xutil.scad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageBoxBottom.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageBoxBottom.scad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightAssembly.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightAssembly.scad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightBack.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightBack.scad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightFront.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightFront.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageXHolderLeftSide.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageXHolderRightBack.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageXHolderRightSide.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageXHolderRightFront.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightFrontCopy3.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/old/yCarriageRightFrontCopy3.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageXHolderRightBack.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageXHolderRightBack.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageXHolderRightFront.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageXHolderRightFront.scad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriagesDefinitions.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriagesDefinitions.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriagesDefinitionsCopy.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriagesDefinitionsCopy.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriagesDefinitionsCopy.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/old/yCarriagesDefinitionsCopy.scad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cevo.iws" beforeDir="false" afterPath="$PROJECT_DIR$/cevo.iws" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -120,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577732034005</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="x">
+      <created>1578135447407</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1578135447407</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -151,10 +158,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="948" y="428" key="#com.intellij.ide.ui.customization.CustomizableActionsPanel.FindAvailableActionsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1577987824620" />
-    <state x="395" y="299" width="951" height="793" key="CommitChangelistDialog2" timestamp="1577732033010">
+    <state x="395" y="299" width="951" height="793" key="CommitChangelistDialog2" timestamp="1578135446526">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="395" y="299" width="951" height="793" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1577732033010" />
+    <state x="395" y="299" width="951" height="793" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1578135446526" />
     <state x="1329" y="372" key="FileChooserDialogImpl" timestamp="1577726249389">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

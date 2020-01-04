@@ -22,13 +22,9 @@ module yCarriageXHolder(lg,backSide) {
 					cylinder(r = ycScrewTubeRadius2, h = ycSideWidth-ch);
 				translate([ycScrewPs[2].x, ycScrewPs[2].y, ch])
 					cylinder(r = ycScrewTubeRadius2, h = ycWidth/2-ch);
-				*for (p = [ycScrewPs[1], ycScrewPs[2]]) // tubes for the large screws
-					translate([p.x, p.y, chamfer])
-						cylinder(r = ycScrewTubeRadius2, h = ycSideWidth-chamfer);
 			}
 		}
 		translate([0,0,ycXHolderLenght]) shaftHole(xshaft,ycXHolderLenght);
-		//xholes(ycXHolderPs);
 		rt(ycXHolderPos) {
 			if (backSide) xholes(ycScrewPs);
 			else translate([0, 0, ycWidth]) mirror([0, 0, 1]) xholes(ycScrewPs,twist=30); // holes for the side assembly screws
@@ -48,12 +44,7 @@ module yCarriageXHolderOuter(color,lg,backSide) {
 		yCarriageXHolder(lg,backSide);
 		translate([-assembleSlack,-ycXTubeRadius-5,-1]) cube([ycWidth+2,ycXTubeRadius*2+10,ycXHolderLenght+2]); // cut inner part off
 		rt(ycXHolderPos) cylinder(r=ycTubeRadius+bevelHeight+assembleSlack,h=ycWidth); // cut y tube offset
-		*rt(ycXHolderPos) for (p = ycScrewPs) // cut off tubes for the large screws
-			translate([p.x, p.y, chamfer])
-				cylinder(r = ycScrewTubeRadius+assembleSlack, h = ycSideWidth-chamfer);
-
 	}
-	//xscrews(ycXHolderPs,lg);
 }
 
 module yCarriageXHolderRightBack(color) {
@@ -64,12 +55,18 @@ module yCarriageXHolderRightBack(color) {
 	rt(ycXHolderPos) xnuts([ycScrewPs[1], ycScrewPs[2]], lg = lg, plate = 0,twist=30); // screws for the assembly
 }
 
-//$doRealDiamants=true;
-*yCarriageXHolderInner(); //xnuts(ycXHolderPs,lg);
-//yCarriageXHolderOuter();
+if (true) {
+	$doDiamants=true;
+	$doRealDiamants=true;
+	$showScrews=false;
+	yCarriageXHolderRightBack();
+} else if (true) {
+	//$doRealDiamants=true;
+	*yCarriageXHolderInner(); //xnuts(ycXHolderPs,lg);
+	//yCarriageXHolderOuter();
 
-yCarriageXHolderRightBack();
-
+	yCarriageXHolderRightBack();
+}
 
 /*
 This design and software is copyrighted, but is free for private, non-commercial use.

@@ -37,7 +37,7 @@ module yCarriageSide(lg) {
         tr(ycBoxPos) xnutHole(ycIdlerP,spacing=1.05,twist=30); // nut hole for box
     }
     translate([ycScrewPs[2].x, ycScrewPs[2].y, ycWidth/2-ycBoxWidth/2])
-        cylinder(r = ycScrew[radius]+0.2, h = ycBoxWidth/2);
+        cylinder(r = ycScrew[radius]+0.3, h = ycBoxWidth/2);
 }
 
 module yCarriageRightBack(color) {
@@ -47,14 +47,12 @@ module yCarriageRightBack(color) {
     color(color) difference() {
         yCarriageSide(lg=lg);
         xholes(ycScrewPs); // holes for the large assembly screws
-        //tr(ycBoxPos) xhole(ycIdlerP,twist=30);
     }
-    //tr(ycXHolderPos) xnuts(ycXHolderPs,lg=lg); // nuts for the x holder
     xnut(ycScrewPs[0],lg=lg,plate=0); // nuts for the box side assembly
     tr(ycBoxPos) xnut(ycIdlerP,lg=lg,twist=30); // nut for the box
 }
 
-if (true) {
+if (false) {
     $doDiamants=true;
     $doRealDiamants=true;
     $showScrews=false;

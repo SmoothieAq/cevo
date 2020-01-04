@@ -16,161 +16,59 @@ module yCarriageBoxHalfHole() {
 module yCarriageBoxHalf() {
 	difference() {
 		union() {
-			*translate([0, 0, ycBoxHeight]) mirror([0, 0, 1]) xcube([ycBoxWidth/2, ycBoxDepth, ycBoxHeight], sides = [1, 1, 1, 0]);
 			translate([0, 0, chamfer]) cube([ycBoxWidth/2, ycBoxDepth, ycBoxHeight-chamfer]);
 			translate([0,ycBoxDepth-assembleSlack,chamfer]) cube([ycBoxWidth/2,-ycScrewPs[2].x+ycBoxEndOffset-ycBoxDepth+assembleSlack,ycIdlerHolderBotThick]);
 		}
 		yCarriageBoxHalfHole();
 		translate([-1,-1,-1]) cube([ycBoxWidth/2+2,ycIdlerP.y*3+1+assembleSlack,ycIdlerHolderBotThick+chamfer+1+assembleSlack]);
 		xscrewHole(ycIdlerP);
-		//xhole(ycIdlerP);
 	}
-	//xscrewNut(ycIdlerP);
 }
 
-module yCarriageBoxBottomHalf(color,upperIdler,lg) {
+module yCarriageBoxBottomHalf(color,upperIdler,lg,xBeltLeng,yBeltLeng) {
 	color(color) difference() {
 		translate([0, 0, ycIdlerHolderBotThick+chamfer]) mirror([0, 0, 1]) xcube([ycBoxWidth/2, ycIdlerP.y*3, ycIdlerHolderBotThick+chamfer], sides = [1, 1, 1, 0]);
-		//yCarriageBoxHalf();
-		//translate([-1,-1,ycIdlerHolderBotThick+chamfer]) cube([ycBoxWidth/2+2,ycBoxDepth+2,ycBoxHeight]);
-		//translate([ycBoxWidth/2-ycIdlerHolderBotThick-assembleSlack,ycBoxDepth-partMountingThick*2-assembleSlack,-1]) cube([ycIdlerHolderBotThick+assembleSlack+1,partMountingThick*2+1,ycIdlerHolderBotThick+chamfer+2]);
 		xscrewHole(ycIdlerP);
 	}
 	xscrew(ycIdlerP,lg=lg);
 	yidlerLowerDepth = -ycIdlerP.z+ycIdlerHolderBotThick+chamfer+idlerSpacer;
 	yidlerUpperDepth = yidlerLowerDepth+idlerHeight(yidler)+idlerSpacer;
-	xpulley(ycIdlerP,yidler,depth=(upperIdler ? yidlerUpperDepth : yidlerLowerDepth),lg=lg);
+	idlerDepth=upperIdler ? yidlerUpperDepth : yidlerLowerDepth;
+	beltz = ycIdlerP.z+idlerDepth+yidler[flangeBotHeight];
+	xpulley(ycIdlerP,yidler,depth=idlerDepth,lg=lg);
+	tr([ycIdlerP.x-yidler[radius],ycIdlerP.y,beltz,0,0,90]) xbelt(leng=xBeltLeng);
+	translate([ycIdlerP.x,ycIdlerP.y,beltz]) rotate([0,0,-90]) xbeltPulley(a=90,pulley=yidler);
+	tr([ycIdlerP.x+yBeltLeng,ycIdlerP.y-yidler[radius],beltz,0,0,180]) xbelt(leng=yBeltLeng);
 }
 
 module yCarriageBoxTopHalf() {
 	difference() {
 		yCarriageBoxHalf();
-		//translate([-1,-1,-1]) cube([ycBoxWidth/2+2,ycBoxDepth+1-partMountingThick*2,ycIdlerHolderBotThick+chamfer+1+assembleSlack]);
-		//translate([-1,-1,-1]) cube([ycBoxWidth/2-ycIdlerHolderBotThick+1,ycBoxDepth+2,ycIdlerHolderBotThick+chamfer+1+assembleSlack]);
 	}
 }
 
-module yCarriageBoxBottom(color) {
+module yCarriageBoxBottom(color,yBeltFrontLeng=30,yBeltBackLeng=230,xBeltLeng=150) {
 	lg = xl(a="Y carriage",sa="Box bottom");
 	xxPartLog(lg,c="printed part",n="yCarriageBoxBottom",t="PETG");
 
-	yCarriageBoxBottomHalf(color,false,lg);
-	mirror([1,0,0]) yCarriageBoxBottomHalf(color,true,lg);
+	yCarriageBoxBottomHalf(color,false,lg,xBeltLeng,yBeltBackLeng);
+	mirror([1,0,0]) yCarriageBoxBottomHalf(color,true,lg,xBeltLeng,yBeltFrontLeng);
 }
 
-//$doRealDiamants=true;
-*yCarriageBoxHalf();
-*mirror([1,0,0]) yCarriageBoxHalf();
-*yCarriageBoxBottomHalf();
+if (true) {
+	$doDiamants=true;
+	$doRealDiamants=true;
+	$showScrews=true;
+	yCarriageBoxBottom();
+} else if (true) {
+	//$doRealDiamants=true;
+	*yCarriageBoxHalf();
+	*mirror([1, 0, 0]) yCarriageBoxHalf();
+	*yCarriageBoxBottomHalf();
 
-yCarriageBoxBottom();
-yCarriageBoxTopHalf();
-
-/*
-module yCarriageSide(color = undef) {
-
-    module tube() {
-        xHolderx = -ycXHolderLenght+idlerBoxX+idlerSpaceDepth-motorClearance;
-        xxshaftz = carriageWidth/2-xshaftDistance/2;
-        color(color) difference() {
-            union() {
-                translate([0, ycTubeRadius, 0])
-                    xHalfDiamantTube(ycTubeRadius, carriageWidth/2);
-                translate([xHolderx, xshaftOffset+ycTubeRadius, xxshaftz])
-                    rotate([0, 90, 0]) rotate([0, 0, 180])
-                        xDiamantTube(ycXTubeRadius, ycXHolderLenght, 235);
-                translate([xHolderx, -xshaft[radius], xxshaftz])
-                    rotate([0, -90, -90])
-                        xDiamantCube([carriageSideWidth-xxshaftz, ycXHolderLenght, ycXTubeRadius], sides = [0, 0, 1, 0], bevel = [0, 0, 1, 0], yoffset = -
-                        diamantLength/2-diamantSpacing);
-                translate([xHolderx, -xshaft[radius], carriageWidth/2-xshaftDistance/2+carriageSideWidth-xxshaftz])
-                    rotate([0, 90, -90])
-                        xDiamantCube([carriageSideWidth-xxshaftz, ycXHolderLenght, ycXTubeRadius], sides = [1, 0, 1, 0], bevel = [1, 0, 1, 0], diamants = false);
-                translate([idlerBoxX, idlerTopY+idlerHeight(yidler)+idlerSpacer+ycIdlerHolderTopThick, carriageWidth/2])
-                    rotate([90, 90, 0])
-						ccube(carriageWidthBox/2, idlerSpaceDepth, idlerSpaceThick+ycIdlerHolderBotThick+ycIdlerHolderTopThick);
-                translate([0, ycTubeRadius, 0])
-                    ccylinder(bevelWidth+chamfer, ycTubeRadius+bevelHeight, chamfer, bevelHeight);
-                for (p = yCarriageScrewPs)
-					translate([p.x, p.y, chamfer])
-						cylinder(r = yCarriageScrewPtr, h = carriageSideWidth-chamfer);
-            }
-			translate([idlerBoxX, idlerTopY+idlerHeight(yidler)+idlerSpacer+ycIdlerHolderTopThick, carriageWidth/2])
-				rotate([90, 90, 0])
-					translate([-1, -1, ycIdlerHolderTopThick]) ccube(idlerSpaceWidth/2+1, idlerSpaceDepth+2, idlerSpaceThick);
-            translate([0, ycTubeRadius, ycBushingTapWidth])
-                cylinder(h = carriageWidth/2, r = yshaft[bushingRadius]);
-            translate([0, ycTubeRadius, -1])
-                cylinder(h = ycBushingTapWidth+2, r = yshaft[bushingRadius]-bushingTap);
-            translate([xHolderx-3, xshaftOffset+ycTubeRadius, xxshaftz])
-                rotate([0, 90, 0])
-                    cylinder(r = xshaft[radius], h = ycXHolderLenght+5);
-            translate([0, ycTubeRadius, 0])
-                rotate([0, 0, 25])
-                    translate([-ycTubeRadius*2, -ycTubeRadius*1.1, carriageSideWidth])
-                        cube([ycTubeRadius*2, ycTubeRadius*2.2, carriageWidth/2]);
-			xscrewHole(idlerP);
-			for (p=yCarriageXScrewPs) {
-				xscrewHole(p);
-				xnutHole(p,twist=30);
-			}
-        }
-    }
-	xscrew(idlerP, plate = ycIdlerHolderTopThick+0.5);
-	xnut(idlerP);
-	for (p=yCarriageXScrewPs) {
-		xscrew(p);
-		xnut(p,twist=30);
-	}
-
-    tube();
+	yCarriageBoxBottom();
+	*yCarriageBoxTopHalf();
 }
-
-module yCarriageSpacer(color = undef) {
-	module c() { translate([-yCarriageScrewPtr, 0, 0]) cube([yCarriageScrewPtr*2, bushingWall+bushingTap*1.5, carriageWidthHole]); }
-	c();
-	cylinder(r = yCarriageScrewPtr, h = carriageWidthHole);
-	translate([0,0,carriageWidthHole]) intersection() {
-		c();
-		translate([0,ycTubeRadius,0]) cylinder(r=yshaft[bushingRadius]-slack,h=bushingTap);
-	}
-}
-
-module yCarriageRightFront(color = undef) {
-    difference() {
-        union() {
-            yCarriageSide(color = color);
-            translate([0, 0, carriageWidth]) mirror([0, 0, 1]) yCarriageSide(color = color);
-        }
-        for (p = yCarriageScrewPs) {
-            xscrewHole(p);
-            xnutHole(p, twist = 30);
-        }
-    }
-    for (p = yCarriageScrewPs) {
-        xscrew(p, plate = 0);
-        xnut(p, twist = 30, plate = 0);
-    }
-
-    translate([0, ycTubeRadius, carriageSideWidth])
-        color(accentColor)
-			rotate([0, 0, -90+asin((ycTubeRadius-yCarriageScrewP2y)/ycTubeRadius)])
-				translate([0, -ycTubeRadius, 0])
-					yCarriageSpacer();
-
-    if ($showScrews) color(aluColor) {
-        translate([yIdlerDist, xshaftOffset+idlerSpacer/2+ycTubeRadius, carriageWidth/2-yidler[radius]*2-beltBaseThick(belt)])
-            rotate([-90, 0, 0])
-                thePulley(yidler);
-        translate([yIdlerDist, xshaftOffset-idlerSpacer/2-idlerHeight(yidler)+ycTubeRadius, carriageWidth/2+yidler[radius]*2+beltBaseThick(belt)])
-            rotate([-90, 0, 0])
-                thePulley(yidler);
-    }
-}
-
-
-yCarriageRightFront();
-*/
 
 
 /*

@@ -21,17 +21,22 @@ module yCarriageRightFront(color) {
             yCarriageSide(lg = lg);
             translate([0,0,ycWidth]) mirror([0,0,1]) xholes(ycScrewPs); // holes for the two side assembly screws
         }
-        //tr(ycXHolderPos) xnuts(ycXHolderPs, lg = lg); // nuts for the x holder
         translate([0,0,ycWidth]) mirror([0,0,1]) xscrew(ycScrewPs[0], lg = lg, plate = 0); // screws for the box side assembly
-        tr(ycBoxPos) xnut(ycIdlerP, lg = lg); // nut for the box
+        tr(ycBoxPos) xnut(ycIdlerP, lg = lg,twist=30); // nut for the box
     }
 }
 
-*yCarriageSide();
-*tr(ycXHolderPos) yCarriageXHolderRightFront();
-//$showScrews=false;
-yCarriageRightFront();
-
+if (true) {
+    $doDiamants=true;
+    $doRealDiamants=true;
+    $showScrews=false;
+    yCarriageRightFront();
+} else if (true) {
+    *yCarriageSide();
+    *tr(ycXHolderPos) yCarriageXHolderRightFront();
+    //$showScrews=false;
+    yCarriageRightFront();
+}
 
 /*
 This design and software is copyrighted, but is free for private, non-commercial use.

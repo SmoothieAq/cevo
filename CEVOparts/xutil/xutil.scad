@@ -119,11 +119,35 @@ module xpulley(xyzrrrdn,pulley,depth=0,lg) {
 }
 
 module xbelt(xyzrrr=[0,0,0],leng,belt=belt,lg) {
-    translate(xxyz(xyzrrr)) rotate(xrrr(xyzrrr)) {
+    /*if (nnv($showBelts,true))*/ translate(xxyz(xyzrrr)) rotate(xrrr(xyzrrr)) {
         color(beltColor) cube([leng, beltBaseThick(belt), belt[width]]);
-        color(beltColor,0.4) translate([0,beltBaseThick(belt),0]) cube([leng, belt[thick]-beltBaseThick(belt), belt[width]]);
+        color(beltToothColor,0.4) translate([0,beltBaseThick(belt),0]) cube([leng, belt[thick]-beltBaseThick(belt), belt[width]]);
     }
 }
+
+module xbeltPulley(pulley=defaultIdler,xyzrrr=[0,0,0],a=90,belt=belt,lg) {
+    module s(a,r,t) {
+        difference() {
+            cylinder(r=r+t, h=belt[width]);
+            translate([0,0,-1]) cylinder(r=r, h=belt[width]+2);
+            translate([-r*1.5,0,-1]) cube([r*3,r*2,belt[width]+2]);
+            if (abs(a) < 180) translate([-r*1.5,-r*1.5-1,-1]) cube([r*1.5,r*2,belt[width]+2]);
+        }
+    }
+    /*if (nnv($showBelts,true))*/ translate(xxyz(xyzrrr)) rotate(xrrr(xyzrrr)) difference() {
+        if (a>0) {
+            color(beltColor) s(a,defaultIdler[baseRadius],beltBaseThick(belt));
+            color(beltToothColor, 0.4) s(a,defaultIdler[baseRadius]+beltBaseThick(belt),belt[thick]-beltBaseThick(belt));
+        } else {
+            color(beltToothColor, 0.4) s(a,defaultIdler[baseRadius],belt[thick]-beltBaseThick(belt));
+            color(beltColor) s(a,defaultIdler[baseRadius]+belt[thick]-beltBaseThick(belt),beltBaseThick(belt));
+        }
+    }
+
+}
+//xbeltPulley(a=-90);
+//xbeltPulley(a=180);
+
 
 /////////////////////////////////////////////////////////////////////
 
@@ -227,7 +251,7 @@ module xMotorMountScrews(stepperMotor, thick = partMountingThick, slack = slack,
         for (xy = _xMotorMountScrewPos(stepperMotor))
         xscrew([xy.x, xy.y, thick], screw, depth = depth, lg = xxl(lg, d = "motor mount"));
 }
-xMotorMount(beltStepperMotor, screwHoles = true, showAllScrews = true);
+*xMotorMount(beltStepperMotor, screwHoles = true, showAllScrews = true);
 
 /*
 This design and software is copyrighted, but is free for private, non-commercial use.
