@@ -9,7 +9,7 @@ include <yCarriagesDefinitions.scad>
 use <../util/util.scad>
 use <../xutil/xutil.scad>
 use <yCarriageRightBack.scad>
-use <yCarriageXHolderRightSide.scad>
+use <yCarriageXHolderRightFront.scad>
 
 
 module yCarriageRightFront(color) {
@@ -21,14 +21,15 @@ module yCarriageRightFront(color) {
             yCarriageSide(lg = lg);
             translate([0,0,ycWidth]) mirror([0,0,1]) xholes(ycScrewPs); // holes for the two side assembly screws
         }
-        tr(ycXHolderPos) xnuts(ycXHolderPs, lg = lg); // nuts for the x holder
-        translate([0,0,ycWidth]) mirror([0,0,1]) xscrews(ycScrewPs, lg = lg, plate = 0); // screws for the two side assembly
+        //tr(ycXHolderPos) xnuts(ycXHolderPs, lg = lg); // nuts for the x holder
+        translate([0,0,ycWidth]) mirror([0,0,1]) xscrew(ycScrewPs[0], lg = lg, plate = 0); // screws for the box side assembly
         tr(ycBoxPos) xnut(ycIdlerP, lg = lg); // nut for the box
     }
 }
 
 *yCarriageSide();
-tr(ycXHolderPos) yCarriageXHolderRightSide();
+*tr(ycXHolderPos) yCarriageXHolderRightFront();
+//$showScrews=false;
 yCarriageRightFront();
 
 

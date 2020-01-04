@@ -9,13 +9,26 @@ function nnv(v, d) = v != undef ? v : d;
 module tr(t, r) {
 	tr = t != undef ? [t.x, t.y, t.z] : [0, 0, 0];
 	ro = r != undef ? [r.x, r.y, r.z] : (t != undef && len(t) > 3) ? [t[3], t[4], t[5]] : [0, 0, 0];
-	translate(tr) rotate(ro) children();
+	if ( tr.x != 0 || tr.y != 0 || tr.z != 0 ) {
+		if ( ro.x != 0 || ro.y != 0 || ro.z != 0 ) translate(tr) rotate(ro) children();
+		else translate(tr) children();
+	} else {
+		if ( ro.x != 0 || ro.y != 0 || ro.z != 0 ) rotate(ro) children();
+		else children();
+	}
 }
 
 module rt(t, r) {
 	tr = t != undef ? [-t.x, -t.y, -t.z] : [0, 0, 0];
 	ro = r != undef ? [-r.x, -r.y, -r.z] : (t != undef && len(t) > 3) ? [-t[3], -t[4], -t[5]] : [0, 0, 0];
-	rotate([ro.x,0,0]) rotate([0,ro.y,0]) rotate([0,0,ro.z]) translate(tr) children();
+	if ( tr.x != 0 || tr.y != 0 || tr.z != 0 ) {
+		if ( ro.x != 0 || ro.y != 0 || ro.z != 0 ) rotate([ro.x,0,0]) rotate([0,ro.y,0]) rotate([0,0,ro.z]) translate(tr) children();
+		else translate(tr) children();
+	} else {
+		if ( ro.x != 0 || ro.y != 0 || ro.z != 0 ) rotate([ro.x,0,0]) rotate([0,ro.y,0]) rotate([0,0,ro.z]) children();
+		else children();
+	}
+
 }
 
 function setz(xy, z) = [xy.x, xy.y, z];

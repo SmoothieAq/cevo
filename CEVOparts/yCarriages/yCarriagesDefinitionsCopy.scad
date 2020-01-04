@@ -40,8 +40,8 @@ carriageWidthHole	= 4*yidler[radius]+2*yidler[flangeRadius]+4*beltBaseThick(belt
 carriageWidthBox	= carriageWidthHole+ycIdlerHolderBotThick*2;
 carriageSideWidth	= (carriageWidth-carriageWidthHole)/2;
 
-pulleyOuterEdgeX	= yIdlerDist+yidler[radius]+beltBaseThick(belt); // relative to yshaft center
-pulleyTopOuterEdgeZ	= xshaftOffset+idlerSpacer/2+idlerHeight(yidler)-yidler[flangeTopHeight]; // relative to yshaft center, top of tooths
+ycIdlerOuterEdge	= yIdlerDist+yidler[radius]+beltBaseThick(belt); // relative to yshaft center
+ycUpperIdlerTop	= xshaftOffset+idlerSpacer/2+idlerHeight(yidler)-yidler[flangeTopHeight]; // relative to yshaft center, top of tooths
 
 motorClearance = 16;
 idlerX = ycTubeRadius;

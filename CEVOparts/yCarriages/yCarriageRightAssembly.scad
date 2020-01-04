@@ -9,10 +9,10 @@ include <../CEVOdefinitions.scad>
 include <yCarriagesDefinitions.scad> 
 use <../util/helperEDIT.scad>
 use <yCarriageRightBack.scad>
-use <yCarriageXHolderLeftSide.scad>
+use <yCarriageXHolderRightFront.scad>
 use <yCarriageRightFront.scad>
 use <yCarriageBoxBottom.scad>
-use <yCarriageXHolderRightSide.scad>
+use <yCarriageXHolderRightBack.scad>
 
 
 module yCarriageRightAssembly() {
@@ -27,16 +27,20 @@ module yCarriageRightAssembly() {
 		[0,-ycWidth,0,90,0,0], // yCarriageRightFront
 		[0,0,0,90,0,0], // yCarriageBoxBottom
 		[0,-ycWidth,0,90,0,0], // yCarriageXHolderRightSide
+		[-xshaft[length]/2+yIdlerDist,-ycWidth/2-beltCarriageDistance/2-belt[thick]/2,ycUpperIdlerTop-belt[width],0,0,0], // upper belt
+		[-xshaft[length]/2+yIdlerDist,-ycWidth/2+beltCarriageDistance/2+belt[thick]/2,ycLowerIdlerTop,180,0,0], // lower belt
 	[]];
 	show(place) {
 		place(place,1,true,true) color(alpha(1,carbonYshaft ? carbonColor : aluColor)) theShaft(yshaft);
 		place(place,2,true) color(alpha(2,carbonXshaft ? carbonColor : aluColor)) theShaft(xshaft);
 		place(place,3,true) color(alpha(3,carbonXshaft ? carbonColor : aluColor)) theShaft(xshaft);
 		place(place,4) yCarriageRightBack(color=alpha(4,mainColor));
-		place(place,5) tr(ycXHolderPos) yCarriageXHolderLeftSide(color=alpha(5,mainColor));
+		place(place,5) tr(ycXHolderPos) yCarriageXHolderRightBack(color=alpha(5,mainColor));
 		place(place,6) yCarriageRightFront(color=alpha(6,mainColor));
 		place(place,7) tr(ycBoxPos) yCarriageBoxBottom(color=alpha(7,mainColor));
-		place(place,8) tr(ycXHolderPos) yCarriageXHolderRightSide(color=alpha(8,mainColor));
+		place(place,8) tr(ycXHolderPos) yCarriageXHolderRightFront(color=alpha(8,mainColor));
+		place(place,9,true,true) xbelt(leng=xshaft[length]/2);
+		place(place,10,true,true) xbelt(leng=xshaft[length]/2);
 	}
 }
 

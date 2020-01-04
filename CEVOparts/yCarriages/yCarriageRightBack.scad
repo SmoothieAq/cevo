@@ -8,7 +8,7 @@ include <yCarriagesDefinitions.scad>
 //use <../util/diamants.scad>
 use <../util/util.scad>
 use <../xutil/xutil.scad>
-use <yCarriageXHolderLeftSide.scad>
+use <yCarriageXHolderRightBack.scad>
 use <yCarriageBoxBottom.scad>
 
 module yCarriageSide(lg) {
@@ -20,7 +20,7 @@ module yCarriageSide(lg) {
                 tr(ycXHolderPos) yCarriageXHolder();
             }
             tr(ycXHolderPos) yCarriageXHolderInner(); // the inner part of the x holder
-            for (p = ycScrewPs) // tubes for the large screws
+            for (p = [ycScrewPs[0]]) // tubes for the large screws
                 translate([p.x, p.y, chamfer])
                     cylinder(r = ycScrewTubeRadius, h = ycSideWidth-chamfer);
             tr(ycBoxPos) yCarriageBoxTopHalf(); // top part of the box
@@ -34,8 +34,10 @@ module yCarriageSide(lg) {
             translate([-ycTubeRadius*2, -ycTubeRadius*1.1, ycSideWidth])
                 cube([ycTubeRadius*2, ycTubeRadius*2.2, ycWidth/2]);
         tr(ycBoxPos) yCarriageBoxHalfHole(); // hole for box
-        tr(ycBoxPos) xnutHole(ycIdlerP,spacing=1.05); // nut hole for box
+        tr(ycBoxPos) xnutHole(ycIdlerP,spacing=1.05,twist=30); // nut hole for box
     }
+    translate([ycScrewPs[2].x, ycScrewPs[2].y, ycWidth/2-ycBoxWidth/2])
+        cylinder(r = ycScrew[radius]+0.2, h = ycBoxWidth/2);
 }
 
 module yCarriageRightBack(color) {
@@ -44,17 +46,26 @@ module yCarriageRightBack(color) {
 
     color(color) difference() {
         yCarriageSide(lg=lg);
-        xholes(ycScrewPs); // holes for the two side assembly screws
+        xholes(ycScrewPs); // holes for the large assembly screws
+        //tr(ycBoxPos) xhole(ycIdlerP,twist=30);
     }
-    tr(ycXHolderPos) xnuts(ycXHolderPs,lg=lg); // nuts for the x holder
-    xnuts(ycScrewPs,lg=lg,plate=0); // nuts for the two side assembly
-    tr(ycBoxPos) xnut(ycIdlerP,lg=lg); // nut for the box
+    //tr(ycXHolderPos) xnuts(ycXHolderPs,lg=lg); // nuts for the x holder
+    xnut(ycScrewPs[0],lg=lg,plate=0); // nuts for the box side assembly
+    tr(ycBoxPos) xnut(ycIdlerP,lg=lg,twist=30); // nut for the box
 }
 
-*yCarriageSide();
-*tr(ycXHolderPos) yCarriageXHolderOuter();
-yCarriageRightBack();
-
+if (true) {
+    $doDiamants=true;
+    $doRealDiamants=true;
+    $showScrews=false;
+    yCarriageRightBack();
+} else if (true) {
+    //$doRealDiamants=true;
+    *yCarriageSide();
+    *tr(ycXHolderPos) yCarriageXHolderOuter();
+    //$showScrews=false;
+    yCarriageRightBack();
+}
 
 /*
 This design and software is copyrighted, but is free for private, non-commercial use.

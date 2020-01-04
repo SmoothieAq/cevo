@@ -44,8 +44,8 @@ yshaftTubeScrew		= xaPartScrew(leng=yshaftDistx+yshaft[radius]+screwTapSolidThic
 yshaftFrontMounts	= let (xd = (yshaftFrontMountDepth-yshaftDisty)/2, yd = screwTapMinThick+yshaftTubeScrew[radius]/*(yshaftHolderRadius-yshaft[radius])/2*/ ) 
 						[ for (xy=[[xd,yd],[xd,-yshaft[radius]*2-yd]]) xp([xy.x,xy.y,yshaftTubeScrew[length]],nutdepth=1) ]; //echo(want=yshaftDistx+yshaft[radius]+screwTapSolidThick,act=yshaftTubeScrew[length]);
 
-stepperOuterEdgeX	= extrusionWidth+yshaftDistx+yshaft[radius]-pulleyOuterEdgeX-beltStepperPulley[baseRadius]-beltStepperMotor[width]/2; // ralative to edge of frame
-stepperTopOuterEdgeZ= extrusionWidth+yshaftDistz+yshaft[radius]-pulleyTopOuterEdgeZ+beltStepperMotor[shaftLength]-beltStepperPulley[flangeTopHeight]; // relative to top of frame
+stepperOuterEdgeX	= extrusionWidth+yshaftDistx+yshaft[radius]-ycIdlerOuterEdge-beltStepperPulley[baseRadius]-beltStepperMotor[width]/2; // ralative to edge of frame
+stepperTopOuterEdgeZ= extrusionWidth+yshaftDistz+yshaft[radius]-ycUpperIdlerTop+beltStepperMotor[shaftLength]-beltStepperPulley[flangeTopHeight]; // relative to top of frame
 *echo(stepperOuterEdgeX=stepperOuterEdgeX,stepperTopOuterEdgeZ=stepperTopOuterEdgeZ);
 
 

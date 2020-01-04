@@ -5,22 +5,24 @@
 use <../imports/Chamfer.scad>;
 
 include <yCarriagesDefinitions.scad>
-use <yCarriageXHolderLeftSide.scad>
+use <yCarriageXHolderRightBack.scad>
 
 
-module yCarriageXHolderRightSide(color) {
+module yCarriageXHolderRightFront(color) {
 	lg = xl(a="Y carriage",sa="X holder right side");
 	xxPartLog(lg,c="printed part",n="yCarriageXHolderRightSide",t="PETG");
 
-	rt(ycXHolderPos) mirror([0,0,1]) tr(ycXHolderPos) yCarriageXHolderOuter(color,lg);
-	*mirror([0,0,1]) yCarriageXHolderOuter(color,lg);
+	rt(ycXHolderPos) mirror([0,0,1]) tr(ycXHolderPos) {
+		yCarriageXHolderOuter(color, lg, false);
+	}
+	translate([-ycWidth, 0, 0]) rt(ycXHolderPos) xscrews([ycScrewPs[1], ycScrewPs[2]], lg = lg, plate = 0); // screws for the assembly
 }
 
 //$doRealDiamants=true;
 //yCarriageXHolderInner(); xnuts(ycXHolderPs,lg);
 //yCarriageXHolderOuter();
 
-yCarriageXHolderRightSide();
+yCarriageXHolderRightFront();
 
 
 /*

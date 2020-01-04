@@ -20,11 +20,11 @@ diamantA2 = atan(bevelHeight/diamantH);
 // main modules
 
 module diamant() {
-	if ($doRealDiamants) {
+	*if ($doRealDiamants) {
 		difference() {
 			translate([-diamantWidth/2,-diamantLength/2,-bevelHeight])
 				cube([diamantWidth*2,diamantLength*2,bevelHeight*2]);
-			rotate([0,-diamantA2,diamantA1]) 
+			rotate([0,-diamantA2,diamantA1])
 				translate([-diamantWidth,-diamantLength,-bevelHeight])
 					cube([diamantWidth*3,diamantLength*3,bevelHeight*5]);
 			translate([diamantWidth,0,0])
@@ -43,6 +43,15 @@ module diamant() {
 	} else {
 		translate([diamantW/2,diamantL/2,0])
 			cube([diamantW,diamantL,bevelHeight*0.8]);
+	}
+	if ($doRealDiamants) {
+		polyhedron(
+			points = [[0, diamantL, -0.1], [diamantW, diamantLength, -0.1], [diamantWidth, diamantL, -0.1], [diamantW, 0, -0.1], [diamantW, diamantL, bevelHeight]],
+			faces = [[0, 1, 4], [1, 2, 4], [2, 3, 4], [3, 0, 4], [1, 0, 3], [2, 1, 3]]
+		);
+	} else {
+		translate([diamantW/2, diamantL/2, 0])
+			cube([diamantW, diamantL, bevelHeight*0.8]);
 	}
 }
 
@@ -87,8 +96,9 @@ module diamantTube(radius,deg,height,xoffset=0,zoffset=0,xfull=0,yfull=0) {
 	}
 }
 
-
-//diamant(2);
+//$doRealDiamants=true;
+//$doDiamants=true;
+//diamant();
 
 //color("blue") translate([-30,0,0]) diamantPlate(11,12);
 //color("red") translate([-31,-1,-1]) cube([13,14,1]);

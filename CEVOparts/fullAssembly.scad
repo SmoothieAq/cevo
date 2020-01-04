@@ -31,7 +31,7 @@ module fullAssembly() {
 		[xCarriagePos,yCarriagePos,yshaftz+xshaftOffset,0,0,0], 	// xCarriage
 		[yshaftx,yCarriagePos,yshaftz,0,0,0], 	// yCarriageRight
 		[frameWidthEx,0,frameHeightEx,0,0,0], 														// frontRightCornerAssembly
-		[yshaftx+pulleyOuterEdgeX,0,yshaftz+pulleyTopOuterEdgeZ-belt[width],0,0,90],
+		[yshaftx+ycIdlerOuterEdge,0,yshaftz+ycUpperIdlerTop-belt[width],0,0,90],
 	[]];
 	show(place) {
 		place(place,1) frameAssembly();

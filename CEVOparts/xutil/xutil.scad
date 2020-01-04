@@ -79,10 +79,10 @@ module xnutHole(xyzrrrdn, screw, depth, twist = 0, spacing) {
     thisScrew = xs(xyzrrrdn,screw);
     translate(xxyz(xyzrrrdn)) rotate(xrrr(xyzrrrdn))
         translate([0, 0, -xt(xyzrrrdn)]) rotate([180, 0, 0])
-            nutHole(thisScrew, xnd(xyzrrrdn,depth), twist = twist, spacing = spacing);
+            nutHole(thisScrew, xnd(xyzrrrdn,depth), twist = twist, spacing = spacing);//echo("NNN",thisScrew,"NNN",xnd(xyzrrrdn,depth),xyzrrrdn,depth);
 }
 
-module xnutHoles(xps, spacing) { for (p = xps) xnutHole(p, spacing = spacing); }
+module xnutHoles(xps, spacing, twist = 0) { for (p = xps) xnutHole(p, spacing = spacing, twist = twist); }
 
 module xnut(xyzrrrdn, screw, depth, twist = 0, plate = 3, plateColor = mainColor, lg) {
     thisScrew = xs(xyzrrrdn,screw);
@@ -103,12 +103,27 @@ module xnut(xyzrrrdn, screw, depth, twist = 0, plate = 3, plateColor = mainColor
         }
 }
 
-module xnuts(xps,lg, plate = 3) { for (p = xps) xnut(p, lg = lg, plate = plate); }
+module xnuts(xps,lg, plate = 3, twist = 0) { for (p = xps) xnut(p, lg = lg, plate = plate, twist = twist); }
 
-module xhole(xp, spacing = 20, nutspacing) { xscrewHole(xp, spacing = spacing); xnutHole(xp, spacing = nutspacing); }
-module xholes(xps, spacing = 20, nutspacing) { xscrewHoles(xps, spacing = spacing); xnutHoles(xps, spacing = nutspacing); }
-module xscrewNut(xp, lg, plate = 3, nutplate = 3) { xscrew(xp, lg = lg, plate = plate); xnut(xp, lg = lg, plate = nutplate); }
-module xscrewNuts(xps, lg, plate = 3, nutplate = 3) { xscrews(xps, lg = lg, plate = plate); xnuts(xps, lg = lg, plate = nutplate); }
+module xhole(xp, spacing = 20, nutspacing, twist = 0) { xscrewHole(xp, spacing = spacing); xnutHole(xp, spacing = nutspacing, twist = twist); }
+module xholes(xps, spacing = 20, nutspacing, twist = 0) { xscrewHoles(xps, spacing = spacing); xnutHoles(xps, spacing = nutspacing, twist = twist); }
+module xscrewNut(xp, lg, plate = 3, nutplate = 3, twist = 0) { xscrew(xp, lg = lg, plate = plate); xnut(xp, lg = lg, plate = nutplate, twist = twist); }
+module xscrewNuts(xps, lg, plate = 3, nutplate = 3, twist = 0) { xscrews(xps, lg = lg, plate = plate); xnuts(xps, lg = lg, plate = nutplate, twist = twist); }
+
+module xpulley(xyzrrrdn,pulley,depth=0,lg) {
+    if (pulley[pullyName] == "F623 x 2") xxPartLog(lg, c = "pulley/idler", t = "F623", cn = 2);
+    else xxPartLog(lg, c = "pulley/idler", t = pulley[pullyName]);
+    translate(xxyz(xyzrrrdn)) rotate(xrrr(xyzrrrdn))
+        if (nnv($showScrews,true))
+            color(aluColor)  translate([0,0,-depth]) rotate([180, 0, 0]) thePulley(pulley);
+}
+
+module xbelt(xyzrrr=[0,0,0],leng,belt=belt,lg) {
+    translate(xxyz(xyzrrr)) rotate(xrrr(xyzrrr)) {
+        color(beltColor) cube([leng, beltBaseThick(belt), belt[width]]);
+        color(beltColor,0.4) translate([0,beltBaseThick(belt),0]) cube([leng, belt[thick]-beltBaseThick(belt), belt[width]]);
+    }
+}
 
 /////////////////////////////////////////////////////////////////////
 
@@ -172,7 +187,7 @@ module xHalfDiamantTube(r, h, deg = 360, zoffset) {
     ccylinder(bevelWidth+chamfer, r+bevelHeight, chamfer, bevelHeight);
     translate([0, 0, bevelWidth+chamfer]) cylinder(h = h-bevelWidth-chamfer, r = r);
     translate([0, 0, h]) rotate([180, 0, -180])
-        diamantTube(r, deg, h-bevelWidth-chamfer, zoffset = nnv(zoffset,-diamantLength/2-diamantSpacing));
+        diamantTube(r, deg, h/*-bevelWidth*/-chamfer, zoffset = nnv(zoffset,-diamantLength/2-diamantSpacing));
 }
 
 module xDiamantTube(r, h, deg = 360, zoffset) {

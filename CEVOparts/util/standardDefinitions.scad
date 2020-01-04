@@ -50,8 +50,8 @@ m3 = [1.50, -99, 1.55, 2.50, 2.60, 3.00, 2.75, 2.80, 3.10, 2.40, 2.60, [3, 4, 5,
 m4 = [2.00, -99, 2.05, 3.00, 3.10, 4.00, 3.50, 3.55, 3.89, 3.20, 3.40, [3, 4, 5, 6, 8, 10, 12, 16, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90], "m4"];
 m5 = [2.50, -99, 2.55, 4.00, 4.10, 5.00, 4.00, 4.05, 4.49, 4.70, 4.90, [5, 10, 12, 16, 20, 25, 30, 35, 40, 50, 60, 70, 80, 90], "m5"];
 
-function screwMinLength(screw, minLength, depth, nutdepth) = echo(minLength=minLength,depth=depth,nutdepth=nutdepth)
-    let (ml = minLength-nnv(depth, 0)*screw[headHeight]+(1-nnv(nutdepth, 1))*screw[nutHeight]) echo(ml=ml)
+function screwMinLength(screw, minLength, depth, nutdepth) = //echo(minLength=minLength,depth=depth,nutdepth=nutdepth)
+    let (ml = minLength-nnv(depth, 0)*screw[headHeight]+(1-nnv(nutdepth, 1))*screw[nutHeight]) //echo(ml=ml)
         screw(screw, [for (l = screw[screwLengths]) if ( l >= ml ) l][0]);
 function screwMaxLength(screw, maxLength, depth, nutdepth) = //echo(maxLength=maxLength,depth=depth,nutdepth=nutdepth)
     let (ml = maxLength-nnv(depth, 0)*screw[headHeight]+(1-nnv(nutdepth, 1))*screw[nutHeight], mls = [for (l = screw[screwLengths]) if ( l < ml ) l]) //echo(ml=ml,mx=mls[len(mls)-1])
@@ -67,7 +67,7 @@ module nut(screw, depth = 0, twist = 0) {
     }
 }
 module nutHole(screw, depth = 1, twist = 0, spacing = undef) {
-    spc = spacing != undef ? spacing : screw[nutHoleHeight];
+    spc = spacing != undef ? spacing : screw[nutHoleHeight]; //echo("MMM",-depth*screw[nutHoleHeight],depth,screw[nutHoleHeight])
     translate([0, 0, -depth*screw[nutHoleHeight]]) rotate([0, 0, twist])
         hexaprism(screw[nutHoleWidth], screw[nutHoleHeight]+spc);
 }

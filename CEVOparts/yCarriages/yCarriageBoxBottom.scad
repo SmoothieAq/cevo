@@ -15,29 +15,38 @@ module yCarriageBoxHalfHole() {
 
 module yCarriageBoxHalf() {
 	difference() {
-		translate([0, 0, ycBoxHeight]) mirror([0, 0, 1]) xcube([ycBoxWidth/2, ycBoxDepth, ycBoxHeight], sides = [1, 1, 1, 0]);
+		union() {
+			*translate([0, 0, ycBoxHeight]) mirror([0, 0, 1]) xcube([ycBoxWidth/2, ycBoxDepth, ycBoxHeight], sides = [1, 1, 1, 0]);
+			translate([0, 0, chamfer]) cube([ycBoxWidth/2, ycBoxDepth, ycBoxHeight-chamfer]);
+			translate([0,ycBoxDepth-assembleSlack,chamfer]) cube([ycBoxWidth/2,-ycScrewPs[2].x+ycBoxEndOffset-ycBoxDepth+assembleSlack,ycIdlerHolderBotThick]);
+		}
 		yCarriageBoxHalfHole();
+		translate([-1,-1,-1]) cube([ycBoxWidth/2+2,ycIdlerP.y*3+1+assembleSlack,ycIdlerHolderBotThick+chamfer+1+assembleSlack]);
 		xscrewHole(ycIdlerP);
 		//xhole(ycIdlerP);
 	}
 	//xscrewNut(ycIdlerP);
 }
 
-module yCarriageBoxBottomHalf(color,lg) {
+module yCarriageBoxBottomHalf(color,upperIdler,lg) {
 	color(color) difference() {
-		yCarriageBoxHalf();
-		translate([-1,-1,ycIdlerHolderBotThick+chamfer]) cube([ycBoxWidth/2+2,ycBoxDepth+2,ycBoxHeight]);
-		translate([ycBoxWidth/2-ycIdlerHolderBotThick-assembleSlack,ycBoxDepth-partMountingThick*2-assembleSlack,-1]) cube([ycIdlerHolderBotThick+assembleSlack+1,partMountingThick*2+1,ycIdlerHolderBotThick+chamfer+2]);
-		//xscrewHole(ycIdlerP);
+		translate([0, 0, ycIdlerHolderBotThick+chamfer]) mirror([0, 0, 1]) xcube([ycBoxWidth/2, ycIdlerP.y*3, ycIdlerHolderBotThick+chamfer], sides = [1, 1, 1, 0]);
+		//yCarriageBoxHalf();
+		//translate([-1,-1,ycIdlerHolderBotThick+chamfer]) cube([ycBoxWidth/2+2,ycBoxDepth+2,ycBoxHeight]);
+		//translate([ycBoxWidth/2-ycIdlerHolderBotThick-assembleSlack,ycBoxDepth-partMountingThick*2-assembleSlack,-1]) cube([ycIdlerHolderBotThick+assembleSlack+1,partMountingThick*2+1,ycIdlerHolderBotThick+chamfer+2]);
+		xscrewHole(ycIdlerP);
 	}
 	xscrew(ycIdlerP,lg=lg);
+	yidlerLowerDepth = -ycIdlerP.z+ycIdlerHolderBotThick+chamfer+idlerSpacer;
+	yidlerUpperDepth = yidlerLowerDepth+idlerHeight(yidler)+idlerSpacer;
+	xpulley(ycIdlerP,yidler,depth=(upperIdler ? yidlerUpperDepth : yidlerLowerDepth),lg=lg);
 }
 
 module yCarriageBoxTopHalf() {
 	difference() {
 		yCarriageBoxHalf();
-		translate([-1,-1,-1]) cube([ycBoxWidth/2+2,ycBoxDepth+1-partMountingThick*2,ycIdlerHolderBotThick+chamfer+1+assembleSlack]);
-		translate([-1,-1,-1]) cube([ycBoxWidth/2-ycIdlerHolderBotThick+1,ycBoxDepth+2,ycIdlerHolderBotThick+chamfer+1+assembleSlack]);
+		//translate([-1,-1,-1]) cube([ycBoxWidth/2+2,ycBoxDepth+1-partMountingThick*2,ycIdlerHolderBotThick+chamfer+1+assembleSlack]);
+		//translate([-1,-1,-1]) cube([ycBoxWidth/2-ycIdlerHolderBotThick+1,ycBoxDepth+2,ycIdlerHolderBotThick+chamfer+1+assembleSlack]);
 	}
 }
 
@@ -45,8 +54,8 @@ module yCarriageBoxBottom(color) {
 	lg = xl(a="Y carriage",sa="Box bottom");
 	xxPartLog(lg,c="printed part",n="yCarriageBoxBottom",t="PETG");
 
-	yCarriageBoxBottomHalf(color,lg);
-	mirror([1,0,0]) yCarriageBoxBottomHalf(color,lg);
+	yCarriageBoxBottomHalf(color,false,lg);
+	mirror([1,0,0]) yCarriageBoxBottomHalf(color,true,lg);
 }
 
 //$doRealDiamants=true;
@@ -55,7 +64,7 @@ module yCarriageBoxBottom(color) {
 *yCarriageBoxBottomHalf();
 
 yCarriageBoxBottom();
-*yCarriageBoxTopHalf();
+yCarriageBoxTopHalf();
 
 /*
 module yCarriageSide(color = undef) {
