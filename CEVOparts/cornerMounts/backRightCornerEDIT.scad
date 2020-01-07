@@ -1,9 +1,9 @@
 
 //*******************************************************************
-// full assembly EDIT
+// right yCarriage assembly EDIT
 //*******************************************************************
 
-use <fullAssembly.scad>
+use <backRightCornerAssembly.scad>
 
 
 $show 			= 0;
@@ -13,10 +13,10 @@ $showColor 		= undef;
 $showScrews 	= true;
 $showExtra		= true;
 $showExtraExtra = true;
-$doDiamants		= false;
+$doDiamants		= true;
 $doRealDiamants	= false;
 
-fullAssembly();
+backRightCornerAssembly();
 
 
 

@@ -7,11 +7,11 @@ include <../util/standardDefinitions.scad>
 use <../util/util.scad>
 
 
-length=1; width=2; champfer=3; screwType=4; screwHoleDist=5; shaftRadius=6; shaftLength=7; pilotRadius=8; pilotDepth=9; topThick=10; botThick=11;
-nema14 = [0,40,35.56,3.50,m4,26.00,2.50,24.00,11.00,2.00,7.50,9.50];
-nema17 = [0,40,43.18,4.00,m3,31.00,2.50,24.00,11.00,2.00,6.50,8.50];
+length=1; width=2; champfer=3; screwType=4; screwHoleDist=5; shaftRadius=6; shaftLength=7; pilotRadius=8; pilotDepth=9; topThick=10; botThick=11; motorName=12;
+nema14 = [0,40,35.56,3.50,m4,26.00,2.50,24.00,11.00,2.00,7.50,9.50,"Nema14"];
+nema17 = [0,40,43.18,4.00,m3,31.00,2.50,24.00,11.00,2.00,6.50,8.50,"Nema17"];
 
-function stepperMotor(std,length,shaftLength) = [std[0],length,std[2],std[3],std[4],std[5],std[6],shaftLength==undef?std[7]:shaftLength,std[8],std[9],std[10],std[11]];
+function stepperMotor(std,length,shaftLength) = [std[0],length,std[2],std[3],std[4],std[5],std[6],nnv(shaftLength,std[7]),std[8],std[9],std[10],std[11],std[12]];
 function stepperHoleFromEdge(stepperMotor) = (stepperMotor[width]-stepperMotor[screwHoleDist])/2;
 
 
@@ -29,7 +29,7 @@ module theStepperMotor(stepperMotor,pulley=Gt2Timing20,pulleyH,color,aluColor) {
 	color(aluColor) {
 		cylinder(r=stepperMotor[pilotRadius],h=stepperMotor[pilotDepth]);
 		cylinder(r=stepperMotor[shaftRadius],h=stepperMotor[shaftLength]);
-		if (pulley != undef) translate([0,0,pulleyH==undef?stepperMotor[shaftLength]-idlerHeight(pulley):pulleyH]) thePulley(pulley);
+		if (pulley != undef) translate([0,0,nnv(pulleyH,stepperMotor[shaftLength]-idlerHeight(pulley))]) thePulley(pulley);
 	}
 }
 

@@ -23,22 +23,22 @@ module fullAssembly() {
 	frameHeightEx = frameHeight-extrusionWidth;
 	yshaftx = frameWidthEx-yshaft[radius]-yshaftDistx;
 	yshaftz = frameHeightEx-yshaft[radius]-yshaftDistz;
-	yCarriagePos = frameDepth*yCarriageRel-xshaftDistance/2;
+	yCarriagePos = frameDepth*yCarriageRel;
 	xCarriagePos = frameWidth*xCarriageRel;
 
 	place = [[],
 		[0,0,0,0,0,0], 														// frame
-		[xCarriagePos,yCarriagePos,yshaftz+xshaftOffset,0,0,0], 	// xCarriage
-		[yshaftx,yCarriagePos,yshaftz,0,0,0], 	// yCarriageRight
+		[xCarriagePos,yCarriagePos-xshaftDistance/2,yshaftz+xshaftOffset,0,0,0], 	// xCarriage
+		[yshaftx,yCarriagePos+ycWidth/2,yshaftz,0,0,0], 	// yCarriageRight
 		[frameWidthEx,0,frameHeightEx,0,0,0], 														// frontRightCornerAssembly
-		[yshaftx+ycIdlerOuterEdge,0,yshaftz+ycUpperIdlerTop-belt[width],0,0,90],
+		[frameWidthEx+cmStepperCenter,0,frameHeightEx-cmYDistz+ycUpperIdlerBot,0,0,90],
 	[]];
 	show(place) {
-		place(place,1) frameAssembly();
-		place(place,2) xCarriageAssembly();
+		*place(place,1) frameAssembly();
+		*place(place,2) xCarriageAssembly();
 		place(place,3) yCarriageRightAssembly();
 		place(place,4) frontRightCornerAssembly();
-		place(place,5,true) color("red") cube([frameDepth,beltBaseThick(belt),belt[width]]);
+		*place(place,5,true) color("red") cube([frameDepth,beltBaseThick(belt),belt[width]]);
 	}
 }
 

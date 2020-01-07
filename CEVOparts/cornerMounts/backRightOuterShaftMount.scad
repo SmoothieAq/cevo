@@ -1,27 +1,29 @@
 
 //*******************************************************************
-// The front right outer shaft mount
+// The back right inner shaft mount
 //*******************************************************************
 
 include <cornerMountsDefinitions.scad>
-use <frontRightInnerShaftMount.scad>
+use <../util/diamants.scad>
+use <../util/util.scad>
 use <../xutil/xutil.scad>
+use <backRightInnerShaftMount.scad>
 
-
-module frontRightOuterShaftMount(color) {
-	lg = xl(a="Y gantry",sa="Front right shaft mount");
-	xxPartLog(lg,c="printed part",n="frontRightOuterShaftMount",t="PETG");
+module backRightOuterShaftMount(color=undef,showScrews=false) {
+	lg = xl(a="Y gantry",sa="Back right shaft mount");
+	xxPartLog(lg,c="printed part",n="backRightOuterShaftMount",t="PETG");
 	
-	mirror([0,1,0]) {
-		color(color) difference() {
-			frontYshaftMount();
+	color(color) {
+		difference() {
+			backYshaftMount();
 			translate([cmYDistx-cmYHolderRadius*2+assembleSlack,-partMountingExWidth-1,-cmYHolderRadius*2.5]) cube([cmYHolderRadius*2,partMountingExWidth+cmYHolderLenght,partMountingExWidth+cmYHolderRadius*3]);
 		}
-		xscrews(cmScrewPs,lg=xxl(lg,d="X holder mount"));
 	}
+	xscrews(cmScrewPs,lg=xxl(lg,d="X holder mount"));
 }
 
-frontRightOuterShaftMount();
+backRightOuterShaftMount();
+
 
 /*
 This design and software is copyrighted, but is free for private, non-commercial use.

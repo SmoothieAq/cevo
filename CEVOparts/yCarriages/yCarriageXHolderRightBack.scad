@@ -19,9 +19,9 @@ module yCarriageXHolder(lg,backSide) {
 			rt(ycXHolderPos) {
 				ch = backSide ? ycScrew[nutHeight] : ycScrew[headHeight];
 				translate([ycScrewPs[1].x, ycScrewPs[1].y, ch])
-					cylinder(r = ycScrewTubeRadius2, h = ycSideWidth-ch);
+					cylinder(r = ycScrewTubeRadius, h = ycSideWidth-ch);
 				translate([ycScrewPs[2].x, ycScrewPs[2].y, ch])
-					cylinder(r = ycScrewTubeRadius2, h = ycWidth/2-ch);
+					cylinder(r = ycScrewTubeRadius, h = ycWidth/2-ch);
 			}
 		}
 		translate([0,0,ycXHolderLenght]) shaftHole(xshaft,ycXHolderLenght);
@@ -55,7 +55,7 @@ module yCarriageXHolderRightBack(color) {
 	rt(ycXHolderPos) xnuts([ycScrewPs[1], ycScrewPs[2]], lg = lg, plate = 0,twist=30); // screws for the assembly
 }
 
-if (true) {
+if (false) {
 	$doDiamants=true;
 	$doRealDiamants=true;
 	$showScrews=false;

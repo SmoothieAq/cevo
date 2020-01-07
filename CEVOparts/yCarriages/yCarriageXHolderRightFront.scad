@@ -18,7 +18,7 @@ module yCarriageXHolderRightFront(color) {
 	translate([-ycWidth, 0, 0]) rt(ycXHolderPos) xscrews([ycScrewPs[1], ycScrewPs[2]], lg = lg, plate = 0); // screws for the assembly
 }
 
-if (true) {
+if (false) {
 	$doDiamants=true;
 	$doRealDiamants=true;
 	$showScrews=false;

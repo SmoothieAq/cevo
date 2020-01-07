@@ -55,7 +55,7 @@ module yCarriageBoxBottom(color,yBeltFrontLeng=30,yBeltBackLeng=230,xBeltLeng=15
 	mirror([1,0,0]) yCarriageBoxBottomHalf(color,true,lg,xBeltLeng,yBeltFrontLeng);
 }
 
-if (true) {
+if (false) {
 	$doDiamants=true;
 	$doRealDiamants=true;
 	$showScrews=true;

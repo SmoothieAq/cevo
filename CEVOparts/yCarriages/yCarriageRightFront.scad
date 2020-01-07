@@ -26,7 +26,7 @@ module yCarriageRightFront(color) {
     }
 }
 
-if (true) {
+if (false) {
     $doDiamants=true;
     $doRealDiamants=true;
     $showScrews=false;

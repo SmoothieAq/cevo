@@ -11,22 +11,22 @@ include <../frame/frameDefinitions.scad>
 include <../otherParts/stepperMotor.scad>
 use <frontRightInnerShaftMount.scad>
 use <frontRightOuterShaftMount.scad>
-use <rightMotorMount.scad>
+use <rightMotorMount2.scad>
 
 
 module frontRightCornerAssembly() {
 	place = [[],
 		[0,0,-exLength+extrusionWidth,0,0,0], 											// corner extrusion
 		[0,extrusionWidth,extrusionWidth,-90,0,0], 													// top extrusion
-		[extrusionWidth-stepperOuterEdgeX-beltStepperMotor[width]/2,beltStepperMotor[width]/2+extrusionWidth+slack,extrusionWidth-stepperTopOuterEdgeZ,0,0,0],	// stepper
+		[cmStepperCenter,beltStepperMotor[width]/2+extrusionWidth+slack,-cmYDistz-cmUpperStepperTop,0,0,0],	// stepper
 		[-yshaft[radius]-yshaftDistx,yshaft[length]/2+yshaftDisty,-yshaft[radius]-yshaftDistz,0,0,90], 	// y shaft 
-		[0,yshaftFrontMountDepth,-yshaftMountBaseHeight+extrusionWidth,90,0,-90], 			// frontRightInnerShaftMount
-		[0,yshaftMountDepthIn,-yshaftDistz,90,0,180], 			// frontRightOuterShaftMount
-		[-beltStepperMotor[width]+extrusionWidth-stepperOuterEdgeX,extrusionWidth,extrusionWidth-stepperTopOuterEdgeZ-0.03,0,0,0],
+		[0,extrusionWidth,0,0,0,180], 			// frontRightInnerShaftMount
+		[0,extrusionWidth,0,0,0,180], 			// frontRightOuterShaftMount
+		[0,extrusionWidth,-cmYDistz-cmUpperStepperTop,0,0,0],
 	[]];
 	show(place) { 
 		place(place,1,true,true) color(alpha(1,frameColor)) theExtrusion(extrusionH);
-		place(place,2,true,true) color(alpha(2,frameColor)) theExtrusion(extrusionW);
+		place(place,2,true,true) color(alpha(2,frameColor)) theExtrusion(extrusionD);
 		place(place,3,true) theStepperMotor(beltStepperMotor,beltStepperPulley,color=alpha(3,otherPartColor),aluColor=alpha(3,aluColor));
 		place(place,4,true) color(alpha(4,carbonYshaft ? carbonColor : aluColor)) theShaft(yshaft);
 		place(place,5) frontRightInnerShaftMount(alpha(5,mainColor));

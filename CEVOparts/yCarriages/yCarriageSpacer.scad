@@ -53,7 +53,7 @@ if (false) {
     $showScrews=false;
     yCarriageSpacer();
 } else if (true) {
-    $doDiamants=true;
+    //$doDiamants=true;
     $doRealDiamants=true;
     $showScrews=false;
     *yCarriageRightBack();

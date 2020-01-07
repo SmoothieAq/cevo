@@ -30,13 +30,14 @@ module xLog(logtype, lg) {echo(logtype, nnv(lg[0], ""), nnv(lg[1], ""), nnv(lg[2
 
 /////////////////////////////////////////////////////////////////////
 
-function xp(xyz,rrr,thick,depth,nutdepth,screw) = [xyz.x, xyz.y, xyz.z, rrr == undef ? 0 : rrr.x, rrr == undef ? 0 : rrr.y, rrr == undef ? 0 : rrr.z, thick, depth, nutdepth, screw];
+function xp(xyz,rrr,thick,depth,nutdepth,screw,twist) = [xyz.x, xyz.y, xyz.z, rrr == undef ? 0 : rrr.x, rrr == undef ? 0 : rrr.y, rrr == undef ? 0 : rrr.z, thick, depth, nutdepth, screw, twist];
 function xxyz(xyzrrrdn) = [xyzrrrdn.x, xyzrrrdn.y, xyzrrrdn.z];
 function xrrr(xyzrrrdn) = len(xyzrrrdn) > 3 ? [nnv(xyzrrrdn[3],0), nnv(xyzrrrdn[4],0), nnv(xyzrrrdn[5],0)] : [0, 0, 0];
 function xt(xyzrrrdn) = nnv(xyzrrrdn[6],xyzrrrdn.z);
 function xd(xyzrrrdn,depth) = nnv(depth, nnv(xyzrrrdn[7], screwDepth));
 function xnd(xyzrrrdn,nutdepth) = nnv(nutdepth, nnv(xyzrrrdn[8], 0));
 function xs(xyzrrrdn,screw) = nnv(screw, xyzrrrdn[9]);
+function xtw(xyzrrrdn,twist) = nnv(twist, xyzrrrdn[10]);
 //function xnz(xyzrrrdn,z) = [xyzrrrdn.x, xyzrrrdn.y, nnv(z, nnv(xyzrrrdn[9], xyzrrrdn.z-nnv(xyzrrrdn[6],xyzrrrdn.z)))];
 
 function xaScrew(xyzrrrdn, screw, depth, leng, nutdepth) = screw[length] > 0 ? screw : screwMinLength(screw, nnv(leng, xt(xyzrrrdn)-screw[nutHeight]*0.25), xd(xyzrrrdn,depth), xnd(xyzrrrdn,nutdepth));
@@ -79,7 +80,7 @@ module xnutHole(xyzrrrdn, screw, depth, twist = 0, spacing) {
     thisScrew = xs(xyzrrrdn,screw);
     translate(xxyz(xyzrrrdn)) rotate(xrrr(xyzrrrdn))
         translate([0, 0, -xt(xyzrrrdn)]) rotate([180, 0, 0])
-            nutHole(thisScrew, xnd(xyzrrrdn,depth), twist = twist, spacing = spacing);//echo("NNN",thisScrew,"NNN",xnd(xyzrrrdn,depth),xyzrrrdn,depth);
+            nutHole(thisScrew, xnd(xyzrrrdn,depth), twist = xtw(xyzrrrdn,twist), spacing = spacing);//echo("NNN",thisScrew,"NNN",xnd(xyzrrrdn,depth),xyzrrrdn,depth);
 }
 
 module xnutHoles(xps, spacing, twist = 0) { for (p = xps) xnutHole(p, spacing = spacing, twist = twist); }
@@ -99,7 +100,7 @@ module xnut(xyzrrrdn, screw, depth, twist = 0, plate = 3, plateColor = mainColor
                     }
                 }
             if (nnv($showScrews,true))
-                color(screwColor) nut(thisScrew, xnd(xyzrrrdn,depth), twist = twist);
+                color(screwColor) nut(thisScrew, xnd(xyzrrrdn,depth), twist = xtw(xyzrrrdn,twist));
         }
 }
 

@@ -52,6 +52,7 @@ ycIdlerP = let (
 					y = yidler[radius]-beltBaseThick(belt),
 					z = ycBoxHeight-l
 				) xp([x, y, z],[180, 0, 0],thick=l,depth=0,nutdepth=0,screw=yidler[forScrew]);
+ycIdlerLowerZ = 0; //
 
 ycBoxPos = [ycBoxEndOffset,-ycBoxHeight-ycBoxTopOffset,ycWidthHole/2+ycSideWidth,-90,90,0];
 
@@ -66,12 +67,13 @@ ycScrewPs = let (
 					y3 = xshaftOffset-(-xshaftOffset+y2)
 				) [ for(xy = [[x1,y1],[x2,y2],[x3,y3]]) xp([xy.x,xy.y,ycWidth],depth=1,nutdepth=1,screw=ycScrew,thick=ycWidth) ];
 ycScrewTubeRadius = ycScrew[headRadius]+screwTapMinThick;
-ycScrewTubeRadius2 = ycScrew[headRadius]+screwTapMinThick;
 
-ycIdlerOuterEdge = yIdlerDist+yidler[radius]+beltBaseThick(belt); // relative to yshaft center
-ycUpperIdlerTop = xshaftOffset+idlerSpacer/2+idlerHeight(yidler)-yidler[flangeTopHeight]; // relative to yshaft center, top of tooths
-ycLowerIdlerTop = xshaftOffset-idlerSpacer/2-yidler[flangeTopHeight]; // relative to yshaft center, top of tooths
+ycIdlerOuterEdge = yIdlerDist+yidler[radius]; // relative to yshaft center
+ycLowerIdlerBot = xshaftOffset-idlerSpacer/2-idlerHeight(yidler)+yidler[flangeBotHeight]; // relative to yshaft center, bottom of tooths
+ycUpperIdlerBot = ycLowerIdlerBot+idlerSpacer+idlerHeight(yidler); // relative to yshaft center, bottom of tooths
+echo("**",xshaftOffset=xshaftOffset,ycUpperIdlerBot=ycUpperIdlerBot);
 
+ycUpperIdlerTop = xshaftOffset-idlerSpacer/2-idlerHeight(yidler)+yidler[flangeBotHeight]; // TODO remove
 /*
 motorClearance = 16;
 idlerX = ycTubeRadius;

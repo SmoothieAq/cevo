@@ -15,8 +15,16 @@ use <../xutil/xutil.scad>
 /////////////////////////////////////////////////////////////////////
 // minor properties, probably don't change
 
-yshaftDistx		= partMountingThick;
-yshaftDistz		= sqrt(pow(ycTubeRadius+2,2)-pow(yshaftDistx+yshaft[radius],2))-yshaft[radius];
+cmScrew 		= partMountingScrew;
+
+cmYDistx		= partMountingThick+yshaft[radius]; // center from inner frame
+cmYDistz		= sqrt(pow(ycTubeRadius+2,2)-pow(cmYDistx,2)); // center from inner frame
+
+cmYHolderRadius = yshaft[radius]+screwTapMinThick+partMountingScrew[holeRadius]*2+screwTapThick;
+
+//--
+yshaftDistx		= partMountingThick; // from frame
+yshaftDistz		= sqrt(pow(ycTubeRadius+2,2)-pow(yshaftDistx+yshaft[radius],2))-yshaft[radius]; // from frame
 
 yshaftHolderRadius	= yshaft[radius]+screwTapMinThick+partMountingScrew[holeRadius]*2+screwTapThick;
 
@@ -24,9 +32,39 @@ yshaftHolderRadius	= yshaft[radius]+screwTapMinThick+partMountingScrew[holeRadiu
 /////////////////////////////////////////////////////////////////////
 // helpers, don't change
 
-yshaftDisty		= (frameDepth-yshaftLength)/2;
+cmYDisty		= extrusionWidth-(frameDepth-yshaftLength)/2; //  from inner frame
 
-yshaftFrontMountDepth = extrusionWidth+max(15,beltStepperMotor[width]-(carriageWidth-carriageWidthBox)/2+1,25-extrusionWidth+yshaftDisty); // from edge of extrusion
+cmYHolderLenght	= max(15,beltStepperMotor[width]-(ycWidth-ycBoxWidth)/2+1,25-extrusionWidth+cmYDisty)+cmYDisty+2;
+cmYHolderPos = [cmYDistx, cmYHolderLenght-cmYDisty, -cmYDistz, 0, 90, -90];
+
+cmScrewPs = let (
+		t = xminThick(cmScrew,yshaft[radius]*2+screwTapThick*3,nutdepth=1,depth=0),
+		x = t,
+		y = -cmYDisty+cmYHolderLenght/2,
+		zd = yshaft[radius]+screwTapMinThick+cmScrew[radius],
+		z1 = -cmYDistz+zd,
+		z2 = -cmYDistz-zd
+	) [ for(z = [z1,z2]) xp([x,y,z],[0,90,0],depth=0,nutdepth=1,screw=cmScrew,thick=t) ];
+
+cmPlateCut = cmYHolderRadius+cmScrew[headRadius]*2+screwTapThick;
+
+cmFrameScrewPs = let (
+		y1 = (cmYHolderLenght-cmYDisty)/3*2,
+		z1 = extrusionWidth/2,
+		y2 = -extrusionWidth/2,
+		z2 = -cmYDistz-cmYHolderRadius,
+		y3 = y2,
+		z3 = -cmYDistz+cmYHolderRadius
+	) [ for(p = [[y1,z1],[y2,z2],[y3,z3]]) xp([partMountingThick,p[0],p[1]],[0,90,0],screw=frameMountingScrew,thick=partMountingThick) ];
+
+cmUpperStepperTop = -ycUpperIdlerBot+beltStepperMotor[shaftLength]-belt[width]-beltStepperPulley[flangeTopHeight]; // relative to y shaft center
+cmStepperCenter = -cmYDistx+ycIdlerOuterEdge+beltBaseThick(belt)+beltStepperPulley[baseRadius]; // relative to inner edge of extrusion
+echo("***",cmYDistz=cmYDistz,cmUpperStepperTop=cmUpperStepperTop);
+
+//--
+yshaftDisty		= (frameDepth-yshaftLength)/2; // from frame
+
+yshaftFrontMountDepth = extrusionWidth+max(15,beltStepperMotor[width]-(ycWidth-ycBoxWidth)/2+1,25-extrusionWidth+yshaftDisty); // from edge of extrusion
 yshaftMountBaseHeight= extrusionWidth+yshaftDistz; // from edge of extrusion
 yshaftMountHeight	= yshaftMountBaseHeight+yshaft[radius]+yshaftHolderRadius+frameMountingScrew[holeRadius]+screwTapThick; // from edge of extrusion
 

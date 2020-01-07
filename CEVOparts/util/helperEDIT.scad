@@ -18,17 +18,17 @@ $showExtra	= true;
 $showExtraExtra = true;
 */
 
-function alpha(no,color) = no == $show ? $showColor : [color[0],color[1],color[2],$show == 0 ? 1 : $alpha];
+function alpha(no,color) = no == nnv($show,0) ? $showColor : [color[0],color[1],color[2],nnv($show,0) == 0 ? 1 : nnv($alpha,0.2)];
 
 module place(place,no,extra=false,extraExtra=false) {
-	if ((!$onlyShow || $show == 0 || $show == no) && ($showExtra || !extra) && ($showExtraExtra || !extraExtra))
+	if ((!nnv($onlyShow,true) || nnv($show,0) == 0 || nnv($show,0) == no) && (nnv($showExtra,true) || !extra) && (nnv($showExtraExtra,true) || !extraExtra))
 		tr(place[no]) children();
 }
 module show(place) {
-	if ($show == 0)
+	if (nnv($show,0) == 0)
 		children();
 	else
-		rt(place[$show]) children();
+		rt(place[nnv($show,0)]) children();
 }
 
 

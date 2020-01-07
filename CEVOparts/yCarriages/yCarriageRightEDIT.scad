@@ -13,8 +13,8 @@ $showColor 		= undef;
 $showScrews 	= true;
 $showExtra		= true;
 $showExtraExtra = true;
-$doDiamants		= true;
-$doRealDiamants	= true;
+$doDiamants		= false;
+$doRealDiamants	= false;
 
 yCarriageRightAssembly();
 
