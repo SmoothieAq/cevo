@@ -11,7 +11,7 @@ include <../frame/frameDefinitions.scad>
 include <../otherParts/stepperMotor.scad>
 use <frontRightInnerShaftMount.scad>
 use <frontRightOuterShaftMount.scad>
-use <rightMotorMount2.scad>
+use <rightMotorMount.scad>
 
 
 module frontRightCornerAssembly() {
