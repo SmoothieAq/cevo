@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0ac7a39-903d-48ef-8209-d1d15fda06d0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/CEVOparts/cornerMounts/frontRightCornerAssembly.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/cornerMounts/frontRightCornerAssembly.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/cornerMounts/rightMotorMount.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/cornerMounts/rightMotorMount.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/cornerMounts/rightMotorMount2.scad" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/animateSCAD/animateSCAD.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/animateSCAD/animateSCAD.scad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cevo.iws" beforeDir="false" afterPath="$PROJECT_DIR$/cevo.iws" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -129,7 +127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578416283560</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="x">
+      <created>1578587644531</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1578587644531</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -160,10 +165,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="948" y="428" key="#com.intellij.ide.ui.customization.CustomizableActionsPanel.FindAvailableActionsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1577987824620" />
-    <state x="395" y="299" width="951" height="793" key="CommitChangelistDialog2" timestamp="1578416282773">
+    <state x="395" y="299" width="951" height="793" key="CommitChangelistDialog2" timestamp="1578587643753">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="395" y="299" width="951" height="793" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1578416282773" />
+    <state x="395" y="299" width="951" height="793" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1578587643753" />
     <state x="1329" y="372" key="FileChooserDialogImpl" timestamp="1577726249389">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -184,10 +189,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="621" y="349" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1578241521621" />
-    <state x="320" y="436" key="Vcs.Push.Dialog.v2" timestamp="1578416287417">
+    <state x="320" y="436" key="Vcs.Push.Dialog.v2" timestamp="1578587651430">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="320" y="436" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1578416287417" />
+    <state x="320" y="436" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1578587651430" />
     <state x="998" y="649" key="com.intellij.ide.ui.customization.CustomizableActionsPanel$EditIconDialog" timestamp="1577726271141">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -212,9 +217,9 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="110" y="327" key="new project wizard/0.0.2560.1400@0.0.2560.1400" timestamp="1577278303842" />
-    <state x="781" y="319" width="672" height="678" key="search.everywhere.popup" timestamp="1577137908728">
+    <state x="781" y="319" width="672" height="678" key="search.everywhere.popup" timestamp="1578589559117">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="781" y="319" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1577137908728" />
+    <state x="781" y="319" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1578589559117" />
   </component>
 </project>
