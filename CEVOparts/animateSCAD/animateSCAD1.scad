@@ -32,32 +32,39 @@ adaptions from http://forum.openscad.org/How-to-set-camera-angle-td22497.html by
 and https://stackoverflow.com/questions/1568568/how-to-convert-euler-angles-to-directional-vector by Adisak (third column of the ORDER_XYZ)
  */
 
-// from [camPos,viewAtPos,zoom] to [vpd,vpr,vpt,compress/expand]
-function cvz2vpdrtx(cvz) = let (
-		camPos = cvz[0],
-		viewAtPos = cvz[1],
-		zoom = cvz[2],
-		camTop = [0,0,1],
-		camDir = unit(camPos-viewAtPos),
-		camDist = norm(camPos-viewAtPos),
-		rot = camRot(camDir,camTop),
-		irot = transpose(rot),
-		vpd = zoom*camDist,
-		vpr = RM2EAxyz(camRot(camDir,camTop)),
-		vpt = camPos,
-		vpx = irot*mscale([1,1,zoom])*rot
-	) echo(camPos=camPos,viewAtPos=viewAtPos,zoom=zoom,camTop=camTop,camDir=camDir,camDist=camDist,vpd=vpd,vpr=vpr,vpt=vpt,vpx=vpx)
-	[ vpd, vpr, vpt, vpx ];
+cam_top  =  [0,0,1];
 
-function vpdr2cvz(vpd, vpr, vpt) = let (
-		camDir = EAxyz2CamDir(vpr),
-		camPos = vpt-camDir*vpd,
-		viewAtPos = vpt,
-		zoom = 1
-	) echo(vpr=vpr,camDir=camDir,camPos=camPos,viewAtPos=viewAtPos)
-	[camPos,viewAtPos,zoom];
+zoom=1.2;//0.5*cos(360*$t) + 2*(1-cos(360*$t));
+cam_pos = [100,100,200];
+viewAt_pos = [-5,10,20];
 
-module asView(x) multmatrix(x) children();
+cam_dist =  100;
+cam_dir  = -[10,10,20];
+
+echo(zoom=zoom);
+
+module model()
+cube(10);
+
+$vpd = zoom*cam_dist;
+$vpr = RM2EAxyz(camRot(cam_dir,cam_top));
+$vpt = cam_pos+unit(cam_dir)*cam_dist;
+echo(vpd=$vpd,vpr=$vpr,vpt=$vpt);
+
+echo(cam_dir_unit=unit(cam_dir));
+//echo(r_cam_dir1=[sin($vpr.z),-(sin($vpr.x)*cos($vpr.z)),cos($vpr.x)*cos($vpr.y)]);
+//echo(r_cam_dir2=[cos($vpr.x)*cos($vpr.y),sin($vpr.x)*cos($vpr.y),sin($vpr.y)]);
+//echo(r_cam_dir3=[sin($vpr.x),-(sin($vpr.y)*cos($vpr.x)),-(cos($vpr.y)*cos($vpr.x))]);
+//echo(sinx=sin($vpr.x),siny=sin($vpr.y),sinz=sin($vpr.z));
+//echo(cosx=cos($vpr.x),cosy=cos($vpr.y),cosz=cos($vpr.z));
+//echo(cosx_sinx=cos($vpr.x)*sin($vpr.x),sinx_sinz=sin($vpr.x)*sin($vpr.z),cosx_sinz=cos($vpr.x)*sin($vpr.z));
+echo(r_cam_dirX=EAxyz2CamDir($vpr));
+
+rot  = camRot(cam_dir,cam_top);
+irot = transpose(rot);// rot inverse
+
+multmatrix(irot*mscale([1,1,zoom])*rot) // the compress or stretch of the model
+	model();
 
 // converts a rotation matrix into the Euler angles
 // with the order Rx.Ry.Rz

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0ac7a39-903d-48ef-8209-d1d15fda06d0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/CEVOparts/animateSCAD/animateSCAD1.scad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CEVOparts/animateSCAD/animateSCAD.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/animateSCAD/animateSCAD.scad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cevo.iws" beforeDir="false" afterPath="$PROJECT_DIR$/cevo.iws" afterDir="false" />
     </list>
@@ -32,7 +33,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/CEVOparts/cornerMounts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/CEVOparts/animateSCAD" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
@@ -41,11 +42,11 @@
       <recent name="E:\intelliJProjcets\cevo\CEVOparts\xutil" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\intelliJProjcets\cevo\CEVOparts\animateSCAD" />
       <recent name="E:\intelliJProjcets\cevo\CEVOparts\cornerMounts" />
       <recent name="E:\intelliJProjcets\cevo\CEVOparts\yCarriages" />
       <recent name="E:\intelliJProjcets\cevo\CEVOparts\frame" />
       <recent name="E:\intelliJProjcets\cevo\CEVOparts" />
-      <recent name="E:\intelliJProjcets\cevo\CEVOparts\xCarriage" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -134,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578587644531</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="x">
+      <created>1578640076626</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1578640076626</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -165,10 +173,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="948" y="428" key="#com.intellij.ide.ui.customization.CustomizableActionsPanel.FindAvailableActionsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1577987824620" />
-    <state x="395" y="299" width="951" height="793" key="CommitChangelistDialog2" timestamp="1578587643753">
+    <state x="395" y="299" width="951" height="793" key="CommitChangelistDialog2" timestamp="1578822110098">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="395" y="299" width="951" height="793" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1578587643753" />
+    <state x="395" y="299" width="951" height="793" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1578822110098" />
     <state x="1329" y="372" key="FileChooserDialogImpl" timestamp="1577726249389">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -189,10 +197,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="621" y="349" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1578241521621" />
-    <state x="320" y="436" key="Vcs.Push.Dialog.v2" timestamp="1578587651430">
+    <state x="320" y="436" key="Vcs.Push.Dialog.v2" timestamp="1578640080144">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="320" y="436" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1578587651430" />
+    <state x="320" y="436" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1578640080144" />
     <state x="998" y="649" key="com.intellij.ide.ui.customization.CustomizableActionsPanel$EditIconDialog" timestamp="1577726271141">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -217,9 +225,9 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="110" y="327" key="new project wizard/0.0.2560.1400@0.0.2560.1400" timestamp="1577278303842" />
-    <state x="781" y="319" width="672" height="678" key="search.everywhere.popup" timestamp="1578589559117">
+    <state x="781" y="319" width="672" height="678" key="search.everywhere.popup" timestamp="1578762293532">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="781" y="319" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1578589559117" />
+    <state x="781" y="319" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1578762293532" />
   </component>
 </project>
