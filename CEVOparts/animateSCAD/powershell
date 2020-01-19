@@ -1,0 +1,1 @@
+ffmpeg -i ./frame%05d.png -vf "fps=30,format=yuv420p" demo.mp4

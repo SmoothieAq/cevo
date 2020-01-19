@@ -1,87 +1,103 @@
+
+use <animateSCADtransformations.scad>
+use <animateSCADsplines.scad>
+use <animateSCADutil.scad>
+
+_cameraAbsolute_ = 0;
+_cameraTranslate_ = 1;
+_cameraRotate_ = 2;
+_viewAtAbsolute_ = 3;
+_viewAtTranslate_ = 4;
+_viewAtRotate_ = 5;
+_zoom_ = 6;
+_speed_ = 7;
+_time_ = 8;
+_pname_ = 9;
+_splineM_ = 10;
+_startTime_ = 11;
+function cpoint(cameraAbsolute,cameraTranslate,cameraRotate,viewAtAbsolute,viewAtTranslate,viewAtRotate,zoom,speed,time,pname) =
+	cpointx([],cameraAbsolute=cameraAbsolute,cameraTranslate=cameraTranslate,cameraRotate=cameraRotate,
+				viewAtAbsolute=viewAtAbsolute,viewAtTranslate=viewAtTranslate,viewAtRotate=viewAtRotate,
+				zoom=zoom,speed=speed,time=time,pname=pname);
+//	[cameraAbsolute,cameraTranslate,cameraRotate,viewAtAbsolute,viewAtTranslate,viewAtRotate,zoom,speed,time,pname];
+
+function cpointx(cpoint,cameraAbsolute,cameraTranslate,cameraRotate,viewAtAbsolute,viewAtTranslate,viewAtRotate,zoom,speed,time,pname,splineM,startTime) =
+	[nnv(cameraAbsolute,cpoint[_cameraAbsolute_]),nnv(cameraTranslate,cpoint[_cameraTranslate_]),nnv(cameraRotate,cpoint[_cameraRotate_]),
+	 nnv(viewAtAbsolute,cpoint[_viewAtAbsolute_]),nnv(viewAtTranslate,cpoint[_viewAtTranslate_]),nnv(viewAtRotate,cpoint[_viewAtRotate_]),
+	 nnv(zoom,cpoint[_zoom_]),nnv(speed,cpoint[_speed_]),nnv(time,cpoint[_time_]),nnv(cpoint[_pname_],pname),
+	 nnv(splineM,cpoint[_splineM_]),nnv(startTime,cpoint[_startTime_])];
+
 /*
+$vpd = $camera[0];
+$vpr = $camera[1];
+$vpt = $camera[2];
 
-Model(or model), World and View spaces: http://www.codinglabs.net/article_world_view_projection_matrix.aspx
-Transformation to View space: https://www.3dgep.com/understanding-the-view-matrix/
+view($camera) myModel();
 
-We use a "Look At Camera" with Eye position, up vector and target point (and zoom)
-
-
-camera pos / rel pos; up/down/left/right/front/back/rotatex/rotatey/rotatez/rotateStep
-view at object pos / rel pos; up/down/left/right/front/back, distance+vektorzoom
-speed/time
-accelspline-in / spline-out
-fps
-start/end
-fadein/fadeoutsame as view at object
-camera( [  cpoint( cameraAbsolute=[x,y,z], viewAtAbsolute=[x,y,z],zoom=50),  cpoint( name="point2", cameraUp=100, speed=50)] , fps=30) myModel();
-move( [  mpoint(visible=false),  mpoint(sync="point2", fadein=true,distance=30),  mpoint(fadeout=true)]) myModel();
  */
-/*
-function v(d) =	[[0, 0, 90],[0, 0, 0],d];
+function camera(cpoints,fps=2,t,frameNo) =
+	assert(is_list(cpoints) && len(cpoints) > 1, "The cpoints argument should be a list of cpoint()")
+	assert(cpoints[0][_cameraAbsolute_] != undef || cpoints[0][_viewAtAbsolute_] != undef, "The first cpoint should have an absolute camera position or an absolute viewAt position")
+	let (
+		xps = cxpoints(cpoints),
+		xxps = cxxpoints(xps),
+		totTime = sum( [ for (p = xxps) p[_time_] ] ),
+		frameTime = nnv(t, frameNo != undef ? frameNo/fps : totTime*$t ),
+		p = findP(xxps,frameTime),
+		deltaTime = frameTime-p[_startTime_],
+		delta = deltaTime/p[_time_],
+		camPos = crSplineT(p[_splineM_],delta),
+		drtx = cvz2vpdrtx([camPos,p[_viewAtAbsolute_],1])
+	)
+		echo("animateSCAD:",total_time=totTime,frames_per_second=fps,total_frames=totTime*fps)
+		echo(frameTime=frameTime,$t=$t,deltaTime=deltaTime,delta=delta,camPos=camPos,towards=p[_pname_])
+		concat(drtx,[xps,xxps]);
 
-vv = v(100);
-$vpr = vv[0]; $vpt = vv[1]; $vpd = vv[2];
-rotate([0,0,$t*360])
-	cube([10,20,50],center=true);
-*/
+module viewFrom(showPath=false) {
+	assert($camera != undef,"You must set $camera with: $camera = camera(cpoints,fps);");
+	if (showPath) crLines( [ for (p=$camera[4]) p[0] ] );
+	children();
+}
+
+function findP(ps,frameTime) = [ for (p = ps) if ( frameTime >= p[_startTime_] && frameTime <= p[_startTime_]+p[_time_]) p ][0];
 
 
-/*
-uses
-adaptions from http://forum.openscad.org/How-to-set-camera-angle-td22497.html by Ronaldo
-and https://stackoverflow.com/questions/1568568/how-to-convert-euler-angles-to-directional-vector by Adisak (third column of the ORDER_XYZ)
- */
+function cxpoints(cpoints) = [ for (
+		i = 0,
+		cp = cpoints[i],
+		cpos = nnv(cp[_cameraAbsolute_],[100,100,100]),
+		vpos = nnv(cp[_viewAtAbsolute_],[0,0,0]),
+		speed = nnv(cp[_speed_],50);
+	i < len(cpoints);
+		i = i+1,
+		cp = cpoints[i],
+		cpos = move(cpos,cp,_cameraAbsolute_,_cameraTranslate_),
+		vpos = move(vpos,cp,_viewAtAbsolute_,_viewAtTranslate_),
+		speed = nnv(cp[_speed_],speed)
+	) cpointx(cp,cameraAbsolute=cpos,viewAtAbsolute=vpos,speed=speed,pname=nnv(cp[_pname_],str("point",i))) ];
 
-// from [camPos,viewAtPos,zoom] to [vpd,vpr,vpt,compress/expand]
-function cvz2vpdrtx(cvz) = let (
-		camPos = cvz[0],
-		viewAtPos = cvz[1],
-		zoom = cvz[2],
-		camTop = [0,0,1],
-		camDir = unit(camPos-viewAtPos),
-		camDist = norm(camPos-viewAtPos),
-		rot = camRot(camDir,camTop),
-		irot = transpose(rot),
-		vpd = zoom*camDist,
-		vpr = RM2EAxyz(camRot(camDir,camTop)),
-		vpt = camPos,
-		vpx = irot*mscale([1,1,zoom])*rot
-	) echo(camPos=camPos,viewAtPos=viewAtPos,zoom=zoom,camTop=camTop,camDir=camDir,camDist=camDist,vpd=vpd,vpr=vpr,vpt=vpt,vpx=vpx)
-	[ vpd, vpr, vpt, vpx ];
+function move(curPos,cpoint,absidx,transidx) =
+	cpoint[absidx] != undef ? cpoint[absidx] :
+		cpoint[transidx] != undef ? curPos + cpoint[transidx] :
+			curPos;
 
-function vpdr2cvz(vpd, vpr, vpt) = let (
-		camDir = EAxyz2CamDir(vpr),
-		camPos = vpt-camDir*vpd,
-		viewAtPos = vpt,
-		zoom = 1
-	) echo(vpr=vpr,camDir=camDir,camPos=camPos,viewAtPos=viewAtPos)
-	[camPos,viewAtPos,zoom];
+function cxxpoints(cxpoints) = let (
+	ms = crSplineMs([ for (p = cxpoints) p[_cameraAbsolute_] ])
+) [ for (
+		i = 0,
+		p = undef,
+		m = undef,
+		time = undef,
+		fromTime = undef,
+		toTime = 0;
+	i < len(cxpoints);
+		i = i+1,
+		p = cxpoints[i],
+		m = ms[i-1],
+		time = time(p,m),
+		fromTime = toTime,
+		toTime = fromTime+time
+	) if (i > 0) echo(p[_pname_],startTime=fromTime,time=time) cpointx(p,splineM=m,time=time,startTime=fromTime) ];
 
-module asView(x) multmatrix(x) children();
+function time(p,m) = p[_time_] != undef ? p[_time_] : crLeng(m) / p[_speed_];
 
-// converts a rotation matrix into the Euler angles
-// with the order Rx.Ry.Rz
-function RM2EAxyz(M) =
-	let( sy = norm([M[0][0],M[0][1]]) )
-	sy > 1e-6 ?
-		[   atan2(M[1][2], M[2][2]),
-			atan2(-M[0][2], sy),
-			atan2(M[0][1], M[0][0]) ] :
-		[   atan2(-M[2][1], M[1][1]),
-			atan2(-M[0][2], sy),
-			0 ];
-
-// the rotation matrix of a camera local system
-function camRot(dir,top) =
-	let(	dx = cross(dir,top),
-			dy = -cross(dir,dx) )
-	[unit(dx), unit(dy), -unit(dir)];
-
-function EAxyz2CamDir(vpr) = [-sin(vpr.x)*sin(vpr.z),sin(vpr.x)*cos(vpr.z),-cos(vpr.x)];
-
-// scale matrix
-function mscale(s) = [for(i=[0:2])[for(j=[0:2]) i==j? s[i]: 0]];
-
-function unit(v) = v/norm(v);
-
-function transpose(M) = [for(j=[0:2])[for(i=[0:2]) M[i][j]]];
