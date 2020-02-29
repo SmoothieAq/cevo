@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d0ac7a39-903d-48ef-8209-d1d15fda06d0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/CEVOparts/animateSCAD/animateSCAD1.scad" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CEVOparts/animateSCAD/animateSCAD.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/animateSCAD/animateSCAD.scad" afterDir="false" />
+    <list default="true" id="d0ac7a39-903d-48ef-8209-d1d15fda06d0" name="Default Changelist" comment="x">
+      <change afterPath="$PROJECT_DIR$/xNopSCADlib/core.scad" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xNopSCADlib/global_defs.scad" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xNopSCADlib/vitamins/carbon_tube.scad" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xUtil/xUtil.scad" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xVitamins/xnut.scad" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xVitamins/xrod.scad" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xVitamins/xscrew.scad" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xxVitamins/xxscrew.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/cornerMounts/frontRightCornerEDIT.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/cornerMounts/frontRightCornerEDIT.scad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightEDIT.scad" beforeDir="false" afterPath="$PROJECT_DIR$/CEVOparts/yCarriages/yCarriageRightEDIT.scad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cevo.iws" beforeDir="false" afterPath="$PROJECT_DIR$/cevo.iws" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,20 +41,22 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/CEVOparts/animateSCAD" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/xVitamins" />
+    <property name="settings.editor.selected.configurable" value="preferences.customizations" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\JesperLauritsen\IdeaProjects\cevo\xNopSCAD" />
       <recent name="E:\intelliJProjcets\cevo\CEVOparts\yCarriages\old" />
       <recent name="E:\intelliJProjcets\cevo\CEVOparts\xutil" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\intelliJProjcets\cevo\CEVOparts\animateSCAD" />
+      <recent name="C:\Users\JesperLauritsen\IdeaProjects\cevo\xVitamins" />
+      <recent name="C:\Users\JesperLauritsen\IdeaProjects\cevo\xNopSCAD" />
+      <recent name="C:\Users\JesperLauritsen\IdeaProjects\cevo\CEVOparts\animateSCAD" />
       <recent name="E:\intelliJProjcets\cevo\CEVOparts\cornerMounts" />
       <recent name="E:\intelliJProjcets\cevo\CEVOparts\yCarriages" />
-      <recent name="E:\intelliJProjcets\cevo\CEVOparts\frame" />
-      <recent name="E:\intelliJProjcets\cevo\CEVOparts" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -136,13 +146,27 @@
       <updated>1578587644531</updated>
     </task>
     <task id="LOCAL-00010" summary="x">
-      <created>1578640076626</created>
+      <created>1578901675702</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1578640076626</updated>
+      <updated>1578901675702</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="x">
+      <created>1578902092574</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1578902092574</updated>
+    </task>
+    <task id="LOCAL-00012" summary="x">
+      <created>1579444873540</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1579444873540</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -150,7 +174,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -165,21 +191,31 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1548" y="29" key="#OpenSCAD/0.0.2560.1400@0.0.2560.1400" timestamp="1577552287271" />
-    <state x="874" y="510" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1577138008868">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="1174" y="510" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581792954074">
+      <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="874" y="510" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1577138008868" />
-    <state x="948" y="428" key="#com.intellij.ide.ui.customization.CustomizableActionsPanel.FindAvailableActionsDialog" timestamp="1577987824620">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="1174" y="510" key="#com.intellij.fileTypes.FileTypeChooser/-3840.0.2560.1413/0.0.3440.1400@0.0.3440.1400" timestamp="1581792954074" />
+    <state x="5014" y="510" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1400/3840.0.3440.1400@3840.0.3440.1400" timestamp="1579370640243" />
+    <state x="874" y="510" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1578765120172" />
+    <state x="5114" y="428" key="#com.intellij.ide.ui.customization.CustomizableActionsPanel.FindAvailableActionsDialog" timestamp="1579338670922">
+      <screen x="3840" y="0" width="3440" height="1400" />
     </state>
+    <state x="5114" y="428" key="#com.intellij.ide.ui.customization.CustomizableActionsPanel.FindAvailableActionsDialog/0.0.2560.1400/3840.0.3440.1400@3840.0.3440.1400" timestamp="1579338670922" />
     <state x="948" y="428" key="#com.intellij.ide.ui.customization.CustomizableActionsPanel.FindAvailableActionsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1577987824620" />
-    <state x="395" y="299" width="951" height="793" key="CommitChangelistDialog2" timestamp="1578822110098">
+    <state x="523" y="431" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1578851435036">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="395" y="299" width="951" height="793" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1578822110098" />
-    <state x="1329" y="372" key="FileChooserDialogImpl" timestamp="1577726249389">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="523" y="431" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1578851435036" />
+    <state x="4371" y="299" width="951" height="793" key="CommitChangelistDialog2" timestamp="1579444872667">
+      <screen x="3840" y="0" width="3440" height="1400" />
     </state>
+    <state x="531" y="299" key="CommitChangelistDialog2/-3840.0.2560.1413/0.0.3440.1400@0.0.3440.1400" timestamp="1578902091848" />
+    <state x="4371" y="299" key="CommitChangelistDialog2/0.0.2560.1400/3840.0.3440.1400@3840.0.3440.1400" timestamp="1579444872667" />
+    <state x="395" y="299" width="951" height="793" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1578587643753" />
+    <state x="1786" y="372" key="FileChooserDialogImpl" timestamp="1581782895475">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="1786" y="372" key="FileChooserDialogImpl/-3840.0.2560.1413/0.0.3440.1400@0.0.3440.1400" timestamp="1581782895475" />
     <state x="1329" y="372" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1577726249389" />
     <state x="0" y="0" key="FileDocumentManager.FileCacheConflict" timestamp="1578132872287">
       <screen x="0" y="0" width="2560" height="1400" />
@@ -189,45 +225,64 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="268" y="442" key="IDE.errors.dialog/0.0.2560.1400@0.0.2560.1400" timestamp="1578220931843" />
+    <state x="556" y="417" key="MultipleFileMergeDialog" timestamp="1578831586535">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="556" y="417" key="MultipleFileMergeDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1578831586535" />
+    <state x="447" y="404" width="672" height="591" key="NewModule_or_Project.wizard" timestamp="1581853943416">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="447" y="404" width="672" height="591" key="NewModule_or_Project.wizard/-3840.0.2560.1413/0.0.3440.1400@0.0.3440.1400" timestamp="1581853943416" />
+    <state x="4287" y="404" key="NewModule_or_Project.wizard/0.0.2560.1400/3840.0.3440.1400@3840.0.3440.1400" timestamp="1579444551701" />
     <state x="964" y="414" key="RollbackChangesDialog" timestamp="1577138112511">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="964" y="414" key="RollbackChangesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1577138112511" />
-    <state x="621" y="349" key="SettingsEditor" timestamp="1578241521621">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="4674" y="349" key="SettingsEditor" timestamp="1579338675123">
+      <screen x="3840" y="0" width="3440" height="1400" />
     </state>
+    <state x="4674" y="349" key="SettingsEditor/0.0.2560.1400/3840.0.3440.1400@3840.0.3440.1400" timestamp="1579338675123" />
     <state x="621" y="349" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1578241521621" />
-    <state x="320" y="436" key="Vcs.Push.Dialog.v2" timestamp="1578640080144">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="4270" y="436" key="Vcs.Push.Dialog.v2" timestamp="1579444883644">
+      <screen x="3840" y="0" width="3440" height="1400" />
     </state>
-    <state x="320" y="436" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1578640080144" />
+    <state x="4270" y="436" key="Vcs.Push.Dialog.v2/0.0.2560.1400/3840.0.3440.1400@3840.0.3440.1400" timestamp="1579444883644" />
+    <state x="320" y="436" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1579194325444" />
     <state x="998" y="649" key="com.intellij.ide.ui.customization.CustomizableActionsPanel$EditIconDialog" timestamp="1577726271141">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="998" y="649" key="com.intellij.ide.ui.customization.CustomizableActionsPanel$EditIconDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1577726271141" />
-    <state x="988" y="528" key="com.intellij.ide.util.TipDialog" timestamp="1577135906710">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="1328" y="528" key="com.intellij.ide.util.TipDialog" timestamp="1581928725518">
+      <screen x="0" y="0" width="3440" height="1400" />
     </state>
+    <state x="1328" y="528" key="com.intellij.ide.util.TipDialog/-3840.0.2560.1413/0.0.3440.1400@0.0.3440.1400" timestamp="1581928725518" />
+    <state x="988" y="528" key="com.intellij.ide.util.TipDialog/0.0.2560.1400/3840.0.3440.1400@0.0.2560.1400" timestamp="1579337355194" />
     <state x="988" y="528" key="com.intellij.ide.util.TipDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1577135906710" />
-    <state x="499" y="623" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1578587604712">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="671" y="623" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582974898769">
+      <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="499" y="623" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1578587604712" />
-    <state x="1361" y="3" width="1201" height="839" key="dock-window-1" timestamp="1578173431366">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="671" y="623" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-3840.0.2560.1413/0.0.3440.1400@0.0.3440.1400" timestamp="1582974898769" />
+    <state x="499" y="623" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1578831578253" />
+    <state x="2154" y="155" width="1289" height="1139" key="dock-window-1" timestamp="1581851994496">
+      <screen x="0" y="0" width="3440" height="1400" />
     </state>
+    <state x="2154" y="155" width="1289" height="1139" key="dock-window-1/-3840.0.2560.1413/0.0.3440.1400@0.0.3440.1400" timestamp="1581851994496" />
     <state x="1361" y="3" width="1201" height="839" key="dock-window-1/0.0.2560.1400@0.0.2560.1400" timestamp="1578173431366" />
     <state x="628" y="147" width="710" height="819" key="find.popup" timestamp="1578252469846">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="628" y="147" width="710" height="819" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1578252469846" />
+    <state width="688" height="178" key="javadoc.popup.new" timestamp="1578901817277">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="688" height="178" key="javadoc.popup.new/-3840.0.2560.1413/0.0.3440.1400@0.0.3440.1400" timestamp="1578901817277" />
     <state x="110" y="327" key="new project wizard" timestamp="1577278303842">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="110" y="327" key="new project wizard/0.0.2560.1400@0.0.2560.1400" timestamp="1577278303842" />
-    <state x="781" y="319" width="672" height="678" key="search.everywhere.popup" timestamp="1578762293532">
+    <state x="781" y="319" width="672" height="678" key="search.everywhere.popup" timestamp="1578589559117">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="781" y="319" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1578762293532" />
+    <state x="781" y="319" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1578589559117" />
   </component>
 </project>

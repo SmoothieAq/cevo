@@ -14,7 +14,7 @@ $showScrews 	= true;
 $showExtra		= true;
 $showExtraExtra = true;
 $doDiamants		= true;
-$doRealDiamants	= false;
+$doRealDiamants	= true;
 
 frontRightCornerAssembly();
 
